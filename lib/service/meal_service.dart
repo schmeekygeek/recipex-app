@@ -1,6 +1,7 @@
-import 'package:recipex_app/classes/base.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import '../classes/base.dart';
 
 const String _url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 Future<Base> execute(String query) async {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipex_app/providers/meal_list_provider.dart';
-import './pages/home.dart';
 import 'package:provider/provider.dart';
+
+import './providers/meal_list_provider.dart';
+import './pages/home.dart';
 
 void main() {
   runApp(

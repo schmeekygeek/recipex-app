@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/pages/bookmarks.dart';
 
 import '../providers/meal_list_provider.dart';
 import 'dashboard.dart';
@@ -15,37 +16,46 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  PageController pgController = PageController(
+    initialPage: 0,
+    keepPage: true
+  );
+
   @override
   Widget build(BuildContext context) {
-    final List<Widget> widgets = [
-      const Dashboard(),
-      const Search(),
-      const Settings()
-    ];
     return Scaffold(
-      bottomNavigationBar: GNav(
-        onTabChange: (value) {
-          context.read<MealListProvider>().setIndex = value;
-        },
-        tabs: const [
+      bottomNavigationBar: const GNav(
+        gap: 0,
+        tabs:  [
           GButton(
             icon: Icons.home,
-            gap: 5,
             text: "Home",
           ),
           GButton(
             icon: Icons.search,
-            gap: 5,
             text: "Search",
           ),
+          // GButton(
+          //   icon: Icons.bookmark,
+          //   text: "Bookmarks",
+          // ),
           GButton(
             icon: Icons.settings,
-            gap: 5,
             text: "Settings",
           ),
         ],
       ),
-      body: widgets[context.watch<MealListProvider>().pageIndex],
+      body: PageView(
+        controller: pgController,
+        onPageChanged: (value) => context.read<MealListProvider>().setIndex = value,
+        reverse: false,
+        children: const [
+          Dashboard(),
+          Search(),
+          // Bookmarks(),
+          Settings()
+        ],
+      ),
     );
   }
 }

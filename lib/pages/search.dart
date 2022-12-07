@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipex_app/providers/meal_list_provider.dart';
@@ -17,25 +19,59 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(13.0),
       child: ListView(
         children: <Widget> [
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Search",
-              suffixIcon: const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Icon(Icons.search),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(42)
-              )
+          const SizedBox(
+            height: 12,
+          ),
+          const Text(
+            "What do you want to cook today?",
+            style: TextStyle(
+              fontFamily: "PlayfairDisplay",
+              fontSize: 30,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400
             ),
-            onSubmitted: (value) async {
-              if(!mounted) return;
-              context.read<MealListProvider>().setInput = value;
-            },
-            onEditingComplete: () => {},
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          SizedBox(
+            height: 45,
+            child: TextField(
+              selectionHeightStyle: BoxHeightStyle.tight,
+              decoration: const InputDecoration(
+                fillColor: Colors.blueGrey,
+                hintText: "Search",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.fromLTRB(18, 0, 8, 0),
+                  child: Icon(
+                    Icons.search,
+                    color: Colors.amberAccent,
+                  ),
+                ),
+                hintStyle: TextStyle(
+                  fontFamily: "SpaceMono",
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: Colors.blueGrey,
+                    style: BorderStyle.solid,
+                    strokeAlign: StrokeAlign.center
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  // gapPadding: 1
+                ),
+              ),
+              onSubmitted: (value) async {
+                if(!mounted) return;
+                context.read<MealListProvider>().setInput = value;
+              },
+            ),
           ),
           const SizedBox(
             height: 20,
