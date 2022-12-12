@@ -20,6 +20,7 @@ dependencies:
   json_annotation: ^4.7.0
   build_runner: ^2.3.2
   google_nav_bar: ^5.0.6
+  font_awesome_flutter: ^10.3.0
 
 dev_dependencies:
   flutter_test:
@@ -31,18 +32,16 @@ flutter:
 
   uses-material-design: true
 
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/not_found.png
 
   fonts:
-    - family: SpaceMono
+    - family: SpaceGrotesk
       fonts:
-        - asset: fonts/SpaceMono-Regular.ttf
-        - asset: fonts/SpaceMono-Bold.ttf
-    - family: AtkinsonHyperlegible
+        - asset: fonts/SpaceGrotesk-VariableFont_wght.ttf
+    - family: Quincy
       fonts:
-        - asset: fonts/AtkinsonHyperlegible-Regular.ttf
-    - family: PlayfairDisplay
+        - asset: fonts/Fontspring-DEMO-quincycf-regular.otf
+    - family: RobotoSlab
       fonts:
-        - asset: fonts/PlayfairDisplay-Regular.ttf
+        - asset: fonts/RobotoSlab-VariableFont_wght.ttf

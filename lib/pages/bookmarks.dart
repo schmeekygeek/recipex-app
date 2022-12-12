@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Bookmarks extends StatelessWidget {
-  const Bookmarks({super.key});
+class Liked extends StatelessWidget {
+  const Liked({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("hi"),
+    return const Center(
+      child: Text("Liked"),
     );
   }
 }
