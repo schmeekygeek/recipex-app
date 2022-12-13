@@ -25,12 +25,7 @@ class _SearchState extends State<Search> {
             centerTitle: true,
             title: Text(
               "What's cooking?".toUpperCase(),
-              style: const TextStyle(
-                fontFamily: "SpaceGrotesk",
-                letterSpacing: 2,
-                fontWeight: FontWeight.w500,
-                fontSize: 24
-              ),
+              style: Theme.of(context).appBarTheme.toolbarTextStyle,
             ),
           ),
           SliverToBoxAdapter(
@@ -82,11 +77,9 @@ class _SearchState extends State<Search> {
                             Text(
                               "${"Couldn't fetch results".toUpperCase()}\nCheck your internet connection or query",
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontFamily: "AtkinsonHyperlegible",
-                                wordSpacing: 2,
+                              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                                 fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1
                               ),
                             ),
                           ],

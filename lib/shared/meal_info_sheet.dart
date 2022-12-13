@@ -29,23 +29,19 @@ class MealInfoSheet extends StatelessWidget {
               ),
             ],
             automaticallyImplyLeading: true,
-            expandedHeight: 200,
+            expandedHeight: 230,
             title: Text(meal.strMeal ?? "Unknown"),
-            titleTextStyle: TextStyle(
-                fontSize: 25,
-                fontFamily: "SpaceGrotesk",
-                color: context.watch<ThemeModel>().isDark
-                    ? Colors.white
-                    : Colors.black87,
-                fontWeight: FontWeight.w600),
+            titleTextStyle: Theme.of(context).appBarTheme.toolbarTextStyle,
+            iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
             titleSpacing: 2,
+            elevation: 10,
             centerTitle: true,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               background: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.cover,
                     onError: (error, stackTrace) =>
                         Image.asset("assets/not_found.png"),
                     colorFilter: ColorFilter.mode(
@@ -72,24 +68,13 @@ class MealInfoSheet extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "Origin: ",
-                          style: TextStyle(
-                              height: 1.5,
-                              color: context.watch<ThemeModel>().isDark
-                                  ? Colors.white
-                                  : Colors.black87,
-                              fontFamily: MealListTile.itemTitleFont,
-                              fontSize: categorySize,
-                              fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         TextSpan(
                           text: meal.strArea ?? "N/A",
-                          style: TextStyle(
-                              color: context.watch<ThemeModel>().isDark
-                                  ? Colors.white
-                                  : Colors.black87,
-                              fontFamily: MealListTile.itemTitleFont,
-                              fontSize: categorySize,
-                              fontStyle: FontStyle.normal),
+                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                            fontWeight: FontWeight.normal
+                          ),
                         ),
                       ],
                     ),
@@ -100,24 +85,13 @@ class MealInfoSheet extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "Category: ",
-                          style: TextStyle(
-                              height: 1.5,
-                              color: context.watch<ThemeModel>().isDark
-                                  ? Colors.white
-                                  : Colors.black87,
-                              fontFamily: MealListTile.itemTitleFont,
-                              fontSize: categorySize,
-                              fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         TextSpan(
                           text: meal.strCategory ?? "N/A",
-                          style: TextStyle(
-                              color: context.watch<ThemeModel>().isDark
-                                  ? Colors.white
-                                  : Colors.black87,
-                              fontFamily: MealListTile.itemTitleFont,
-                              fontSize: categorySize,
-                              fontStyle: FontStyle.normal),
+                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                            fontWeight: FontWeight.normal
+                          ),
                         ),
                       ],
                     ),
@@ -128,24 +102,13 @@ class MealInfoSheet extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "Tags: ",
-                          style: TextStyle(
-                              height: 1.5,
-                              color: context.watch<ThemeModel>().isDark
-                                  ? Colors.white
-                                  : Colors.black87,
-                              fontFamily: MealListTile.itemTitleFont,
-                              fontSize: categorySize,
-                              fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         TextSpan(
                           text: meal.strTags?.replaceAll(r',', ', ') ?? "N/A",
-                          style: TextStyle(
-                              color: context.watch<ThemeModel>().isDark
-                                  ? Colors.white
-                                  : Colors.black87,
-                              fontFamily: MealListTile.itemTitleFont,
-                              fontSize: categorySize,
-                              fontStyle: FontStyle.normal),
+                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                            fontWeight: FontWeight.normal
+                          ),
                         ),
                       ],
                     ),
@@ -162,12 +125,9 @@ class MealInfoSheet extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Ingredients  ",
-                        style: TextStyle(
-                          fontSize: 38,
-                          fontFamily: "Quincy",
-                        ),
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       Icon(
                         FontAwesomeIcons.carrot,
@@ -190,11 +150,7 @@ class MealInfoSheet extends StatelessWidget {
                             softWrap: true,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.start,
-                            style: const TextStyle(
-                                fontSize: 15,
-                                fontFamily: "RobotoSlab",
-                                fontWeight: FontWeight.w300,
-                                letterSpacing: 1),
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
                         Expanded(
@@ -204,12 +160,7 @@ class MealInfoSheet extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             softWrap: true,
                             textAlign: TextAlign.end,
-                            style: const TextStyle(
-                              fontSize: 15,
-                              fontFamily: "RobotoSlab",
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.w100,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
                       ],
@@ -225,15 +176,12 @@ class MealInfoSheet extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         "Instructions  ",
-                        style: TextStyle(
-                          fontSize: 38,
-                          fontFamily: "Quincy",
-                        ),
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
-                      Icon(
+                      const Icon(
                         FontAwesomeIcons.bowlRice,
                         color: Colors.lightGreen,
                         size: 28,
@@ -246,12 +194,7 @@ class MealInfoSheet extends StatelessWidget {
                   Text(
                     meal.strInstructions ??
                         "No instructions available for this recipe",
-                    style: const TextStyle(
-                      fontSize: 15,
-                      wordSpacing: 1,
-                      letterSpacing: 1,
-                      fontFamily: "RobotoSlab",
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),

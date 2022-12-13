@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../service/ingredient_service.dart';
-import '../providers/theme_model.dart';
 import 'meal_info_sheet.dart';
 import '../classes/meals.dart';
 
 class MealListTile extends StatefulWidget {
-
   final Meals meal;
   static const double iconSize = 16;
   static const double categorySize = 16;
@@ -20,11 +17,11 @@ class MealListTile extends StatefulWidget {
   State<MealListTile> createState() => _MealListTileState();
 }
 
-class _MealListTileState extends State<MealListTile> with TickerProviderStateMixin {
-
+class _MealListTileState extends State<MealListTile>
+    with TickerProviderStateMixin {
   @override
   void dispose() {
-      super.dispose();
+    super.dispose();
   }
 
   @override
@@ -34,8 +31,10 @@ class _MealListTileState extends State<MealListTile> with TickerProviderStateMix
         GestureDetector(
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => MealInfoSheet(ingredients: buildIngredients(widget.meal), meal: widget.meal),
-            )
+              builder: (context) => MealInfoSheet(
+                  ingredients: buildIngredients(widget.meal),
+                  meal: widget.meal),
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.all(11),
@@ -61,11 +60,11 @@ class _MealListTileState extends State<MealListTile> with TickerProviderStateMix
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.meal.strMeal ?? "N/A",
-                            style: const TextStyle(
-                                fontSize: 23,
-                                fontFamily: "Quincy",
-                                fontWeight: FontWeight.w400),
+                            widget.meal.strMeal ?? "Unknown dish",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium!
+                                .copyWith(fontSize: 28, letterSpacing: 1),
                           ),
                           RichText(
                             textAlign: TextAlign.left,
@@ -73,20 +72,13 @@ class _MealListTileState extends State<MealListTile> with TickerProviderStateMix
                               children: [
                                 TextSpan(
                                   text: "Origin: ",
-                                  style: TextStyle(
-                                      height: 1.5,
-                                      color: context.watch<ThemeModel>().isDark ? Colors.white : Colors.black87,
-                                      fontFamily: MealListTile.itemTitleFont,
-                                      fontSize: MealListTile.categorySize,
-                                      fontWeight: FontWeight.bold),
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
                                 ),
                                 TextSpan(
                                   text: widget.meal.strArea ?? "N/A",
-                                  style: TextStyle(
-                                      color: context.watch<ThemeModel>().isDark ? Colors.white : Colors.black87,
-                                      fontFamily: MealListTile.itemTitleFont,
-                                      fontSize: MealListTile.categorySize,
-                                      fontStyle: FontStyle.normal),
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
                                 ),
                               ],
                             ),
@@ -97,20 +89,13 @@ class _MealListTileState extends State<MealListTile> with TickerProviderStateMix
                               children: [
                                 TextSpan(
                                   text: "Category: ",
-                                  style: TextStyle(
-                                      height: 1.5,
-                                      color: context.watch<ThemeModel>().isDark ? Colors.white : Colors.black87,
-                                      fontFamily: MealListTile.itemTitleFont,
-                                      fontSize: MealListTile.categorySize,
-                                      fontWeight: FontWeight.bold),
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
                                 ),
                                 TextSpan(
                                   text: widget.meal.strCategory ?? "N/A",
-                                  style: TextStyle(
-                                      color: context.watch<ThemeModel>().isDark ? Colors.white : Colors.black87,
-                                      fontFamily: MealListTile.itemTitleFont,
-                                      fontSize: MealListTile.categorySize,
-                                      fontStyle: FontStyle.normal),
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
                                 ),
                               ],
                             ),
@@ -121,21 +106,15 @@ class _MealListTileState extends State<MealListTile> with TickerProviderStateMix
                               children: [
                                 TextSpan(
                                   text: "Tags: ",
-                                  style: TextStyle(
-                                      height: 1.5,
-                                      color: context.watch<ThemeModel>().isDark ? Colors.white : Colors.black87,
-                                      fontFamily: MealListTile.itemTitleFont,
-                                      fontSize: MealListTile.categorySize,
-                                      fontWeight: FontWeight.bold),
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
                                 ),
                                 TextSpan(
-                                  text: widget.meal.strTags?.replaceAll(r',', ', ') ??
+                                  text: widget.meal.strTags
+                                          ?.replaceAll(r',', ', ') ??
                                       "N/A",
-                                  style: TextStyle(
-                                      color: context.watch<ThemeModel>().isDark ? Colors.white : Colors.black87,
-                                      fontFamily: MealListTile.itemTitleFont,
-                                      fontSize: MealListTile.categorySize,
-                                      fontStyle: FontStyle.normal),
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
                                 ),
                               ],
                             ),

@@ -12,6 +12,13 @@ class Settings extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
+            SliverAppBar.large(
+              title: Text(
+                "SETTINGS",
+                style: Theme.of(context).appBarTheme.toolbarTextStyle,
+              ),
+              toolbarTextStyle: Theme.of(context).appBarTheme.toolbarTextStyle,
+            ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

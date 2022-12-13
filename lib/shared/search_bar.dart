@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/meal_list_provider.dart';
-import '../providers/theme_model.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({super.key});
@@ -29,14 +28,11 @@ class SearchBar extends StatelessWidget {
               child: Icon(
                 FontAwesomeIcons.magnifyingGlass,
                 size: 18,
-                color: Colors.amber,
+                color: Color(0xff89b4fa),
               ),
             ),
             hintText: "Search",
-            hintStyle: const TextStyle(
-              color: Colors.black87,
-              fontFamily: "SpaceGrotesk",
-            ),
+            hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
             isDense: false,
             suffixIcon: Padding(
               padding: const EdgeInsetsDirectional.only(end: 8.0),
@@ -50,8 +46,7 @@ class SearchBar extends StatelessWidget {
               ),
             ),
             filled: true,
-            fillColor: Colors.grey.shade200,
-            hoverColor: Colors.transparent,
+            fillColor: Theme.of(context).inputDecorationTheme.fillColor,
             focusedBorder: InputBorder.none,
             border: InputBorder.none
           ),
