@@ -33,7 +33,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/not_found.png
+    - assets/
 
   fonts:
     - family: SpaceGrotesk

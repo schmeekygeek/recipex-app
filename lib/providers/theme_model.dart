@@ -3,24 +3,20 @@ import 'package:flutter/material.dart';
 class Dark {
   static const Color _base = Color(0xff1e1e2e);
   static const Color _crust = Color(0xff11111b);
-  static const Color _mantle = Color(0xff181825);
   static const Color _blue = Color(0xff89b4fa);
   static const Color _text = Color(0xfff5e0dc);
   static const Color _surface0 = Color(0xff313244);
-
 }
 
 class White {
   static const Color _base = Color(0xffeff1f5);
   static const Color _crust = Color(0xffdce0e8);
-  static const Color _mantle = Color(0xffe6e9ef);
   static const Color _blue = Color(0xff1e66f5);
   static const Color _text = Color(0xff4c4f69);
   static const Color _surface0 = Color(0xffccd0da);
 }
 
 class ThemeModel with ChangeNotifier {
-  // dark theme constants
   static ThemeData buildDarkTheme() {
     return ThemeData.dark().copyWith(
       useMaterial3: true,
@@ -41,24 +37,31 @@ class ThemeModel with ChangeNotifier {
       ),
       textTheme: const TextTheme(
         bodySmall: TextStyle(
-            fontSize: 15,
-            wordSpacing: 1,
-            letterSpacing: 1,
-            fontFamily: "RobotoSlab",
-            color: Dark._text,
-            fontWeight: FontWeight.w100,),
+          fontSize: 15,
+          wordSpacing: 1,
+          letterSpacing: 1,
+          fontFamily: "RobotoSlab",
+          color: Dark._text,
+          fontWeight: FontWeight.w100,
+        ),
         headlineMedium: TextStyle(
           fontSize: 38,
           fontFamily: "Quincy",
           color: Dark._text,
         ),
         headlineSmall: TextStyle(
-          height: 1.5,
+          color: Dark._text,
+          fontFamily: "SpaceGrotesk",
+          fontSize: 17,
+          letterSpacing: 1,
+          fontWeight: FontWeight.w400,
+        ),
+        bodyMedium: TextStyle(
           color: Dark._text,
           fontFamily: "SpaceGrotesk",
           fontSize: 18,
           letterSpacing: 1,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w400,
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
@@ -68,9 +71,9 @@ class ThemeModel with ChangeNotifier {
         border: InputBorder.none,
         fillColor: Dark._surface0,
         hintStyle: TextStyle(
-          color: White._base,
+          color: White._crust,
           fontFamily: "SpaceGrotesk",
-          fontSize: 14,
+          fontSize: 15,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
         ),
@@ -98,24 +101,31 @@ class ThemeModel with ChangeNotifier {
       ),
       textTheme: const TextTheme(
         bodySmall: TextStyle(
-            fontSize: 15,
-            wordSpacing: 1,
-            letterSpacing: 1,
-            fontFamily: "RobotoSlab",
-            color: White._text,
-            fontWeight: FontWeight.w100),
+          fontSize: 15,
+          wordSpacing: 1,
+          letterSpacing: 1,
+          fontFamily: "RobotoSlab",
+          color: White._text,
+          fontWeight: FontWeight.w100,
+        ),
         headlineMedium: TextStyle(
           fontSize: 38,
           fontFamily: "Quincy",
           color: White._text,
         ),
         headlineSmall: TextStyle(
-          height: 1.5,
+          color: White._text,
+          fontFamily: "SpaceGrotesk",
+          fontSize: 17,
+          letterSpacing: 1,
+          fontWeight: FontWeight.w400,
+        ),
+        bodyMedium: TextStyle(
           color: White._text,
           fontFamily: "SpaceGrotesk",
           fontSize: 18,
           letterSpacing: 1,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w400,
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
@@ -127,7 +137,7 @@ class ThemeModel with ChangeNotifier {
         hintStyle: TextStyle(
           color: Dark._base,
           fontFamily: "SpaceGrotesk",
-          fontSize: 14,
+          fontSize: 15,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
         ),

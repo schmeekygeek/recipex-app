@@ -11,31 +11,48 @@ class SearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(29),
-        child: TextField(
-          onSubmitted: (value) => context.read<MealListProvider>().setInput = value,
-          style: const TextStyle(
-            fontFamily: "SpaceGrotesk",
-            color: Colors.black87,
-          ),
-          controller: fieldTextController,
-          decoration: InputDecoration(
-            prefixIcon: const Padding(
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).inputDecorationTheme.fillColor,
+        borderRadius: BorderRadius.circular(30)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Expanded(
+            child: Padding(
               padding: EdgeInsets.only(left: 10),
               child: Icon(
                 FontAwesomeIcons.magnifyingGlass,
                 size: 18,
-                color: Color(0xff89b4fa),
               ),
             ),
-            hintText: "Search",
-            hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
-            isDense: false,
-            suffixIcon: Padding(
-              padding: const EdgeInsetsDirectional.only(end: 8.0),
+          ),
+          Expanded(
+            flex: 4,
+            child: TextField(
+              onSubmitted: (value) =>
+                  context.read<MealListProvider>().setInput = value,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.w200,
+                letterSpacing: 1,
+              ),
+              controller: fieldTextController,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.zero,
+                hintText: "Search",
+                hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
+                isDense: false,
+                focusedBorder: InputBorder.none,
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
               child: IconButton(
                 onPressed: () => fieldTextController.clear(),
                 icon: Icon(
@@ -45,12 +62,8 @@ class SearchBar extends StatelessWidget {
                 ),
               ),
             ),
-            filled: true,
-            fillColor: Theme.of(context).inputDecorationTheme.fillColor,
-            focusedBorder: InputBorder.none,
-            border: InputBorder.none
-          ),
-        ),
+          )
+        ],
       ),
     );
   }

@@ -5,8 +5,20 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Dashboard - coming soon"),
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar.large(
+            title: Text(
+              "DASHBOARD",
+              style: Theme.of(context).appBarTheme.toolbarTextStyle,
+            ),
+          ),
+          const SliverToBoxAdapter(
+
+          ),
+        ],
+      ),
     );
   }
 }

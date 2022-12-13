@@ -5,7 +5,6 @@ import 'package:recipex_app/providers/theme_model.dart';
 
 import '../classes/ingredient.dart';
 import '../classes/meals.dart';
-import 'meal_list_tile.dart';
 
 class MealInfoSheet extends StatelessWidget {
   final Meals meal;
@@ -45,7 +44,7 @@ class MealInfoSheet extends StatelessWidget {
                     onError: (error, stackTrace) =>
                         Image.asset("assets/not_found.png"),
                     colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.55), BlendMode.xor),
+                        Colors.white.withOpacity(0.55), BlendMode.dstATop),
                     image: NetworkImage(
                       meal.strMealThumb!,
                     ),
