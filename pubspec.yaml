@@ -21,6 +21,7 @@ dependencies:
   build_runner: ^2.3.2
   google_nav_bar: ^5.0.6
   font_awesome_flutter: ^10.3.0
+  lottie: ^1.4.2
 
 dev_dependencies:
   flutter_test:

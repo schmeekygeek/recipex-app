@@ -38,7 +38,7 @@ class _SettingsState extends State<Settings> {
                       ),
                       ToggleButtons(
                         fillColor: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(6),
                         borderWidth: 0,
                         isSelected: [
                           !context.watch<ThemeModel>().isDark,

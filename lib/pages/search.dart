@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../shared/meal_list_tile.dart';
@@ -43,8 +44,10 @@ class _SearchState extends State<Search> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height / 5,
                             ),
-                            const CircularProgressIndicator(
-                              color: Colors.lime,
+                            LottieBuilder.asset(
+                              width: 100,
+                              frameRate: FrameRate(60),
+                              "assets/loading2.json",
                             ),
                           ],
                         );

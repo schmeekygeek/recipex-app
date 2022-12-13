@@ -15,7 +15,9 @@ class Dashboard extends StatelessWidget {
             ),
           ),
           const SliverToBoxAdapter(
-
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+            ),
           ),
         ],
       ),

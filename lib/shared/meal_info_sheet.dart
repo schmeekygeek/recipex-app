@@ -23,15 +23,19 @@ class MealInfoSheet extends StatelessWidget {
               IconButton(
                 icon: Icon(context.watch<ThemeModel>().isDark
                     ? FontAwesomeIcons.solidLightbulb
-                    : Icons.dark_mode_rounded),
+                    : Icons.dark_mode_rounded,),
                 onPressed: () => context.read<ThemeModel>().toggle(),
               ),
             ],
             automaticallyImplyLeading: true,
             expandedHeight: 230,
             title: Text(meal.strMeal ?? "Unknown"),
-            titleTextStyle: Theme.of(context).appBarTheme.toolbarTextStyle,
+            titleTextStyle: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
             iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
+            floating: true,
+            stretch: true,
             titleSpacing: 2,
             elevation: 10,
             centerTitle: true,
