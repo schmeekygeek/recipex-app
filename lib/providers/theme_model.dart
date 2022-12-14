@@ -40,13 +40,13 @@ class ThemeModel with ChangeNotifier {
           fontSize: 15,
           wordSpacing: 1,
           letterSpacing: 1,
-          fontFamily: "RobotoSlab",
+          fontFamily: "Lora",
           color: Dark._text,
           fontWeight: FontWeight.w100,
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Quincy",
+          fontFamily: "Lora",
           color: Dark._text,
         ),
         headlineSmall: TextStyle(
@@ -104,13 +104,13 @@ class ThemeModel with ChangeNotifier {
           fontSize: 15,
           wordSpacing: 1,
           letterSpacing: 1,
-          fontFamily: "RobotoSlab",
+          fontFamily: "Lora",
           color: White._text,
           fontWeight: FontWeight.w100,
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Quincy",
+          fontFamily: "Lora",
           color: White._text,
         ),
         headlineSmall: TextStyle(
