@@ -152,47 +152,47 @@ class _MealListTileState extends State<MealListTile>
           const SizedBox(
             height: 7,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  FontAwesomeIcons.solidHeart,
-                  color: Colors.redAccent,
-                  size: 22,
-                ),
-                onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Coming soon!!"),
-                  ),
-                ),
-              ),
-              IconButton(
-                icon: const Icon(
-                  FontAwesomeIcons.share,
-                  color: Colors.blue,
-                  size: 22,
-                ),
-                onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Coming soon!!"),
-                  ),
-                ),
-              ),
-              IconButton(
-                icon: const Icon(
-                  FontAwesomeIcons.solidFloppyDisk,
-                  color: Colors.lightGreen,
-                  size: 22,
-                ),
-                onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Coming soon!!"),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //   children: [
+          //     IconButton(
+          //       icon: const Icon(
+          //         FontAwesomeIcons.solidHeart,
+          //         color: Colors.redAccent,
+          //         size: 22,
+          //       ),
+          //       onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+          //         const SnackBar(
+          //           content: Text("Coming soon!!"),
+          //         ),
+          //       ),
+          //     ),
+          //     IconButton(
+          //       icon: const Icon(
+          //         FontAwesomeIcons.share,
+          //         color: Colors.blue,
+          //         size: 22,
+          //       ),
+          //       onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+          //         const SnackBar(
+          //           content: Text("Coming soon!!"),
+          //         ),
+          //       ),
+          //     ),
+          //     IconButton(
+          //       icon: const Icon(
+          //         FontAwesomeIcons.solidFloppyDisk,
+          //         color: Colors.lightGreen,
+          //         size: 22,
+          //       ),
+          //       onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+          //         const SnackBar(
+          //           content: Text("Coming soon!!"),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           const Divider(
             height: 9,
             thickness: 1,

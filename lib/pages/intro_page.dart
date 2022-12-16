@@ -1,11 +1,13 @@
-
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:recipex_app/pages/home.dart';
-import 'package:recipex_app/providers/theme_model.dart';
+import 'package:recipex_app/pages/intro_pages/intro_page1.dart';
+import 'package:recipex_app/pages/intro_pages/intro_page3.dart';
+import 'package:recipex_app/pages/intro_pages/intro_page4.dart';
+import 'package:recipex_app/providers/meal_list_provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import 'intro_pages/intro_page2.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -27,209 +29,104 @@ class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Stack(
-          children: [
-            PageView(
-              controller: pageController,
+      body: Stack(
+        children: [
+          PageView(
+            controller: pageController,
+            onPageChanged: (value) =>
+                {context.read<MealListProvider>().setCurrentPageIndex = value},
+            children: const [
+              IntroPage1(),
+              IntroPage2(),
+              IntroPage3(),
+              IntroPage4(),
+            ],
+          ),
+          Container(
+            alignment: const Alignment(0, 0.90),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ListView(
-                  children: [
-                    AnimatedTextKit(
-                      repeatForever: true,
-                      pause: const Duration(
-                        milliseconds: 500,
+                TextButton(
+                  onPressed: () {
+                    if (context.read<MealListProvider>().currentPageIndex ==
+                        0) {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const Home(),
+                        ),
+                      );
+                    } else {
+                      pageController.previousPage(
+                        duration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        curve: Curves.fastLinearToSlowEaseIn,
+                      );
+                    }
+                  },
+                  style: Theme.of(context).textButtonTheme.style!.copyWith(
+                        foregroundColor: const MaterialStatePropertyAll(Color(0xff313244)),
+                        backgroundColor:
+                            const MaterialStatePropertyAll(Color(0xfff5e0dc)),
                       ),
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          "Delicious",
-                          speed: const Duration(
-                            milliseconds: 50,
-                          ),
-                          textStyle: Theme.of(context).textTheme.headlineMedium
-                        ),
-                        TypewriterAnimatedText(
-                          "Quick",
-                          speed: const Duration(
-                            milliseconds: 100,
-                          ),
-                          textStyle: Theme.of(context).textTheme.headlineMedium
-                        ),
-                        TypewriterAnimatedText(
-                          "Easy",
-                          speed: const Duration(
-                            milliseconds: 100,
-                          ),
-                          textStyle: Theme.of(context).textTheme.headlineMedium
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "recipes at your fingertips",
-                      style: Theme.of(context).textTheme.headlineMedium
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      "Cooking for your loved ones has never felt easier before",
-                      overflow: TextOverflow.clip,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      height: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: const DecorationImage(
-                          isAntiAlias: true,
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            "assets/intro/intro1.png",
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                ListView(
-                  children: [
-                    Text(
-                      "From us,\nWith love",
-                      style: Theme.of(context).textTheme.headlineMedium
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      "Find recipes with the best ingredients there is",
-                      overflow: TextOverflow.clip,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      height: 172,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          isAntiAlias: true,
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            "assets/intro/intro2.jpg",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                ListView(
-                  children: [
-                    Text(
-                      "The sky is the limit",
-                      style: Theme.of(context).textTheme.headlineMedium
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      "With recipes spanning 20+ categories, never run out of things to cook",
-                      overflow: TextOverflow.clip,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      height: 200,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          isAntiAlias: true,
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            "assets/intro/intro3.png",
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              alignment: const Alignment(0, 0.90),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: const Icon(FontAwesomeIcons.angleLeft),
-                    onPressed: () => pageController.previousPage(
-                      duration: const Duration(
-                        milliseconds: 500,
-                      ),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                    ),
+                  child: Text(
+                    context.watch<MealListProvider>().currentPageIndex == 0
+                        ? " Skip "
+                        : "Previous",
                   ),
-                  SmoothPageIndicator(
-                    effect: const ExpandingDotsEffect(
-                      expansionFactor: 2,
-                      dotHeight: 10,
-                      dotWidth: 10,
-                      strokeWidth: 1,
-                      offset: 1,
-                      dotColor: Colors.grey,
-                      activeDotColor: Colors.lightGreen
-                    ),
-                    controller: pageController,
-                    count: 3,
-                    textDirection: TextDirection.ltr,
-                    axisDirection: Axis.horizontal,
-                    onDotClicked: (index) => pageController.animateToPage(
-                      index,
-                      duration: const Duration(
-                        milliseconds: 500,
-                      ),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                    ),
+                ),
+                SmoothPageIndicator(
+                  effect: const WormEffect(
+                    activeDotColor: Colors.deepPurpleAccent,
+                    dotWidth: 10,
+                    dotHeight: 10,
+                    strokeWidth: 1,
+                    offset: 1,
                   ),
-                  IconButton(
-                    icon: const Icon(FontAwesomeIcons.angleRight),
-                    onPressed: () {
-                      if(pageController.page == 2){
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const Home(),
-                          ),
-                        );
-                      }
-                      pageController.nextPage(
+                  controller: pageController,
+                  count: 4,
+                  textDirection: TextDirection.ltr,
+                  axisDirection: Axis.horizontal,
+                  onDotClicked: (index) => pageController.animateToPage(
+                    index,
+                    duration: const Duration(
+                      milliseconds: 500,
+                    ),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  ),
+                ),
+                TextButton(
+                  style: Theme.of(context).textButtonTheme.style!.copyWith(
+                        foregroundColor: const MaterialStatePropertyAll(Color(0xff313244)),
+                        backgroundColor:
+                            const MaterialStatePropertyAll(Color(0xfff5e0dc)),
+                      ),
+                  onPressed: () {
+                    if (pageController.page == 3) {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const Home(),
+                        ),
+                      );
+                    }
+                    pageController.nextPage(
                       duration: const Duration(
                         milliseconds: 500,
                       ),
                       curve: Curves.fastLinearToSlowEaseIn,
                     );
-                    },
+                  },
+                  child: Text(
+                    context.watch<MealListProvider>().currentPageIndex == 3
+                        ? " Get started "
+                        : "  Next  ",
                   ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: const Alignment(1, -1),
-              child: IconButton(
-                icon: Icon(
-                context.watch<ThemeModel>().isDark ?
-                  FontAwesomeIcons.solidLightbulb :
-                  Icons.dark_mode_rounded
                 ),
-                onPressed: () {
-                  context.read<ThemeModel>().toggle();
-                },
-              ),
+              ],
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

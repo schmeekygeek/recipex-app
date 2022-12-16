@@ -78,6 +78,22 @@ class ThemeModel with ChangeNotifier {
           fontWeight: FontWeight.normal,
         ),
       ),
+      textButtonTheme: const TextButtonThemeData(
+        style: ButtonStyle(
+        textStyle: MaterialStatePropertyAll<TextStyle>(
+          TextStyle(
+            color: Dark._text,
+            fontFamily: "SpaceGrotesk",
+            fontSize: 16,
+            letterSpacing: 1,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+          backgroundColor:
+              MaterialStatePropertyAll(Colors.transparent),
+          foregroundColor: MaterialStatePropertyAll(Colors.white),
+        ),
+      )
     );
   }
 
@@ -142,10 +158,26 @@ class ThemeModel with ChangeNotifier {
           fontWeight: FontWeight.normal,
         ),
       ),
+      textButtonTheme: const TextButtonThemeData(
+        style: ButtonStyle(
+          textStyle: MaterialStatePropertyAll<TextStyle>(
+            TextStyle(
+              color: White._text,
+              fontFamily: "SpaceGrotesk",
+              fontSize: 15,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          backgroundColor:
+              MaterialStatePropertyAll(Colors.transparent),
+          foregroundColor: MaterialStatePropertyAll(Colors.black),
+        ),
+      )
     );
   }
 
-  bool isDark = true;
+  bool isDark = false;
 
   void toggle() {
     isDark = !isDark;

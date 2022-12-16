@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(10),
             tabMargin: const EdgeInsets.all(8),
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            selectedIndex: context.watch<MealListProvider>().pageIndex,
+            selectedIndex: context.watch<MealListProvider>().homePageIndex,
             gap: 8,
             onTabChange: (value) {
               pgController.animateToPage(
@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
       body: PageView(
         controller: pgController,
         onPageChanged: (value) =>
-            context.read<MealListProvider>().setIndex = value,
+          context.read<MealListProvider>().setHomePageIndex = value,
         reverse: false,
         children: const [Dashboard(), Search(), Liked(), Settings()],
       ),
