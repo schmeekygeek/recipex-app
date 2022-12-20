@@ -4,102 +4,102 @@ part 'meals.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Meals {
-  final String? idMeal;
-  final String? strMeal;
-  final String? strCategory;
-  final String? strArea;
-  final String? strMealThumb;
-  final String? strTags;
-  final String? strInstructions;
-  final String? strIngredient1;
-  final String? strIngredient2;
-  final String? strIngredient3;
-  final String? strIngredient4;
-  final String? strIngredient5;
-  final String? strIngredient6;
-  final String? strIngredient7;
-  final String? strIngredient8;
-  final String? strIngredient9;
-  final String? strIngredient10;
-  final String? strIngredient11;
-  final String? strIngredient12;
-  final String? strIngredient13;
-  final String? strIngredient14;
-  final String? strIngredient15;
-  final String? strIngredient16;
-  final String? strIngredient17;
-  final String? strIngredient18;
-  final String? strIngredient19;
-  final String? strIngredient20;
-  final String? strMeasure1;
-  final String? strMeasure2;
-  final String? strMeasure3;
-  final String? strMeasure4;
-  final String? strMeasure5;
-  final String? strMeasure6;
-  final String? strMeasure7;
-  final String? strMeasure8;
-  final String? strMeasure9;
-  final String? strMeasure10;
-  final String? strMeasure11;
-  final String? strMeasure12;
-  final String? strMeasure13;
-  final String? strMeasure14;
-  final String? strMeasure15;
-  final String? strMeasure16;
-  final String? strMeasure17;
-  final String? strMeasure18;
-  final String? strMeasure19;
-  final String? strMeasure20;
+  String? idMeal;
+  String? strMeal;
+  String? strCategory;
+  String? strArea;
+  String? strMealThumb;
+  String? strTags;
+  String? strInstructions;
+  String? strIngredient1;
+  String? strIngredient2;
+  String? strIngredient3;
+  String? strIngredient4;
+  String? strIngredient5;
+  String? strIngredient6;
+  String? strIngredient7;
+  String? strIngredient8;
+  String? strIngredient9;
+  String? strIngredient10;
+  String? strIngredient11;
+  String? strIngredient12;
+  String? strIngredient13;
+  String? strIngredient14;
+  String? strIngredient15;
+  String? strIngredient16;
+  String? strIngredient17;
+  String? strIngredient18;
+  String? strIngredient19;
+  String? strIngredient20;
+  String? strMeasure1;
+  String? strMeasure2;
+  String? strMeasure3;
+  String? strMeasure4;
+  String? strMeasure5;
+  String? strMeasure6;
+  String? strMeasure7;
+  String? strMeasure8;
+  String? strMeasure9;
+  String? strMeasure10;
+  String? strMeasure11;
+  String? strMeasure12;
+  String? strMeasure13;
+  String? strMeasure14;
+  String? strMeasure15;
+  String? strMeasure16;
+  String? strMeasure17;
+  String? strMeasure18;
+  String? strMeasure19;
+  String? strMeasure20;
 
   Meals({ 
-      required this.idMeal,
-      required this.strMeal,
-      required this.strCategory,
-      required this.strArea,
-      required this.strMealThumb,
-      required this.strTags,
-      required this.strInstructions,
-      required this.strIngredient1,
-      required this.strIngredient2,
-      required this.strIngredient3,
-      required this.strIngredient4,
-      required this.strIngredient5,
-      required this.strIngredient6,
-      required this.strIngredient7,
-      required this.strIngredient8,
-      required this.strIngredient9,
-      required this.strIngredient10,
-      required this.strIngredient11,
-      required this.strIngredient12,
-      required this.strIngredient13,
-      required this.strIngredient14,
-      required this.strIngredient15,
-      required this.strIngredient16,
-      required this.strIngredient17,
-      required this.strIngredient18,
-      required this.strIngredient19,
-      required this.strIngredient20,
-      required this.strMeasure1,
-      required this.strMeasure2,
-      required this.strMeasure3,
-      required this.strMeasure4,
-      required this.strMeasure5,
-      required this.strMeasure6,
-      required this.strMeasure7,
-      required this.strMeasure8,
-      required this.strMeasure9,
-      required this.strMeasure10,
-      required this.strMeasure11,
-      required this.strMeasure12,
-      required this.strMeasure13,
-      required this.strMeasure14,
-      required this.strMeasure15,
-      required this.strMeasure16,
-      required this.strMeasure17,
-      required this.strMeasure18,
-      required this.strMeasure19,
-      required this.strMeasure20,
+      this.idMeal,
+      this.strMeal,
+      this.strCategory,
+      this.strArea,
+      this.strMealThumb,
+      this.strTags,
+      this.strInstructions,
+      this.strIngredient1,
+      this.strIngredient2,
+      this.strIngredient3,
+      this.strIngredient4,
+      this.strIngredient5,
+      this.strIngredient6,
+      this.strIngredient7,
+      this.strIngredient8,
+      this.strIngredient9,
+      this.strIngredient10,
+      this.strIngredient11,
+      this.strIngredient12,
+      this.strIngredient13,
+      this.strIngredient14,
+      this.strIngredient15,
+      this.strIngredient16,
+      this.strIngredient17,
+      this.strIngredient18,
+      this.strIngredient19,
+      this.strIngredient20,
+      this.strMeasure1,
+      this.strMeasure2,
+      this.strMeasure3,
+      this.strMeasure4,
+      this.strMeasure5,
+      this.strMeasure6,
+      this.strMeasure7,
+      this.strMeasure8,
+      this.strMeasure9,
+      this.strMeasure10,
+      this.strMeasure11,
+      this.strMeasure12,
+      this.strMeasure13,
+      this.strMeasure14,
+      this.strMeasure15,
+      this.strMeasure16,
+      this.strMeasure17,
+      this.strMeasure18,
+      this.strMeasure19,
+      this.strMeasure20,
     });
 
   get getMealId => idMeal;

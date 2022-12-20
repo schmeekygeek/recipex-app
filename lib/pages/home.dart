@@ -17,7 +17,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  PageController pgController = PageController(initialPage: 0, keepPage: true);
+  PageController pgController = PageController(
+    initialPage: 0,
+    keepPage: true,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +102,9 @@ class _HomeState extends State<Home> {
       ),
       body: PageView(
         controller: pgController,
+        physics: const AlwaysScrollableScrollPhysics(),
         onPageChanged: (value) =>
-          context.read<MealListProvider>().setHomePageIndex = value,
+            context.read<MealListProvider>().setHomePageIndex = value,
         reverse: false,
         children: const [Dashboard(), Search(), Liked(), Settings()],
       ),

@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
 
 class Dark {
-  static const Color _base = Color(0xff1e1e2e);
-  static const Color _crust = Color(0xff11111b);
-  static const Color _blue = Color(0xff89b4fa);
-  static const Color _text = Color(0xfff5e0dc);
-  static const Color _surface0 = Color(0xff313244);
+  static const Color base = Color(0xff1e1e2e);
+  static const Color crust = Color(0xff11111b);
+  static const Color blue = Color(0xff89b4fa);
+  static const Color text = Color(0xfff5e0dc);
+  static const Color surface0 = Color(0xff313244);
 }
 
 class White {
-  static const Color _base = Color(0xffeff1f5);
-  static const Color _crust = Color(0xffdce0e8);
-  static const Color _blue = Color(0xff1e66f5);
-  static const Color _text = Color(0xff4c4f69);
-  static const Color _surface0 = Color(0xffccd0da);
+  static const Color base = Color(0xffeff1f5);
+  static const Color crust = Color(0xffdce0e8);
+  static const Color blue = Color(0xff1e66f5);
+  static const Color text = Color(0xff4c4f69);
+  static const Color surface0 = Color(0xffccd0da);
 }
 
 class ThemeModel with ChangeNotifier {
   static ThemeData buildDarkTheme() {
     return ThemeData.dark().copyWith(
+      brightness: Brightness.dark,
       useMaterial3: true,
-      scaffoldBackgroundColor: Dark._crust,
+      scaffoldBackgroundColor: Dark.crust,
       appBarTheme: const AppBarTheme(
-        color: Dark._base,
+        color: Dark.base,
         actionsIconTheme: IconThemeData(
-          color: Dark._blue,
+          color: Dark.text,
           size: 24,
         ),
         toolbarTextStyle: TextStyle(
-          color: Dark._text,
-          fontFamily: "SpaceGrotesk",
+          color: Dark.text,
+          fontFamily: "Lora",
           letterSpacing: 2,
           fontWeight: FontWeight.w500,
           fontSize: 24,
@@ -41,23 +42,23 @@ class ThemeModel with ChangeNotifier {
           wordSpacing: 1,
           letterSpacing: 1,
           fontFamily: "Lora",
-          color: Dark._text,
+          color: Dark.text,
           fontWeight: FontWeight.w100,
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
           fontFamily: "Lora",
-          color: Dark._text,
+          color: Dark.text,
         ),
         headlineSmall: TextStyle(
-          color: Dark._text,
+          color: Dark.text,
           fontFamily: "SpaceGrotesk",
           fontSize: 17,
           letterSpacing: 1,
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
-          color: Dark._text,
+          color: Dark.text,
           fontFamily: "SpaceGrotesk",
           fontSize: 18,
           letterSpacing: 1,
@@ -69,9 +70,9 @@ class ThemeModel with ChangeNotifier {
         hoverColor: Colors.transparent,
         focusedBorder: InputBorder.none,
         border: InputBorder.none,
-        fillColor: Dark._surface0,
+        fillColor: Dark.surface0,
         hintStyle: TextStyle(
-          color: White._crust,
+          color: White.crust,
           fontFamily: "SpaceGrotesk",
           fontSize: 15,
           letterSpacing: 1,
@@ -82,7 +83,7 @@ class ThemeModel with ChangeNotifier {
         style: ButtonStyle(
         textStyle: MaterialStatePropertyAll<TextStyle>(
           TextStyle(
-            color: Dark._text,
+            color: Dark.text,
             fontFamily: "SpaceGrotesk",
             fontSize: 16,
             letterSpacing: 1,
@@ -99,17 +100,18 @@ class ThemeModel with ChangeNotifier {
 
   static ThemeData buildLightTheme() {
     return ThemeData.light().copyWith(
+      brightness: Brightness.dark,
       useMaterial3: true,
-      scaffoldBackgroundColor: White._base,
+      scaffoldBackgroundColor: White.base,
       appBarTheme: const AppBarTheme(
-        color: White._crust,
+        color: White.crust,
         actionsIconTheme: IconThemeData(
-          color: White._blue,
+          color: White.text,
           size: 24,
         ),
         toolbarTextStyle: TextStyle(
-          color: White._text,
-          fontFamily: "SpaceGrotesk",
+          color: White.text,
+          fontFamily: "Lora",
           letterSpacing: 2,
           fontWeight: FontWeight.w500,
           fontSize: 24,
@@ -121,23 +123,23 @@ class ThemeModel with ChangeNotifier {
           wordSpacing: 1,
           letterSpacing: 1,
           fontFamily: "Lora",
-          color: White._text,
+          color: White.text,
           fontWeight: FontWeight.w100,
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
           fontFamily: "Lora",
-          color: White._text,
+          color: White.text,
         ),
         headlineSmall: TextStyle(
-          color: White._text,
+          color: White.text,
           fontFamily: "SpaceGrotesk",
           fontSize: 17,
           letterSpacing: 1,
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
-          color: White._text,
+          color: White.text,
           fontFamily: "SpaceGrotesk",
           fontSize: 18,
           letterSpacing: 1,
@@ -149,9 +151,9 @@ class ThemeModel with ChangeNotifier {
         hoverColor: Colors.transparent,
         focusedBorder: InputBorder.none,
         border: InputBorder.none,
-        fillColor: White._surface0,
+        fillColor: White.surface0,
         hintStyle: TextStyle(
-          color: Dark._base,
+          color: Dark.base,
           fontFamily: "SpaceGrotesk",
           fontSize: 15,
           letterSpacing: 1,
@@ -162,7 +164,7 @@ class ThemeModel with ChangeNotifier {
         style: ButtonStyle(
           textStyle: MaterialStatePropertyAll<TextStyle>(
             TextStyle(
-              color: White._text,
+              color: White.text,
               fontFamily: "SpaceGrotesk",
               fontSize: 15,
               letterSpacing: 1,
@@ -177,7 +179,7 @@ class ThemeModel with ChangeNotifier {
     );
   }
 
-  bool isDark = false;
+  bool isDark = true;
 
   void toggle() {
     isDark = !isDark;

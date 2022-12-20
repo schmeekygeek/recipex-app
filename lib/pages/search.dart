@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+import '../service/ingredient_service.dart';
+import '../shared/meal_info_sheet.dart';
 import '../shared/meal_list_tile.dart';
 import '../shared/search_bar.dart';
 import '../classes/meals.dart';
@@ -51,15 +53,25 @@ class _SearchState extends State<Search> {
                             ),
                           ],
                         );
-                      } 
-                      else if (snapshot.hasData) {
+                      } else if (snapshot.hasData) {
                         List<Meals> meals = snapshot.data!.meals;
                         return Column(
                           children: [
                             const SizedBox(
                               height: 10,
                             ),
-                            for (Meals meal in meals) MealListTile(meal),
+                            for (Meals meal in meals)
+                              GestureDetector(
+                                onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => MealInfoSheet(
+                                      ingredients: buildIngredients(meal),
+                                      meal: meal,
+                                    ),
+                                  ),
+                                ),
+                                child: MealListTile(meal),
+                              ),
                           ],
                         );
                       } else {
@@ -80,16 +92,17 @@ class _SearchState extends State<Search> {
                             Text(
                               "${"Couldn't fetch results".toUpperCase()}\nCheck your internet connection or query",
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                                fontSize: 18,
-                                letterSpacing: 1
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineSmall!
+                                  .copyWith(fontSize: 18, letterSpacing: 1),
                             ),
                           ],
                         );
                       }
                     },
-                    future: execute(context.watch<MealListProvider>().input),
+                    future:
+                        fetchMealsByKeyword(context.watch<MealListProvider>().input),
                   ),
                 ],
               ),

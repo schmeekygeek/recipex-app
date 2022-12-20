@@ -43,7 +43,10 @@ class _IntroPageState extends State<IntroPage> {
             ],
           ),
           Container(
-            alignment: const Alignment(0, 0.90),
+            alignment: Alignment.bottomLeft,
+            padding: const EdgeInsets.only(
+              bottom: 30
+              ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -66,10 +69,17 @@ class _IntroPageState extends State<IntroPage> {
                     }
                   },
                   style: Theme.of(context).textButtonTheme.style!.copyWith(
-                        foregroundColor: const MaterialStatePropertyAll(Color(0xff313244)),
-                        backgroundColor:
-                            const MaterialStatePropertyAll(Color(0xfff5e0dc)),
+                    foregroundColor: const MaterialStatePropertyAll(Color(0xff313244)),
+                    backgroundColor: const MaterialStatePropertyAll(
+                      Color(0xfff5e0dc),
+                    ),
+                    side: const MaterialStatePropertyAll<BorderSide>(
+                      BorderSide(
+                        width: 1,
+                        color: Color(0xff242832),
                       ),
+                    ),
+                  ),
                   child: Text(
                     context.watch<MealListProvider>().currentPageIndex == 0
                         ? " Skip "
@@ -101,6 +111,12 @@ class _IntroPageState extends State<IntroPage> {
                         foregroundColor: const MaterialStatePropertyAll(Color(0xff313244)),
                         backgroundColor:
                             const MaterialStatePropertyAll(Color(0xfff5e0dc)),
+                    side: const MaterialStatePropertyAll<BorderSide>(
+                      BorderSide(
+                        width: 1,
+                        color: Color(0xff242832),
+                      ),
+                    ),
                       ),
                   onPressed: () {
                     if (pageController.page == 3) {

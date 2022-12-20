@@ -48,7 +48,9 @@ class MealInfoSheet extends StatelessWidget {
                     onError: (error, stackTrace) =>
                         Image.asset("assets/not_found.png"),
                     colorFilter: ColorFilter.mode(
-                        Colors.white.withOpacity(0.55), BlendMode.dstATop),
+                      Colors.white.withOpacity(0.55),
+                      BlendMode.dstATop,
+                    ),
                     image: NetworkImage(
                       meal.strMealThumb!,
                     ),

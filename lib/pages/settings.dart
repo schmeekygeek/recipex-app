@@ -55,6 +55,7 @@ class _SettingsState extends State<Settings> {
                             onPressed: () => context.read<ThemeModel>().isDark
                                 ? context.read<ThemeModel>().toggle()
                                 : {},
+                            style: Theme.of(context).textButtonTheme.style,
                           ),
                           IconButton(
                             icon: const Icon(FontAwesomeIcons.solidMoon),
