@@ -48,7 +48,7 @@ class _SearchState extends State<Search> {
                             ),
                             LottieBuilder.asset(
                               width: 100,
-                              frameRate: FrameRate(60),
+                              frameRate: FrameRate.max,
                               "assets/loading2.json",
                             ),
                           ],

@@ -21,7 +21,7 @@ class CategoryListTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
           colorFilter: ColorFilter.mode(
-            Colors.black.withOpacity(0.55),
+            Colors.black.withOpacity(0.45),
             BlendMode.dstATop,
           ),
           fit: BoxFit.cover,
@@ -34,9 +34,12 @@ class CategoryListTile extends StatelessWidget {
         alignment: Alignment.bottomLeft,
         child: Text(
           strCategory,
+          overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             fontSize: 28,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.bold,
+            fontFamily: "Lora",
+            letterSpacing: 1,
           ),
         ),
       ),

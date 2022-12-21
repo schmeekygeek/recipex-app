@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../service/ingredient_service.dart';
-import 'meal_info_sheet.dart';
 import '../classes/meals.dart';
 
 class MealListTile extends StatefulWidget {
@@ -49,10 +47,14 @@ class _MealListTileState extends State<MealListTile>
                   children: [
                     Text(
                       widget.meal.strMeal ?? "Unknown dish",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium!
-                          .copyWith(fontSize: 28, letterSpacing: 1),
+                      style:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                fontSize: 28,
+                                letterSpacing: 1,
+                              ),
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     widget.meal.strArea != null
                         ? Column(
@@ -62,9 +64,15 @@ class _MealListTileState extends State<MealListTile>
                                 "Origin: ",
                                 widget.meal.strArea,
                               ),
+                              const SizedBox(
+                                height: 2,
+                              ),
                               metaData(
                                 "Category: ",
                                 widget.meal.strCategory,
+                              ),
+                              const SizedBox(
+                                height: 2,
                               ),
                               metaData(
                                 "Tags: ",
@@ -93,13 +101,13 @@ class _MealListTileState extends State<MealListTile>
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall!
-                .copyWith(fontWeight: FontWeight.bold),
+                .copyWith(fontWeight: FontWeight.bold,),
           ),
           TextSpan(
             text: detail ?? "N/A",
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color: Colors.lightBlue,
-                ),
+              color: Colors.lightBlue,
+            ),
           ),
         ],
       ),

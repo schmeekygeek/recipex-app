@@ -30,18 +30,18 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: Dark.text,
-          fontFamily: "Lora",
+          fontFamily: "SpaceGrotesk",
           letterSpacing: 2,
-          fontWeight: FontWeight.w500,
-          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          fontSize: 28,
         ),
       ),
       textTheme: const TextTheme(
         bodySmall: TextStyle(
-          fontSize: 15,
+          fontSize: 18,
           wordSpacing: 1,
           letterSpacing: 1,
-          fontFamily: "Lora",
+          fontFamily: "RobotoSlab",
           color: Dark.text,
           fontWeight: FontWeight.w100,
         ),
@@ -74,7 +74,7 @@ class ThemeModel with ChangeNotifier {
         hintStyle: TextStyle(
           color: White.crust,
           fontFamily: "SpaceGrotesk",
-          fontSize: 15,
+          fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
         ),
@@ -85,7 +85,7 @@ class ThemeModel with ChangeNotifier {
           TextStyle(
             color: Dark.text,
             fontFamily: "SpaceGrotesk",
-            fontSize: 16,
+            fontSize: 18,
             letterSpacing: 1,
             fontWeight: FontWeight.w400,
           ),
@@ -111,18 +111,18 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: White.text,
-          fontFamily: "Lora",
+          fontFamily: "SpaceGrotesk",
           letterSpacing: 2,
-          fontWeight: FontWeight.w500,
-          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          fontSize: 28,
         ),
       ),
       textTheme: const TextTheme(
         bodySmall: TextStyle(
-          fontSize: 15,
+          fontSize: 18,
           wordSpacing: 1,
           letterSpacing: 1,
-          fontFamily: "Lora",
+          fontFamily: "RobotoSlab",
           color: White.text,
           fontWeight: FontWeight.w100,
         ),
@@ -155,7 +155,7 @@ class ThemeModel with ChangeNotifier {
         hintStyle: TextStyle(
           color: Dark.base,
           fontFamily: "SpaceGrotesk",
-          fontSize: 15,
+          fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
         ),
@@ -166,7 +166,7 @@ class ThemeModel with ChangeNotifier {
             TextStyle(
               color: White.text,
               fontFamily: "SpaceGrotesk",
-              fontSize: 15,
+              fontSize: 18,
               letterSpacing: 1,
               fontWeight: FontWeight.w400,
             ),
@@ -179,7 +179,7 @@ class ThemeModel with ChangeNotifier {
     );
   }
 
-  bool isDark = true;
+  bool isDark = false;
 
   void toggle() {
     isDark = !isDark;

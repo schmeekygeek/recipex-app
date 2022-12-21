@@ -14,7 +14,7 @@ class IntroPage2 extends StatelessWidget {
             height: 60,
           ),
           Text("Ingredients that entice.",
-              style: Theme.of(context).textTheme.headlineMedium,),
+            style: Theme.of(context).textTheme.headlineMedium,),
           const SizedBox(
             height: 10,
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import '../classes/meal_category.dart';
 import '../service/meal_service.dart';
@@ -19,8 +18,12 @@ class Dashboard extends StatelessWidget {
             height: 20,
           ),
           Text(
-            "Welcome,\nGuest",
-            style: Theme.of(context).textTheme.headlineMedium,
+            "Good morning,\nJohn",
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+              fontWeight: FontWeight.bold,
+              fontFamily: "SpaceGrotesk",
+              letterSpacing: 1
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -45,7 +48,9 @@ class Dashboard extends StatelessWidget {
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => CategoryPage(
-                                category: categories[index].strCategory),
+                              imgUrl: categories[index].strCategoryThumb,
+                              category: categories[index].strCategory,
+                            ),
                           ),
                         ),
                         child: Padding(
@@ -62,11 +67,10 @@ class Dashboard extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return SizedBox(
+                return const SizedBox(
                   height: 100,
-                  child: LottieBuilder.asset(
-                    frameRate: FrameRate(60),
-                    "assets/loading2.json",
+                  child: Center(
+                    child: CircularProgressIndicator(),
                   ),
                 );
               } else {

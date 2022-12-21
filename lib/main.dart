@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: "RecipEx App",
       theme: context.watch<ThemeModel>().isDark ? ThemeModel.buildDarkTheme() : ThemeModel.buildLightTheme(),
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: const IntroPage(),
     );
   }
 }

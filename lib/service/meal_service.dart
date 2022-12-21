@@ -36,6 +36,6 @@ Future<Base> fetchMealsByCategory(String category) async {
 // fetch meal by id
 Future<Meals> fetchMealById(String id) async {
   final response = await http.get(Uri.parse("$baseUrl/lookup.php/?i=$id"));
-  Meals meal = Meals.fromJson(jsonDecode(response.body));
-  return meal;
+  Base meals = Base.fromJson(jsonDecode(response.body));
+  return meals.meals[0];
 }

@@ -9,203 +9,239 @@ import '../classes/meals.dart';
 class MealInfoSheet extends StatelessWidget {
   final Meals meal;
   final List<Ingredient> ingredients;
-  const MealInfoSheet(
-      {required this.ingredients, required this.meal, super.key});
-  static const double categorySize = 19;
+  const MealInfoSheet({
+    required this.ingredients,
+    required this.meal,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            actions: [
-              IconButton(
-                icon: Icon(context.watch<ThemeModel>().isDark
-                    ? FontAwesomeIcons.solidLightbulb
-                    : Icons.dark_mode_rounded,),
-                onPressed: () => context.read<ThemeModel>().toggle(),
-              ),
-            ],
-            automaticallyImplyLeading: true,
-            expandedHeight: 230,
-            title: Text(meal.strMeal ?? "Unknown"),
-            titleTextStyle: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-            iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
-            floating: true,
-            stretch: true,
-            titleSpacing: 2,
-            elevation: 10,
-            centerTitle: true,
-            flexibleSpace: FlexibleSpaceBar(
-              collapseMode: CollapseMode.parallax,
-              background: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    onError: (error, stackTrace) =>
-                        Image.asset("assets/not_found.png"),
-                    colorFilter: ColorFilter.mode(
-                      Colors.white.withOpacity(0.55),
-                      BlendMode.dstATop,
-                    ),
-                    image: NetworkImage(
-                      meal.strMealThumb!,
+    return SafeArea(
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    context.watch<ThemeModel>().isDark
+                        ? FontAwesomeIcons.solidLightbulb
+                        : Icons.dark_mode_rounded,
+                  ),
+                  onPressed: () => context.read<ThemeModel>().toggle(),
+                ),
+              ],
+              automaticallyImplyLeading: true,
+              expandedHeight: 230,
+              title: Text(meal.strMeal ?? "Unknown"),
+              titleTextStyle:
+                  Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+              iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
+              stretch: true,
+              titleSpacing: 2,
+              elevation: 10,
+              centerTitle: false,
+              flexibleSpace: FlexibleSpaceBar(
+                collapseMode: CollapseMode.parallax,
+                background: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      onError: (error, stackTrace) =>
+                          Image.asset("assets/not_found.png"),
+                      colorFilter: ColorFilter.mode(
+                        Colors.white.withOpacity(0.55),
+                        BlendMode.dstATop,
+                      ),
+                      image: NetworkImage(
+                        meal.strMealThumb!,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 10, left: 20, right: 20, bottom: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RichText(
-                    textAlign: TextAlign.left,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Origin: ",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        TextSpan(
-                          text: meal.strArea ?? "N/A",
-                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            fontWeight: FontWeight.normal
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: 10,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      textAlign: TextAlign.left,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Origin: ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  RichText(
-                    textAlign: TextAlign.left,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Category: ",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        TextSpan(
-                          text: meal.strCategory ?? "N/A",
-                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            fontWeight: FontWeight.normal
+                          TextSpan(
+                            text: meal.strArea ?? "N/A",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  RichText(
-                    textAlign: TextAlign.left,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Tags: ",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        TextSpan(
-                          text: meal.strTags?.replaceAll(r',', ', ') ?? "N/A",
-                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            fontWeight: FontWeight.normal
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Divider(
-                    thickness: 2,
-                    height: 23,
-                    indent: 20,
-                    endIndent: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Ingredients  ",
-                        style: Theme.of(context).textTheme.headlineMedium,
+                        ],
                       ),
-                      Icon(
-                        FontAwesomeIcons.carrot,
-                        color: Colors.red.shade300,
-                        size: 28,
+                    ),
+                    RichText(
+                      textAlign: TextAlign.left,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Category: ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          TextSpan(
+                            text: meal.strCategory ?? "N/A",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  for (Ingredient ingredient in ingredients)
+                    ),
+                    RichText(
+                      textAlign: TextAlign.left,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Tags: ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          TextSpan(
+                            text: meal.strTags?.replaceAll(r',', ', ') ?? "N/A",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(
+                      thickness: 0.4,
+                      height: 23,
+                      indent: 20,
+                      endIndent: 20,
+                    ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Expanded(
-                          flex: 3,
-                          child: Text(
-                            ingredient.ingredient,
-                            softWrap: true,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
+                        Text(
+                          "Ingredients  ",
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
-                        Expanded(
-                          flex: 3,
-                          child: Text(
-                            ingredient.measure,
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: true,
-                            textAlign: TextAlign.end,
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
+                        Icon(
+                          FontAwesomeIcons.carrot,
+                          color: Colors.red.shade300,
+                          size: 28,
                         ),
                       ],
                     ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Divider(
-                    thickness: 2,
-                    height: 23,
-                    indent: 20,
-                    endIndent: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Instructions  ",
-                        style: Theme.of(context).textTheme.headlineMedium,
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    for (Ingredient ingredient in ingredients)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: Text(
+                              ingredient.ingredient,
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.start,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Text(
+                              ingredient.measure,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
+                              textAlign: TextAlign.end,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ),
+                        ],
                       ),
-                      const Icon(
-                        FontAwesomeIcons.bowlRice,
-                        color: Colors.lightGreen,
-                        size: 28,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    meal.strInstructions ??
-                        "No instructions available for this recipe",
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(
+                      thickness: 0.4,
+                      height: 23,
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Instructions  ",
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                        const Icon(
+                          FontAwesomeIcons.bowlRice,
+                          color: Colors.lightGreen,
+                          size: 28,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      meal.strInstructions ??
+                          "No instructions available for this recipe",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
