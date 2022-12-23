@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class Dark {
   static const Color base = Color(0xff1e1e2e);
@@ -30,7 +31,7 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: Dark.text,
-          fontFamily: "SpaceGrotesk",
+          fontFamily: "Inter",
           letterSpacing: 2,
           fontWeight: FontWeight.bold,
           fontSize: 28,
@@ -52,14 +53,14 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineSmall: TextStyle(
           color: Dark.text,
-          fontFamily: "SpaceGrotesk",
+          fontFamily: "Inter",
           fontSize: 17,
           letterSpacing: 1,
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
           color: Dark.text,
-          fontFamily: "SpaceGrotesk",
+          fontFamily: "Inter",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.w400,
@@ -73,7 +74,7 @@ class ThemeModel with ChangeNotifier {
         fillColor: Dark.surface0,
         hintStyle: TextStyle(
           color: White.crust,
-          fontFamily: "SpaceGrotesk",
+          fontFamily: "Inter",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
@@ -84,7 +85,7 @@ class ThemeModel with ChangeNotifier {
         textStyle: MaterialStatePropertyAll<TextStyle>(
           TextStyle(
             color: Dark.text,
-            fontFamily: "SpaceGrotesk",
+            fontFamily: "Inter",
             fontSize: 18,
             letterSpacing: 1,
             fontWeight: FontWeight.w400,
@@ -111,7 +112,7 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: White.text,
-          fontFamily: "SpaceGrotesk",
+          fontFamily: "Inter",
           letterSpacing: 2,
           fontWeight: FontWeight.bold,
           fontSize: 28,
@@ -133,14 +134,14 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineSmall: TextStyle(
           color: White.text,
-          fontFamily: "SpaceGrotesk",
+          fontFamily: "Inter",
           fontSize: 17,
           letterSpacing: 1,
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
           color: White.text,
-          fontFamily: "SpaceGrotesk",
+          fontFamily: "Inter",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.w400,
@@ -154,7 +155,7 @@ class ThemeModel with ChangeNotifier {
         fillColor: White.surface0,
         hintStyle: TextStyle(
           color: Dark.base,
-          fontFamily: "SpaceGrotesk",
+          fontFamily: "Inter",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
@@ -165,7 +166,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: MaterialStatePropertyAll<TextStyle>(
             TextStyle(
               color: White.text,
-              fontFamily: "SpaceGrotesk",
+              fontFamily: "Inter",
               fontSize: 18,
               letterSpacing: 1,
               fontWeight: FontWeight.w400,
@@ -179,10 +180,12 @@ class ThemeModel with ChangeNotifier {
     );
   }
 
-  bool isDark = false;
+  var box = Hive.box('recipex');
+  bool isDark = Hive.box('recipex').get(0) ?? false;
 
   void toggle() {
     isDark = !isDark;
+    box.put(0, isDark);
     notifyListeners();
   }
 }

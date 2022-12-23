@@ -50,6 +50,7 @@ class MealInfoSheet extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
+                      filterQuality: FilterQuality.high,
                       onError: (error, stackTrace) =>
                           Image.asset("assets/not_found.png"),
                       colorFilter: ColorFilter.mode(

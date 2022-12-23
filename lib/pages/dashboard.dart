@@ -37,7 +37,7 @@ class Dashboard extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<MealCategory> categories =
-                    snapshot.data!.categories.reversed.toList();
+                    snapshot.data!.categories;
                 return SizedBox(
                   height: 150,
                   child: ListView.builder(
