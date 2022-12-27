@@ -15,19 +15,51 @@ class CategoryListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.network(
-            strCategoryThumb,
-            height: 100,
+        Container(
+          padding: const EdgeInsets.all(12),
+          width: 130,
+          decoration: BoxDecoration(
+            color: Colors.amber.shade300,
+            gradient: LinearGradient(
+              colors: [
+                Colors.amber.shade300,
+                Colors.greenAccent.shade100
+              ],
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  strCategoryThumb,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  strCategory,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w200,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        Text(
-          strCategory,
+        const SizedBox(
+          height: 10,
         ),
-      ]
+      ],
     );
   }
 }

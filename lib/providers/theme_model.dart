@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 class Dark {
-  static const Color base = Color(0xff1e1e2e);
-  static const Color crust = Color(0xff11111b);
-  static const Color blue = Color(0xff89b4fa);
-  static const Color text = Color(0xfff5e0dc);
-  static const Color surface0 = Color(0xff313244);
+  static const Color base = Color(0xff0d1017);
+  static const Color crust = Color(0xff131721);
+  static const Color blue = Color(0xff73b8ff);
+  static const Color text = Color(0xffbfbdb6);
+  static const Color surface0 = Color(0xff11151c);
 }
 
 class White {
-  static const Color base = Color(0xffeff1f5);
-  static const Color crust = Color(0xffdce0e8);
-  static const Color blue = Color(0xff1e66f5);
-  static const Color text = Color(0xff4c4f69);
-  static const Color surface0 = Color(0xffccd0da);
+  static const Color base = Color(0xfffcfcfc);
+  static const Color crust = Color(0xfff3f4f5);
+  static const Color blue = Color(0xff55b4d4);
+  static const Color text = Color(0xff5c6166);
+  static const Color surface0 = Color(0xff8a9199);
 }
 
 class ThemeModel with ChangeNotifier {
@@ -31,9 +31,9 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: Dark.text,
-          fontFamily: "Inter",
+          fontFamily: "Poppins",
           letterSpacing: 2,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w200,
           fontSize: 28,
         ),
       ),
@@ -53,28 +53,27 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineSmall: TextStyle(
           color: Dark.text,
-          fontFamily: "Inter",
+          fontFamily: "Poppins",
           fontSize: 17,
           letterSpacing: 1,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w200,
         ),
         bodyMedium: TextStyle(
           color: Dark.text,
-          fontFamily: "Inter",
+          fontFamily: "Poppins",
           fontSize: 18,
           letterSpacing: 1,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w200,
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         filled: true,
         hoverColor: Colors.transparent,
         focusedBorder: InputBorder.none,
-        border: InputBorder.none,
         fillColor: Dark.surface0,
         hintStyle: TextStyle(
-          color: White.crust,
-          fontFamily: "Inter",
+          color: Dark.text,
+          fontFamily: "Poppins",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
@@ -85,10 +84,10 @@ class ThemeModel with ChangeNotifier {
         textStyle: MaterialStatePropertyAll<TextStyle>(
           TextStyle(
             color: Dark.text,
-            fontFamily: "Inter",
+            fontFamily: "Poppins",
             fontSize: 18,
             letterSpacing: 1,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w200,
           ),
         ),
           backgroundColor:
@@ -101,20 +100,20 @@ class ThemeModel with ChangeNotifier {
 
   static ThemeData buildLightTheme() {
     return ThemeData.light().copyWith(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       useMaterial3: true,
-      scaffoldBackgroundColor: White.base,
+      scaffoldBackgroundColor: White.crust,
       appBarTheme: const AppBarTheme(
-        color: White.crust,
+        color: White.base,
         actionsIconTheme: IconThemeData(
           color: White.text,
           size: 24,
         ),
         toolbarTextStyle: TextStyle(
           color: White.text,
-          fontFamily: "Inter",
+          fontFamily: "Poppins",
           letterSpacing: 2,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w200,
           fontSize: 28,
         ),
       ),
@@ -134,17 +133,17 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineSmall: TextStyle(
           color: White.text,
-          fontFamily: "Inter",
+          fontFamily: "Poppins",
           fontSize: 17,
           letterSpacing: 1,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w200,
         ),
         bodyMedium: TextStyle(
           color: White.text,
-          fontFamily: "Inter",
+          fontFamily: "Poppins",
           fontSize: 18,
           letterSpacing: 1,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w200,
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
@@ -152,10 +151,10 @@ class ThemeModel with ChangeNotifier {
         hoverColor: Colors.transparent,
         focusedBorder: InputBorder.none,
         border: InputBorder.none,
-        fillColor: White.surface0,
+        fillColor: Dark.surface0,
         hintStyle: TextStyle(
-          color: Dark.base,
-          fontFamily: "Inter",
+          color: Dark.text,
+          fontFamily: "Poppins",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
@@ -163,23 +162,22 @@ class ThemeModel with ChangeNotifier {
       ),
       textButtonTheme: const TextButtonThemeData(
         style: ButtonStyle(
-          textStyle: MaterialStatePropertyAll<TextStyle>(
-            TextStyle(
-              color: White.text,
-              fontFamily: "Inter",
-              fontSize: 18,
-              letterSpacing: 1,
-              fontWeight: FontWeight.w400,
-            ),
+        textStyle: MaterialStatePropertyAll<TextStyle>(
+          TextStyle(
+            color: White.text,
+            fontFamily: "Poppins",
+            fontSize: 18,
+            letterSpacing: 1,
+            fontWeight: FontWeight.w200,
           ),
+        ),
           backgroundColor:
               MaterialStatePropertyAll(Colors.transparent),
-          foregroundColor: MaterialStatePropertyAll(Colors.black),
+          foregroundColor: MaterialStatePropertyAll(Colors.white),
         ),
       )
     );
   }
-
   var box = Hive.box('recipex');
   bool isDark = Hive.box('recipex').get(0) ?? false;
 

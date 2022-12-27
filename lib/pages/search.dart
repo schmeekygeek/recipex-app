@@ -18,18 +18,22 @@ class Search extends StatefulWidget {
   State<Search> createState() => _SearchState();
 }
 
-class _SearchState extends State<Search> {
+class _SearchState extends State<Search> with TickerProviderStateMixin {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar.large(
-            centerTitle: true,
             title: Text(
-              "What's cooking?".toUpperCase(),
-              style: Theme.of(context).appBarTheme.toolbarTextStyle,
+              "What's cooking?",
+              style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
+                    fontFamily: "Dancing",
+                    fontSize: 40,
+                  ),
             ),
+            centerTitle: true,
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -49,6 +53,7 @@ class _SearchState extends State<Search> {
                             LottieBuilder.asset(
                               width: 100,
                               frameRate: FrameRate.max,
+                              repeat: true,
                               "assets/loading2.json",
                             ),
                           ],
@@ -101,8 +106,8 @@ class _SearchState extends State<Search> {
                         );
                       }
                     },
-                    future:
-                        fetchMealsByKeyword(context.watch<MealListProvider>().input),
+                    future: fetchMealsByKeyword(
+                        context.watch<MealListProvider>().input),
                   ),
                 ],
               ),

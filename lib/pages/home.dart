@@ -17,6 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   PageController pgController = PageController(
     initialPage: 0,
     keepPage: true,
@@ -27,77 +28,53 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(7),
+          padding: const EdgeInsets.all(8.0),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: GNav(
-              backgroundColor: const Color(0xff232634),
-              style: GnavStyle.google,
-              iconSize: 20,
-              padding: const EdgeInsets.all(10),
-              tabMargin: const EdgeInsets.all(8),
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              selectedIndex: context.watch<MealListProvider>().homePageIndex,
-              gap: 8,
-              onTabChange: (value) {
-                pgController.animateToPage(
-                  value,
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  duration: const Duration(
-                    milliseconds: 500,
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              color: Colors.black87,
+              child: GNav(
+                backgroundColor: Colors.transparent,
+                style: GnavStyle.google,
+                iconSize: 20,
+                padding: const EdgeInsets.all(10),
+                tabMargin: const EdgeInsets.all(8),
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                tabBackgroundColor: Colors.lightBlue.shade300,
+                selectedIndex: context.watch<MealListProvider>().homePageIndex,
+                gap: 8,
+                color: Colors.grey,
+                activeColor: Colors.black87,
+                textStyle: const TextStyle(
+                    color: Colors.black87, fontWeight: FontWeight.w600, height: 1.2),
+                onTabChange: (value) {
+                  pgController.animateToPage(
+                    value,
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    duration: const Duration(
+                      milliseconds: 200,
+                    ),
+                  );
+                },
+                tabs: const [
+                  GButton(
+                    icon: FontAwesomeIcons.houseChimney,
+                    text: "Home",
                   ),
-                );
-              },
-              tabs: [
-                GButton(
-                  iconColor: Colors.grey,
-                  icon: FontAwesomeIcons.houseChimney,
-                  iconActiveColor: Colors.deepPurple,
-                  backgroundColor: Colors.deepPurple.shade100,
-                  text: "Home",
-                  textStyle: const TextStyle(
-                    color: Colors.deepPurple,
-                    fontFamily: "SpaceGrotesk",
-                    fontWeight: FontWeight.w600,
+                  GButton(
+                    icon: FontAwesomeIcons.magnifyingGlass,
+                    text: "Search",
                   ),
-                ),
-                GButton(
-                  iconColor: Colors.grey,
-                  icon: FontAwesomeIcons.magnifyingGlass,
-                  iconActiveColor: Colors.deepOrangeAccent,
-                  backgroundColor: Colors.orange.shade100,
-                  text: "Search",
-                  textStyle: const TextStyle(
-                    color: Colors.deepOrangeAccent,
-                    fontFamily: "SpaceGrotesk",
-                    fontWeight: FontWeight.w600,
+                  GButton(
+                    icon: FontAwesomeIcons.solidHeart,
+                    text: "Liked",
                   ),
-                ),
-                GButton(
-                  iconColor: Colors.grey,
-                  icon: FontAwesomeIcons.solidHeart,
-                  iconActiveColor: Colors.redAccent,
-                  backgroundColor: Colors.red.shade100,
-                  text: "Liked",
-                  textStyle: const TextStyle(
-                    color: Colors.red,
-                    fontFamily: "SpaceGrotesk",
-                    fontWeight: FontWeight.w600,
+                  GButton(
+                    icon: FontAwesomeIcons.gear,
+                    text: "Settings",
                   ),
-                ),
-                GButton(
-                  iconColor: Colors.grey,
-                  icon: FontAwesomeIcons.gear,
-                  iconActiveColor: Colors.blueAccent,
-                  backgroundColor: Colors.lightBlue.shade100,
-                  text: "Settings",
-                  textStyle: const TextStyle(
-                    color: Colors.blueAccent,
-                    fontFamily: "SpaceGrotesk",
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -107,7 +84,14 @@ class _HomeState extends State<Home> {
           onPageChanged: (value) =>
               context.read<MealListProvider>().setHomePageIndex = value,
           reverse: false,
-          children: const [Dashboard(), Search(), Liked(), Settings()],
+          children: [
+            Dashboard(
+              controller: pgController,
+            ),
+            const Search(),
+            const Liked(),
+            const Settings(),
+          ],
         ),
       ),
     );

@@ -34,7 +34,7 @@ class MealInfoSheet extends StatelessWidget {
               ],
               automaticallyImplyLeading: true,
               expandedHeight: 230,
-              title: Text(meal.strMeal ?? "Unknown"),
+              title: null,
               titleTextStyle:
                   Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
                         fontWeight: FontWeight.bold,
@@ -48,6 +48,11 @@ class MealInfoSheet extends StatelessWidget {
                 collapseMode: CollapseMode.parallax,
                 background: Container(
                   decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20)
+                    ),
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       filterQuality: FilterQuality.high,
@@ -77,6 +82,13 @@ class MealInfoSheet extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      meal.strMeal ?? "Unknown",
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    const SizedBox(
+                      height: 10
+                    ),
                     RichText(
                       textAlign: TextAlign.left,
                       text: TextSpan(
@@ -157,12 +169,6 @@ class MealInfoSheet extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Divider(
-                      thickness: 0.4,
-                      height: 23,
-                      indent: 20,
-                      endIndent: 20,
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -208,12 +214,6 @@ class MealInfoSheet extends StatelessWidget {
                       ),
                     const SizedBox(
                       height: 10,
-                    ),
-                    const Divider(
-                      thickness: 0.4,
-                      height: 23,
-                      indent: 20,
-                      endIndent: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
