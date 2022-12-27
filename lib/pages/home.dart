@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../providers/meal_list_provider.dart';
 import 'liked.dart';
 import 'dashboard.dart';
-import 'settings.dart';
+import 'profile.dart';
 import 'search.dart';
 
 class Home extends StatefulWidget {
@@ -70,8 +70,8 @@ class _HomeState extends State<Home> {
                     text: "Liked",
                   ),
                   GButton(
-                    icon: FontAwesomeIcons.gear,
-                    text: "Settings",
+                    icon: FontAwesomeIcons.solidUser,
+                    text: "Profile",
                   ),
                 ],
               ),
@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
             ),
             const Search(),
             const Liked(),
-            const Settings(),
+            const Profile(),
           ],
         ),
       ),

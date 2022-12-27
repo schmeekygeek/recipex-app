@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipex_app/providers/theme_model.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({super.key});
+class Profile extends StatefulWidget {
+  const Profile({super.key});
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _SettingsState extends State<Settings> {
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class _SettingsState extends State<Settings> {
         slivers: [
           SliverAppBar.large(
             title: Text(
-              "SETTINGS",
+              "Profile",
               style: Theme.of(context).appBarTheme.toolbarTextStyle,
             ),
             toolbarTextStyle: Theme.of(context).appBarTheme.toolbarTextStyle,
