@@ -81,15 +81,15 @@ class ThemeModel with ChangeNotifier {
       ),
       textButtonTheme: const TextButtonThemeData(
         style: ButtonStyle(
-        textStyle: MaterialStatePropertyAll<TextStyle>(
-          TextStyle(
-            color: Dark.text,
-            fontFamily: "Poppins",
-            fontSize: 18,
-            letterSpacing: 1,
-            fontWeight: FontWeight.w200,
+          textStyle: MaterialStatePropertyAll<TextStyle>(
+            TextStyle(
+              color: Dark.text,
+              fontFamily: "Poppins",
+              fontSize: 18,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w200,
+            ),
           ),
-        ),
           backgroundColor:
               MaterialStatePropertyAll(Colors.transparent),
           foregroundColor: MaterialStatePropertyAll(Colors.white),
@@ -162,15 +162,15 @@ class ThemeModel with ChangeNotifier {
       ),
       textButtonTheme: const TextButtonThemeData(
         style: ButtonStyle(
-        textStyle: MaterialStatePropertyAll<TextStyle>(
-          TextStyle(
-            color: White.text,
-            fontFamily: "Poppins",
-            fontSize: 18,
-            letterSpacing: 1,
-            fontWeight: FontWeight.w200,
+          textStyle: MaterialStatePropertyAll<TextStyle>(
+            TextStyle(
+              color: White.text,
+              fontFamily: "Poppins",
+              fontSize: 18,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w200,
+            ),
           ),
-        ),
           backgroundColor:
               MaterialStatePropertyAll(Colors.transparent),
           foregroundColor: MaterialStatePropertyAll(Colors.white),

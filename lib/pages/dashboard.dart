@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:recipex_app/classes/base.dart';
 
 import '../service/greeting_service.dart';
 import '../classes/meal_category.dart';
@@ -8,10 +10,15 @@ import '../shared/dashboard_widgets/liked_box.dart';
 import '../shared/dashboard_widgets/search_box.dart';
 import 'category_sheet.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   final PageController controller;
   const Dashboard({super.key, required this.controller});
 
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,7 +63,33 @@ class Dashboard extends StatelessWidget {
                     itemCount: categories.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () => {
+                        onTap: () async {
+                          showDialog(
+                            builder: (context) => Dialog.fullscreen(
+                              backgroundColor: Colors.transparent,
+                              child: LottieBuilder.asset(
+                                "assets/loading1.json",
+                                height: 200,
+                                frameRate: FrameRate.max,
+                              ),
+                            ),
+                            context: context,
+                          );
+                          late Base meals;
+                          try {
+                            meals = await fetchMealsByCategory(categories[index].strCategory);
+                          }
+                          catch(e) {
+                            Navigator.of(context).pop();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Please check your internet connection."),
+                              )
+                            );
+                            return;
+                          }
+                          if(!mounted) return;
+                          Navigator.of(context).pop();
                           showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,
@@ -65,18 +98,20 @@ class Dashboard extends StatelessWidget {
                                 minChildSize: 0.2,
                                 maxChildSize: 1,
                                 expand: false,
-                                builder: (context, scrollController) {
+                                builder: (oldContext, scrollController) {
                                   return SingleChildScrollView(
                                     controller: scrollController,
                                     child: CategorySheet(
                                       imgUrl: categories[index].strCategoryThumb,
+                                      description: categories[index].strCategoryDescription,
                                       category: categories[index].strCategory,
+                                      meals: meals.meals,
                                     ),
                                   );
                                 },
                               );
                             },
-                          )
+                          );
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8),
@@ -104,7 +139,7 @@ class Dashboard extends StatelessWidget {
             },
           ),
           GestureDetector(
-            onTap: () => controller.animateToPage(
+            onTap: () => widget.controller.animateToPage(
               2,
               curve: Curves.fastLinearToSlowEaseIn,
               duration: const Duration(
@@ -117,7 +152,7 @@ class Dashboard extends StatelessWidget {
             height: 20,
           ),
           GestureDetector(
-            onTap: () => controller.animateToPage(
+            onTap: () => widget.controller.animateToPage(
               1,
               curve: Curves.fastLinearToSlowEaseIn,
               duration: const Duration(

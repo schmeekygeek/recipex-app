@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -20,10 +21,32 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> with TickerProviderStateMixin {
 
+  static final ScrollController _controller = ScrollController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.small(
+        child: const Icon(
+          FontAwesomeIcons.anglesUp,
+          size: 18,
+        ),
+        onPressed: () => _controller.animateTo(
+          0,
+          duration: const Duration(
+            milliseconds: 500,
+          ),
+          curve: Curves.easeIn,
+        ),
+      ),
       body: CustomScrollView(
+        controller: _controller,
         slivers: [
           SliverAppBar.large(
             title: Text(
@@ -100,14 +123,15 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineSmall!
-                                  .copyWith(fontSize: 18, letterSpacing: 1),
+                                  .copyWith(fontSize: 18, letterSpacing: 1,),
                             ),
                           ],
                         );
                       }
                     },
                     future: fetchMealsByKeyword(
-                        context.watch<MealListProvider>().input),
+                      context.watch<MealListProvider>().input,
+                    ),
                   ),
                 ],
               ),
