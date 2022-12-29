@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:recipex_app/classes/base.dart';
 
@@ -29,23 +30,24 @@ class _DashboardState extends State<Dashboard> {
             height: 20,
           ),
           Text(
-            "${getGreeting()},\nJohn",
+            "${getGreeting()},\nMaria",
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
               letterSpacing: 1,
-              fontSize: 50,
-              fontFamily: "Dancing",
+              fontSize: 40,
+              fontFamily: "Satoshi",
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           Text(
             "Categories",
-            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-              fontSize: 30,
-              fontWeight: FontWeight.w200,
-              letterSpacing: 2,
-            ),
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  fontSize: 25,
+                  fontFamily: "ClashGrotesk",
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 2,
+                ),
           ),
           const SizedBox(
             height: 10,
@@ -54,8 +56,7 @@ class _DashboardState extends State<Dashboard> {
             future: fetchAllCategories(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                List<MealCategory> categories =
-                    snapshot.data!.categories;
+                List<MealCategory> categories = snapshot.data!.categories;
                 return SizedBox(
                   height: 160,
                   child: ListView.builder(
@@ -77,18 +78,38 @@ class _DashboardState extends State<Dashboard> {
                           );
                           late Base meals;
                           try {
-                            meals = await fetchMealsByCategory(categories[index].strCategory);
-                          }
-                          catch(e) {
+                            meals = await fetchMealsByCategory(
+                                categories[index].strCategory);
+                          } catch (e) {
                             Navigator.of(context).pop();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Please check your internet connection."),
-                              )
+                            showDialog(
+                              context: context,
+                              builder: (context) => Dialog(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(18.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Icon(
+                                        FontAwesomeIcons.triangleExclamation,
+                                        color: Colors.redAccent,
+                                        size: 40,
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        "Please check your internet connection and try again",
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             );
                             return;
                           }
-                          if(!mounted) return;
+                          if (!mounted) return;
                           Navigator.of(context).pop();
                           showModalBottomSheet(
                             context: context,
@@ -102,8 +123,10 @@ class _DashboardState extends State<Dashboard> {
                                   return SingleChildScrollView(
                                     controller: scrollController,
                                     child: CategorySheet(
-                                      imgUrl: categories[index].strCategoryThumb,
-                                      description: categories[index].strCategoryDescription,
+                                      imgUrl:
+                                          categories[index].strCategoryThumb,
+                                      description: categories[index]
+                                          .strCategoryDescription,
                                       category: categories[index].strCategory,
                                       meals: meals.meals,
                                     ),
@@ -134,7 +157,33 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 );
               } else {
-                return const SizedBox();
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.xmark,
+                      color: Colors.redAccent.shade100,
+                      size: 30,
+                    ),
+                    const SizedBox(width: 4,),
+                    Expanded(
+                      child: Text(
+                        "You do not have an internet connection.",
+                        textAlign: TextAlign.left,
+                        style:
+                            Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                  fontSize: 20,
+                                  letterSpacing: 1,
+                                  overflow: TextOverflow.clip
+                                ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                  ],
+                );
               }
             },
           ),

@@ -1,20 +1,18 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:recipex_app/classes/categories_list.dart';
-import 'package:recipex_app/classes/meals.dart';
 
+import '../classes/categories_list.dart';
+import '../classes/meals.dart';
 import '../classes/base.dart';
 
 const String baseUrl = "https://www.themealdb.com/api/json/v1/1";
 
 // fetch meals by keyword
 Future<Base> fetchMealsByKeyword(String keyword) async {
-
   keyword = keyword.trim().replaceAll(RegExp(r' '), '%20').toLowerCase();
-  final response = await http.get(Uri.parse("$baseUrl/search.php?s=$keyword"));
-  if(response.statusCode != 200){
-    throw Exception("Error occured");
-  }
+  late http.Response response;
+  response = await http.get(Uri.parse("$baseUrl/search.php?s=$keyword"));
   Base meals = Base.fromJson(jsonDecode(response.body));
   return meals;
 }

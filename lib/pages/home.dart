@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/providers/theme_model.dart';
 
 import '../providers/meal_list_provider.dart';
 import 'liked.dart';
@@ -17,7 +18,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   PageController pgController = PageController(
     initialPage: 0,
     keepPage: true,
@@ -40,13 +40,17 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.all(10),
                 tabMargin: const EdgeInsets.all(8),
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                tabBackgroundColor: Colors.lightBlue.shade300,
+                tabBackgroundColor: const Color(0xfff2d388),
                 selectedIndex: context.watch<MealListProvider>().homePageIndex,
                 gap: 8,
                 color: Colors.grey,
-                activeColor: Colors.black87,
+                activeColor: White.text,
                 textStyle: const TextStyle(
-                    color: Colors.black87, fontWeight: FontWeight.w600, height: 1.2),
+                  color: White.text,
+                  // color: Color(0xffa7d2cb),
+                  fontWeight: FontWeight.w600,
+                  height: 1.2,
+                ),
                 onTabChange: (value) {
                   pgController.animateToPage(
                     value,

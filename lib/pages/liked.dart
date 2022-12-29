@@ -13,7 +13,7 @@ class Liked extends StatelessWidget {
         slivers: [
           SliverAppBar.large(
             title: Text(
-              "LIKED RECIPES",
+              "Liked recipes",
               style: Theme.of(context).appBarTheme.toolbarTextStyle,
             ),
           ),

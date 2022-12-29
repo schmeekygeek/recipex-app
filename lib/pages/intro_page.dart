@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:recipex_app/pages/home.dart';
 import 'package:recipex_app/pages/intro_pages/intro_page1.dart';
@@ -44,9 +45,7 @@ class _IntroPageState extends State<IntroPage> {
           ),
           Container(
             alignment: Alignment.bottomLeft,
-            padding: const EdgeInsets.only(
-              bottom: 30
-              ),
+            padding: const EdgeInsets.only(bottom: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -69,21 +68,22 @@ class _IntroPageState extends State<IntroPage> {
                     }
                   },
                   style: Theme.of(context).textButtonTheme.style!.copyWith(
-                    foregroundColor: const MaterialStatePropertyAll(Color(0xff313244)),
-                    backgroundColor: const MaterialStatePropertyAll(
-                      Color(0xfff5e0dc),
-                    ),
-                    side: const MaterialStatePropertyAll<BorderSide>(
-                      BorderSide(
-                        width: 1,
-                        color: Color(0xff242832),
+                        foregroundColor:
+                            const MaterialStatePropertyAll(Color(0xff313244)),
+                        backgroundColor: const MaterialStatePropertyAll(
+                          Color(0xfff5e0dc),
+                        ),
+                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                        side: const MaterialStatePropertyAll<BorderSide>(
+                          BorderSide(
+                            width: 1,
+                            color: Color(0xff242832),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  child: Text(
-                    context.watch<MealListProvider>().currentPageIndex == 0
-                        ? " Skip "
-                        : "Previous",
+                  child: const Icon(
+                    FontAwesomeIcons.angleLeft,
                   ),
                 ),
                 SmoothPageIndicator(
@@ -108,15 +108,18 @@ class _IntroPageState extends State<IntroPage> {
                 ),
                 TextButton(
                   style: Theme.of(context).textButtonTheme.style!.copyWith(
-                        foregroundColor: const MaterialStatePropertyAll(Color(0xff313244)),
+                        foregroundColor:
+                            const MaterialStatePropertyAll(Color(0xff313244)),
                         backgroundColor:
                             const MaterialStatePropertyAll(Color(0xfff5e0dc)),
-                    side: const MaterialStatePropertyAll<BorderSide>(
-                      BorderSide(
-                        width: 1,
-                        color: Color(0xff242832),
-                      ),
-                    ),
+                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                        side: const MaterialStatePropertyAll<BorderSide>(
+                          BorderSide(
+                            width: 1,
+                            color: Color(0xff242832),
+                          ),
+                        ),
                       ),
                   onPressed: () {
                     if (pageController.page == 3) {
@@ -133,10 +136,8 @@ class _IntroPageState extends State<IntroPage> {
                       curve: Curves.fastLinearToSlowEaseIn,
                     );
                   },
-                  child: Text(
-                    context.watch<MealListProvider>().currentPageIndex == 3
-                        ? " Get started "
-                        : "  Next  ",
+                  child: const Icon(
+                    FontAwesomeIcons.angleRight,
                   ),
                 ),
               ],

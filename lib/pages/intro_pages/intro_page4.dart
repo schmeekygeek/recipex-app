@@ -1,5 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:recipex_app/providers/theme_model.dart';
+
+import '../home.dart';
 
 class IntroPage4 extends StatelessWidget {
   const IntroPage4({super.key});
@@ -16,21 +20,25 @@ class IntroPage4 extends StatelessWidget {
           ),
           Text(
             "See what you like?\nLike what you see",
-            style: Theme.of(context).textTheme.headlineMedium,
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+              fontFamily: "Lora",
+              color: White.text,
+            ),
           ),
           const SizedBox(
             height: 10,
           ),
           Text(
             "Easily like recipes to come back and view them later",
-            style: Theme.of(context).textTheme.bodyMedium,
-            overflow: TextOverflow.clip,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: White.text
+            ),
           ),
           const SizedBox(
-            height: 30,
+            height: 50,
           ),
           Container(
-            height: 350,
+            height: 250,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 isAntiAlias: true,
@@ -40,7 +48,10 @@ class IntroPage4 extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
         ],
       ),
     );

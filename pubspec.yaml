@@ -42,18 +42,12 @@ flutter:
     - assets/intro/
 
   fonts:
-    - family: SpaceGrotesk
-      fonts:
-        - asset: fonts/SpaceGrotesk-VariableFont_wght.ttf
     - family: Lora
       fonts:
         - asset: fonts/Lora-VariableFont_wght.ttf
-    - family: RobotoSlab
+    - family: Satoshi
       fonts:
-        - asset: fonts/RobotoSlab-VariableFont_wght.ttf
-    - family: Poppins
+        - asset: fonts/Satoshi-Regular.otf
+    - family: ClashGrotesk
       fonts:
-        - asset: fonts/Poppins-Regular.ttf
-    - family: Dancing
-      fonts:
-        - asset: fonts/DancingScript-VariableFont_wght.ttf
+        - asset: fonts/ClashGrotesk-Regular.otf

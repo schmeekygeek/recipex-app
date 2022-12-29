@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../classes/meals.dart';
+import '../service/metadata.dart';
 
 class MealListTile extends StatefulWidget {
   final Meals meal;
@@ -49,18 +50,17 @@ class _MealListTileState extends State<MealListTile>
                       widget.meal.strMeal ?? "Unknown dish",
                       style:
                           Theme.of(context).textTheme.headlineMedium!.copyWith(
-                                fontSize: 28,
+                                fontSize: 30,
+                                fontFamily: "ClashGrotesk",
                                 letterSpacing: 1,
                               ),
-                    ),
-                    const SizedBox(
-                      height: 10,
                     ),
                     widget.meal.strArea != null
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               metaData(
+                                context,
                                 "Origin: ",
                                 widget.meal.strArea,
                               ),
@@ -68,6 +68,7 @@ class _MealListTileState extends State<MealListTile>
                                 height: 2,
                               ),
                               metaData(
+                                context,
                                 "Category: ",
                                 widget.meal.strCategory,
                               ),
@@ -75,6 +76,7 @@ class _MealListTileState extends State<MealListTile>
                                 height: 2,
                               ),
                               metaData(
+                                context,
                                 "Tags: ",
                                 widget.meal.strTags,
                               ),
@@ -91,26 +93,4 @@ class _MealListTileState extends State<MealListTile>
     );
   }
 
-  Widget metaData(String attribute, String? detail) {
-    return RichText(
-      textAlign: TextAlign.left,
-      text: TextSpan(
-        children: [
-          TextSpan(
-            text: attribute,
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall!
-                .copyWith(fontWeight: FontWeight.bold,),
-          ),
-          TextSpan(
-            text: detail ?? "N/A",
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Colors.lightBlue,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -21,46 +20,20 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> with TickerProviderStateMixin {
 
-  static final ScrollController _controller = ScrollController();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.small(
-        child: const Icon(
-          FontAwesomeIcons.anglesUp,
-          size: 18,
-        ),
-        onPressed: () => _controller.animateTo(
-          0,
-          duration: const Duration(
-            milliseconds: 500,
-          ),
-          curve: Curves.easeIn,
-        ),
-      ),
       body: CustomScrollView(
-        controller: _controller,
         slivers: [
           SliverAppBar.large(
             title: Text(
               "What's cooking?",
-              style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
-                    fontFamily: "Dancing",
-                    fontSize: 40,
-                  ),
-            ),
+              style: Theme.of(context).appBarTheme.toolbarTextStyle),
             centerTitle: true,
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: [
                   const SearchBar(),
@@ -83,12 +56,13 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                         );
                       } else if (snapshot.hasData) {
                         List<Meals> meals = snapshot.data!.meals;
-                        return Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            for (Meals meal in meals)
+                        if (snapshot.hasData) {
+                          return Column(
+                            children: [
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              for (Meals meal in meals)
                               GestureDetector(
                                 onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
@@ -100,9 +74,63 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                                 ),
                                 child: MealListTile(meal),
                               ),
-                          ],
-                        );
-                      } else {
+                            ],
+                          );
+                        }
+                        else {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 5,
+                              ),
+                              Icon(
+                                FontAwesomeIcons.triangleExclamation,
+                                color: Colors.redAccent.shade100,
+                                size: 50,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Couldn't fetch results for ${context.read<MealListProvider>().input}\nTry something else?",
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall!
+                                    .copyWith(fontSize: 18, letterSpacing: 1,),
+                              ),
+                            ],
+                          );
+                        }
+                      }
+                      else {
+                        if(snapshot.error.toString().startsWith("type")) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 5,
+                              ),
+                              Icon(
+                                FontAwesomeIcons.triangleExclamation,
+                                color: Colors.redAccent.shade100,
+                                size: 50,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Couldn't fetch results for ${context.read<MealListProvider>().input}\nTry something else?",
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(fontSize: 18, letterSpacing: 1,),
+                              ),
+                            ],
+                          );
+                        }
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -110,7 +138,7 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                               height: MediaQuery.of(context).size.height / 5,
                             ),
                             Icon(
-                              FontAwesomeIcons.triangleExclamation,
+                              FontAwesomeIcons.xmark,
                               color: Colors.redAccent.shade100,
                               size: 50,
                             ),
@@ -118,12 +146,12 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                               height: 10,
                             ),
                             Text(
-                              "${"Couldn't fetch results".toUpperCase()}\nCheck your internet connection or query",
+                              "You do not have an internet connection.",
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall!
-                                  .copyWith(fontSize: 18, letterSpacing: 1,),
+                              .textTheme
+                              .headlineSmall!
+                              .copyWith(fontSize: 20, letterSpacing: 1,),
                             ),
                           ],
                         );

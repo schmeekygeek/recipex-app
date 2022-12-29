@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:recipex_app/providers/theme_model.dart';
 
+import '../service/metadata.dart';
 import '../classes/ingredient.dart';
 import '../classes/meals.dart';
 
@@ -49,10 +50,6 @@ class MealInfoSheet extends StatelessWidget {
                 background: Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).scaffoldBackgroundColor,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20)
-                    ),
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       filterQuality: FilterQuality.high,
@@ -86,85 +83,27 @@ class MealInfoSheet extends StatelessWidget {
                       meal.strMeal ?? "Unknown",
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
+                    const SizedBox(height: 10),
+                    metaData(
+                      context,
+                      "Origin: ",
+                      meal.strArea,
+                    ),
                     const SizedBox(
-                      height: 10
+                      height: 2,
                     ),
-                    RichText(
-                      textAlign: TextAlign.left,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Origin: ",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                          TextSpan(
-                            text: meal.strArea ?? "N/A",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue,
-                                ),
-                          ),
-                        ],
-                      ),
+                    metaData(
+                      context,
+                      "Category: ",
+                      meal.strCategory,
                     ),
-                    RichText(
-                      textAlign: TextAlign.left,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Category: ",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                          TextSpan(
-                            text: meal.strCategory ?? "N/A",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
-                          ),
-                        ],
-                      ),
+                    const SizedBox(
+                      height: 2,
                     ),
-                    RichText(
-                      textAlign: TextAlign.left,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Tags: ",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                          TextSpan(
-                            text: meal.strTags?.replaceAll(r',', ', ') ?? "N/A",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue,
-                                ),
-                          ),
-                        ],
-                      ),
+                    metaData(
+                      context,
+                      "Tags: ",
+                      meal.strTags!.replaceAll(RegExp(r','), ', '),
                     ),
                     const SizedBox(
                       height: 10,

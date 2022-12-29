@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:recipex_app/providers/theme_model.dart';
 
 class IntroPage1 extends StatelessWidget {
   const IntroPage1({super.key});
@@ -16,7 +17,8 @@ class IntroPage1 extends StatelessWidget {
           ),
           DefaultTextStyle(
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-              color: const Color(0xfff5e0dc),
+              color: Dark.text,
+              fontFamily: "Lora",
             ),
             child: AnimatedTextKit(
               repeatForever: true,
@@ -47,15 +49,17 @@ class IntroPage1 extends StatelessWidget {
           ),
           Text("recipes at your fingertips.",
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-              color: const Color(0xfff5e0dc),
-            ),),
+              color: Dark.text,
+              fontFamily: "Lora",
+            ),
+          ),
           const SizedBox(
             height: 10,
           ),
           Text(
             "Cooking for your loved ones has never been this easy before.",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: const Color(0xfff5e0dc),
+              color: Dark.text
             ),
             overflow: TextOverflow.clip,
           ),

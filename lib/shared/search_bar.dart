@@ -70,7 +70,7 @@ class SearchBar extends StatelessWidget {
                     ),
                   ),
                   backgroundColor: const MaterialStatePropertyAll(
-                    Color(0xffffb454),
+                    Color(0xffa7d2cb),
                   ),
                 ),
                 onPressed: () => context.read<MealListProvider>().setInput =

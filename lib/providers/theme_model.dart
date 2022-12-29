@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 class Dark {
-  static const Color base = Color(0xff0d1017);
-  static const Color crust = Color(0xff131721);
+  static const Color base = Color(0xff181d31);
+  static const Color crust = Color(0xff181d31);
   static const Color blue = Color(0xff73b8ff);
-  static const Color text = Color(0xffbfbdb6);
+  static const Color text = Color(0xfff0e9d2);
   static const Color surface0 = Color(0xff11151c);
 }
 
 class White {
-  static const Color base = Color(0xfffcfcfc);
-  static const Color crust = Color(0xfff3f4f5);
+  static const Color base = Color(0xffe6d2aa);
+  static const Color crust = Color(0xfffffbeb);
   static const Color blue = Color(0xff55b4d4);
-  static const Color text = Color(0xff5c6166);
+  static const Color text = Color(0xff251749);
   static const Color surface0 = Color(0xff8a9199);
 }
 
@@ -31,10 +31,10 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: Dark.text,
-          fontFamily: "Poppins",
+          fontFamily: "ClashGrotesk",
+          fontSize: 32,
           letterSpacing: 2,
-          fontWeight: FontWeight.w200,
-          fontSize: 28,
+          fontWeight: FontWeight.w400,
         ),
       ),
       textTheme: const TextTheme(
@@ -42,25 +42,27 @@ class ThemeModel with ChangeNotifier {
           fontSize: 18,
           wordSpacing: 1,
           letterSpacing: 1,
-          fontFamily: "RobotoSlab",
+          fontFamily: "Satoshi",
           color: Dark.text,
           fontWeight: FontWeight.w100,
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Lora",
+          fontFamily: "ClashGrotesk",
+          letterSpacing: 1,
+          fontWeight: FontWeight.w400,
           color: Dark.text,
         ),
         headlineSmall: TextStyle(
           color: Dark.text,
-          fontFamily: "Poppins",
+          fontFamily: "Satoshi",
           fontSize: 17,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
         ),
         bodyMedium: TextStyle(
           color: Dark.text,
-          fontFamily: "Poppins",
+          fontFamily: "Satoshi",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
@@ -73,7 +75,7 @@ class ThemeModel with ChangeNotifier {
         fillColor: Dark.surface0,
         hintStyle: TextStyle(
           color: Dark.text,
-          fontFamily: "Poppins",
+          fontFamily: "Satoshi",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
@@ -84,7 +86,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: MaterialStatePropertyAll<TextStyle>(
             TextStyle(
               color: Dark.text,
-              fontFamily: "Poppins",
+              fontFamily: "Satoshi",
               fontSize: 18,
               letterSpacing: 1,
               fontWeight: FontWeight.w200,
@@ -94,7 +96,11 @@ class ThemeModel with ChangeNotifier {
               MaterialStatePropertyAll(Colors.transparent),
           foregroundColor: MaterialStatePropertyAll(Colors.white),
         ),
-      )
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: Dark.crust,
+        surfaceTintColor: Dark.base
+      ),
     );
   }
 
@@ -111,10 +117,10 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: White.text,
-          fontFamily: "Poppins",
+          fontFamily: "ClashGrotesk",
+          fontSize: 32,
           letterSpacing: 2,
-          fontWeight: FontWeight.w200,
-          fontSize: 28,
+          fontWeight: FontWeight.w400,
         ),
       ),
       textTheme: const TextTheme(
@@ -122,25 +128,27 @@ class ThemeModel with ChangeNotifier {
           fontSize: 18,
           wordSpacing: 1,
           letterSpacing: 1,
-          fontFamily: "RobotoSlab",
+          fontFamily: "Satoshi",
           color: White.text,
           fontWeight: FontWeight.w100,
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Lora",
+          fontFamily: "ClashGrotesk",
+          letterSpacing: 1,
+          fontWeight: FontWeight.w400,
           color: White.text,
         ),
         headlineSmall: TextStyle(
           color: White.text,
-          fontFamily: "Poppins",
+          fontFamily: "Satoshi",
           fontSize: 17,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
         ),
         bodyMedium: TextStyle(
           color: White.text,
-          fontFamily: "Poppins",
+          fontFamily: "Satoshi",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
@@ -154,7 +162,7 @@ class ThemeModel with ChangeNotifier {
         fillColor: Dark.surface0,
         hintStyle: TextStyle(
           color: Dark.text,
-          fontFamily: "Poppins",
+          fontFamily: "Satoshi",
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.normal,
@@ -165,7 +173,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: MaterialStatePropertyAll<TextStyle>(
             TextStyle(
               color: White.text,
-              fontFamily: "Poppins",
+              fontFamily: "Satoshi",
               fontSize: 18,
               letterSpacing: 1,
               fontWeight: FontWeight.w200,
@@ -175,10 +183,15 @@ class ThemeModel with ChangeNotifier {
               MaterialStatePropertyAll(Colors.transparent),
           foregroundColor: MaterialStatePropertyAll(Colors.white),
         ),
-      )
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: White.crust,
+        surfaceTintColor: White.base
+      ),
+
     );
   }
-  var box = Hive.box('recipex');
+  Box box = Hive.box('recipex');
   bool isDark = Hive.box('recipex').get(0) ?? false;
 
   void toggle() {

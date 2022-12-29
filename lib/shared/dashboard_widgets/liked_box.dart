@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:recipex_app/providers/theme_model.dart';
 
 class LikedBox extends StatelessWidget {
   const LikedBox({super.key});
@@ -11,10 +12,10 @@ class LikedBox extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
-            Colors.pinkAccent,
-            Colors.redAccent.shade100
+            Color(0xffffcaca),
+            Color(0xffff8787),
           ]
         ),
       ),
@@ -27,9 +28,10 @@ class LikedBox extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Liked Recipes",
+                  "Liked recipes",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.black87,
+                        color: White.text,
+                        fontSize: 24
                       ),
                 ),
                 const Align(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../providers/theme_model.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({super.key});
@@ -11,10 +12,10 @@ class SearchBox extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
-            Colors.lightBlue,
-            Colors.blue.shade800,
+            Color(0xfff6f6c9),
+            Color(0xff4fa095),
           ]
         ),
       ),
@@ -27,17 +28,17 @@ class SearchBox extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Looking for something specific?\nSearch it.",
+                  "Looking for something specific? Search it.",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.black87,
+                        color: White.text,
+                        fontSize: 24
                       ),
-                ),
-                const Align(
+                ), const Align(
                   alignment: Alignment.bottomRight,
                   child: Icon(
                     FontAwesomeIcons.angleRight,
                     size: 22,
-                    color: Colors.black87,
+                        color: White.text,
                   ),
                 ),
               ],

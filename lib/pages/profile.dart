@@ -33,7 +33,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       Text(
                         "Dark mode",
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       Switch(
                         value: context.watch<ThemeModel>().isDark,

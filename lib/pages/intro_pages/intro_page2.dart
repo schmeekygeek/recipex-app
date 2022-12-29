@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipex_app/providers/theme_model.dart';
 
 class IntroPage2 extends StatelessWidget {
   const IntroPage2({super.key});
@@ -14,13 +15,20 @@ class IntroPage2 extends StatelessWidget {
             height: 60,
           ),
           Text("Ingredients that entice.",
-            style: Theme.of(context).textTheme.headlineMedium,),
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+              fontFamily: "Lora",
+              color: White.text,
+            ),
+          ),
           const SizedBox(
             height: 10,
           ),
-          const Text(
+          Text(
             "Cook recipes with ingredients that leave you asking for more.",
             overflow: TextOverflow.clip,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: White.text,
+              ),
           ),
           const SizedBox(
             height: 20,
