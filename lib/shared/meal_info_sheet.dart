@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/providers/theme_model.dart';
 
+import '../providers/theme_model.dart';
 import '../service/metadata.dart';
 import '../classes/ingredient.dart';
 import '../classes/meals.dart';
@@ -103,7 +103,7 @@ class MealInfoSheet extends StatelessWidget {
                     metaData(
                       context,
                       "Tags: ",
-                      meal.strTags!.replaceAll(RegExp(r','), ', '),
+                      meal.strTags ?? "N/A",
                     ),
                     const SizedBox(
                       height: 10,

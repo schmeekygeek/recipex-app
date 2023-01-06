@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/pages/home.dart';
-import 'package:recipex_app/pages/intro_pages/intro_page1.dart';
-import 'package:recipex_app/pages/intro_pages/intro_page3.dart';
-import 'package:recipex_app/pages/intro_pages/intro_page4.dart';
-import 'package:recipex_app/providers/meal_list_provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter/services.dart';
 
-import 'intro_pages/intro_page2.dart';
+import '../pages/home.dart';
+import '../providers/meal_list_provider.dart';
+import './intro_pages/intro_page1.dart';
+import './intro_pages/intro_page2.dart';
+import './intro_pages/intro_page3.dart';
+import './intro_pages/intro_page4.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -21,6 +22,14 @@ class _IntroPageState extends State<IntroPage> {
   PageController pageController = PageController(
     initialPage: 0,
   );
+
+  @override
+  void initState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    super.initState();
+  }
 
   @override
   void dispose() {
