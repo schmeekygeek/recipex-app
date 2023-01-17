@@ -6,13 +6,14 @@ Widget metaData(BuildContext context, String attribute, String? detail) {
     text: TextSpan(
       children: [
         TextSpan(
-          text: attribute,
+          text: attribute.toUpperCase(),
           style: Theme.of(context)
               .textTheme
               .headlineSmall!
               .copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontWeight: FontWeight.w300,
+                fontFamily: "ClashGrotesk",
+                fontSize: 18,
                 color: const Color(0xfff8b400),
                 // color: const Color(0xff6d9886),
                 letterSpacing: 1
@@ -21,8 +22,8 @@ Widget metaData(BuildContext context, String attribute, String? detail) {
         TextSpan(
           text: detail?.replaceAll(RegExp(r','), ', ') ?? "N/A",
           style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontWeight: FontWeight.w400,
+            fontSize: 18,
           ),
         ),
       ],

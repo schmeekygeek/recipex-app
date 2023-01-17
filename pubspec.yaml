@@ -47,7 +47,10 @@ flutter:
         - asset: fonts/Lora-VariableFont_wght.ttf
     - family: Satoshi
       fonts:
-        - asset: fonts/Satoshi-Regular.otf
+        - asset: fonts/Satoshi-Medium.otf
     - family: ClashGrotesk
       fonts:
-        - asset: fonts/ClashGrotesk-Regular.otf
+        - asset: fonts/ClashGrotesk-Medium.otf
+    - family: Sacramento
+      fonts:
+        - asset: fonts/Sacramento-Regular.ttf

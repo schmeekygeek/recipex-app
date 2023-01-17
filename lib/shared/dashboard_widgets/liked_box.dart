@@ -8,10 +8,15 @@ class LikedBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      width: double.infinity,
+      height: 140,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        boxShadow: kElevationToShadow[4],
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(4),
+          topRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(4)
+        ),
         gradient: const LinearGradient(
           colors: [
             Color(0xffffcaca),
@@ -27,12 +32,26 @@ class LikedBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Liked recipes",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: White.text,
-                        fontSize: 24
-                      ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "LIKED RECIPES",
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: White.text,
+                          fontSize: 24,
+                          fontFamily: "ClashGrotesk",
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      "View your previously liked recipes",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: White.text, fontSize: 17,),
+                    ),
+                  ],
                 ),
                 const Align(
                   alignment: Alignment.bottomRight,
@@ -43,16 +62,6 @@ class LikedBox extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-          ),
-          Positioned(
-            top: 5,
-            left: 200,
-            bottom: 10,
-            child: Icon(
-              FontAwesomeIcons.solidHeart,
-              color: Colors.black.withOpacity(0.1),
-              size: 100,
             ),
           ),
         ],

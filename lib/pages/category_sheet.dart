@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -5,12 +7,11 @@ import 'package:lottie/lottie.dart';
 import '../classes/ingredient.dart';
 import '../classes/meals.dart';
 import '../service/ingredient_service.dart';
-import '../service/meal_service.dart';
+import '../service/network/meal_service.dart';
 import '../shared/meal_info_sheet.dart';
 import '../shared/meal_list_tile.dart';
 
 class CategorySheet extends StatefulWidget {
-
   final List<Meals> meals;
   final String category;
   final String description;
@@ -30,6 +31,8 @@ class CategorySheet extends StatefulWidget {
 
 class _CategorySheetState extends State<CategorySheet>
     with TickerProviderStateMixin {
+  MealServiceImplementation mealService = MealServiceImplementation();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -102,8 +105,8 @@ class _CategorySheetState extends State<CategorySheet>
                 );
                 late final Meals mealData;
                 try {
-                  mealData = await fetchMealById(meal.idMeal!);
-                } catch (e) {
+                  mealData = await mealService.fetchMealById(meal.idMeal!);
+                } on SocketException {
                   Navigator.of(context).pop();
                   showDialog(
                     context: context,
@@ -122,7 +125,11 @@ class _CategorySheetState extends State<CategorySheet>
                             SizedBox(
                               height: 10,
                             ),
-                            Text("Please check your internet connection and try again",),
+                            Center(
+                              child: Text(
+                                "Please check your internet connection and try again",
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -132,6 +139,7 @@ class _CategorySheetState extends State<CategorySheet>
                 if (mounted) {
                   List<Ingredient> ingredients = buildIngredients(mealData);
                   Navigator.of(context).pop();
+                  print(mealData.strMealThumb);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

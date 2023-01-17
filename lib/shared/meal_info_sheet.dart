@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/storage_provider.dart';
 import '../providers/theme_model.dart';
 import '../service/metadata.dart';
 import '../classes/ingredient.dart';
 import '../classes/meals.dart';
 
-class MealInfoSheet extends StatelessWidget {
+class MealInfoSheet extends StatefulWidget {
   final Meals meal;
   final List<Ingredient> ingredients;
   const MealInfoSheet({
@@ -16,6 +17,18 @@ class MealInfoSheet extends StatelessWidget {
     super.key,
   });
 
+  @override
+  State<MealInfoSheet> createState() => _MealInfoSheetState();
+}
+
+class _MealInfoSheetState extends State<MealInfoSheet> {
+
+  @override
+  void initState() {
+    context.read<StorageProvider>().setLastMeal(widget.meal);
+    super.initState();
+  }
+    
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -60,7 +73,7 @@ class MealInfoSheet extends StatelessWidget {
                         BlendMode.dstATop,
                       ),
                       image: NetworkImage(
-                        meal.strMealThumb!,
+                        widget.meal.strMealThumb!,
                       ),
                     ),
                   ),
@@ -80,14 +93,14 @@ class MealInfoSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      meal.strMeal ?? "Unknown",
+                      widget.meal.strMeal ?? "Unknown",
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 10),
                     metaData(
                       context,
                       "Origin: ",
-                      meal.strArea,
+                      widget.meal.strArea,
                     ),
                     const SizedBox(
                       height: 2,
@@ -95,7 +108,7 @@ class MealInfoSheet extends StatelessWidget {
                     metaData(
                       context,
                       "Category: ",
-                      meal.strCategory,
+                      widget.meal.strCategory,
                     ),
                     const SizedBox(
                       height: 2,
@@ -103,7 +116,7 @@ class MealInfoSheet extends StatelessWidget {
                     metaData(
                       context,
                       "Tags: ",
-                      meal.strTags ?? "N/A",
+                      widget.meal.strTags ?? "N/A",
                     ),
                     const SizedBox(
                       height: 10,
@@ -125,7 +138,7 @@ class MealInfoSheet extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    for (Ingredient ingredient in ingredients)
+                    for (Ingredient ingredient in widget.ingredients)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -172,7 +185,7 @@ class MealInfoSheet extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      meal.strInstructions ??
+                      widget.meal.strInstructions ??
                           "No instructions available for this recipe",
                       style: Theme.of(context).textTheme.bodySmall,
                     ),

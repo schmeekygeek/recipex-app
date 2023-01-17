@@ -8,16 +8,19 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
+      height: 180,
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xfff6f6c9),
-            Color(0xff4fa095),
-          ]
-        ),
+        boxShadow: kElevationToShadow[4],
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(4),
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(4)),
+        gradient: const LinearGradient(colors: [
+          Color(0xfff6f6c9),
+          Color(0xff4fa095),
+        ]),
       ),
       child: Stack(
         children: [
@@ -27,31 +30,45 @@ class SearchBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Looking for something specific? Search it.",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: White.text,
-                        fontSize: 24
-                      ),
-                ), const Align(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "SEARCH",
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: White.text,
+                          fontSize: 24,
+                          fontFamily: "ClashGrotesk",
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      "Have something else in mind? Search for it!",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: White.text, fontSize: 18),
+                    ),
+                  ],
+                ),
+                const Align(
                   alignment: Alignment.bottomRight,
                   child: Icon(
                     FontAwesomeIcons.angleRight,
                     size: 22,
-                        color: White.text,
+                    color: White.text,
                   ),
                 ),
               ],
             ),
           ),
-          Positioned(
-            top: 10,
-            left: 200,
+          Positioned.fill(
+            top: 20,
             bottom: 10,
             child: Icon(
-              FontAwesomeIcons.magnifyingGlassArrowRight,
+              FontAwesomeIcons.magnifyingGlass,
               color: Colors.black.withOpacity(0.1),
-              size: 100,
+              size: 160,
             ),
           ),
         ],

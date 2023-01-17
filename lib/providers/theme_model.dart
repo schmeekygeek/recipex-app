@@ -34,7 +34,7 @@ class ThemeModel with ChangeNotifier {
           fontFamily: "ClashGrotesk",
           fontSize: 32,
           letterSpacing: 2,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w100,
         ),
       ),
       textTheme: const TextTheme(
@@ -48,9 +48,9 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "ClashGrotesk",
+          fontFamily: "Lora",
           letterSpacing: 1,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w200,
           color: Dark.text,
         ),
         headlineSmall: TextStyle(
@@ -120,7 +120,7 @@ class ThemeModel with ChangeNotifier {
           fontFamily: "ClashGrotesk",
           fontSize: 32,
           letterSpacing: 2,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w100,
         ),
       ),
       textTheme: const TextTheme(
@@ -134,9 +134,9 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "ClashGrotesk",
+          fontFamily: "Lora",
           letterSpacing: 1,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w200,
           color: White.text,
         ),
         headlineSmall: TextStyle(
@@ -192,11 +192,11 @@ class ThemeModel with ChangeNotifier {
     );
   }
   Box box = Hive.box('recipex');
-  bool isDark = Hive.box('recipex').get(0) ?? false;
+  bool isDark = Hive.box('recipex').get('dark') ?? false;
 
   void toggle() {
     isDark = !isDark;
-    box.put(0, isDark);
+    box.put('dark', isDark);
     notifyListeners();
   }
 }

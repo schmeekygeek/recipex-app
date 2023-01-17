@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/services.dart';
@@ -19,6 +18,7 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
+
   PageController pageController = PageController(
     initialPage: 0,
   );
@@ -43,8 +43,7 @@ class _IntroPageState extends State<IntroPage> {
         children: [
           PageView(
             controller: pageController,
-            onPageChanged: (value) =>
-                {context.read<MealListProvider>().setCurrentPageIndex = value},
+            onPageChanged: (value) => context.read<MealListProvider>().setCurrentPageIndex = value,
             children: const [
               IntroPage1(),
               IntroPage2(),
@@ -53,48 +52,29 @@ class _IntroPageState extends State<IntroPage> {
             ],
           ),
           Container(
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.topRight,
+            child: TextButton(
+              onPressed: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const Home(),)
+              ),
+              child: Text(
+                "Skip",
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: context.watch<MealListProvider>().currentPageIndex % 2 == 0 ?
+                  Colors.white
+                  : Colors.black
+                ),
+              ),
+            ),
+          ),
+          Container(
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.only(bottom: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
-                  onPressed: () {
-                    if (context.read<MealListProvider>().currentPageIndex ==
-                        0) {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => const Home(),
-                        ),
-                      );
-                    } else {
-                      pageController.previousPage(
-                        duration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                      );
-                    }
-                  },
-                  style: Theme.of(context).textButtonTheme.style!.copyWith(
-                        foregroundColor:
-                            const MaterialStatePropertyAll(Color(0xff313244)),
-                        backgroundColor: const MaterialStatePropertyAll(
-                          Color(0xfff5e0dc),
-                        ),
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                        side: const MaterialStatePropertyAll<BorderSide>(
-                          BorderSide(
-                            width: 1,
-                            color: Color(0xff242832),
-                          ),
-                        ),
-                      ),
-                  child: const Icon(
-                    FontAwesomeIcons.angleLeft,
-                  ),
-                ),
                 SmoothPageIndicator(
                   effect: const WormEffect(
                     activeDotColor: Colors.deepPurpleAccent,
@@ -115,43 +95,9 @@ class _IntroPageState extends State<IntroPage> {
                     curve: Curves.fastLinearToSlowEaseIn,
                   ),
                 ),
-                TextButton(
-                  style: Theme.of(context).textButtonTheme.style!.copyWith(
-                        foregroundColor:
-                            const MaterialStatePropertyAll(Color(0xff313244)),
-                        backgroundColor:
-                            const MaterialStatePropertyAll(Color(0xfff5e0dc)),
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                        side: const MaterialStatePropertyAll<BorderSide>(
-                          BorderSide(
-                            width: 1,
-                            color: Color(0xff242832),
-                          ),
-                        ),
-                      ),
-                  onPressed: () {
-                    if (pageController.page == 3) {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => const Home(),
-                        ),
-                      );
-                    }
-                    pageController.nextPage(
-                      duration: const Duration(
-                        milliseconds: 500,
-                      ),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                    );
-                  },
-                  child: const Icon(
-                    FontAwesomeIcons.angleRight,
-                  ),
-                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

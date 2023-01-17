@@ -8,7 +8,7 @@ import '../shared/meal_info_sheet.dart';
 import '../shared/meal_list_tile.dart';
 import '../shared/search_bar.dart';
 import '../classes/meals.dart';
-import '../service/meal_service.dart';
+import '../service/network/meal_service.dart';
 import '../providers/meal_list_provider.dart';
 
 class Search extends StatefulWidget {
@@ -19,6 +19,8 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> with TickerProviderStateMixin {
+
+  MealServiceImplementation mealService = MealServiceImplementation();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,6 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                         );
                       } else if (snapshot.hasData) {
                         List<Meals> meals = snapshot.data!.meals;
-                        if (snapshot.hasData) {
                           return Column(
                             children: [
                               const SizedBox(
@@ -76,36 +77,9 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                               ),
                             ],
                           );
-                        }
-                        else {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height / 5,
-                              ),
-                              Icon(
-                                FontAwesomeIcons.triangleExclamation,
-                                color: Colors.redAccent.shade100,
-                                size: 50,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "Couldn't fetch results for ${context.read<MealListProvider>().input}\nTry something else?",
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineSmall!
-                                    .copyWith(fontSize: 18, letterSpacing: 1,),
-                              ),
-                            ],
-                          );
-                        }
                       }
                       else {
-                        if(snapshot.error.toString().startsWith("type")) {
+                        if(snapshot.error.runtimeType.toString() == "_CastError") {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -157,7 +131,7 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                         );
                       }
                     },
-                    future: fetchMealsByKeyword(
+                    future: mealService.fetchMealsByKeyword(
                       context.watch<MealListProvider>().input,
                     ),
                   ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../providers/theme_model.dart';
+
 class CategoryListTile extends StatelessWidget {
   final String idCategory;
   final String strCategory;
@@ -21,7 +23,10 @@ class CategoryListTile extends StatelessWidget {
           width: 130,
           decoration: BoxDecoration(
             color: Colors.amber.shade300,
+            boxShadow: kElevationToShadow[4],
             gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              tileMode: TileMode.mirror,
               colors: [
                 Colors.amber.shade300,
                 Colors.greenAccent.shade100
@@ -44,12 +49,13 @@ class CategoryListTile extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  strCategory,
+                  strCategory.toUpperCase(),
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                    color: Colors.black87,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                    color: White.text,
+                    letterSpacing: 2
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 import '../classes/base.dart';
 
@@ -9,14 +10,18 @@ class MealListProvider with ChangeNotifier {
   String input = "";
   int currentPageIndex = 0;
 
-  Base? get getBase => base;
-  set setBase(Base base) => this.base = base;
+  // continue from last recipe
+  Box box = Hive.box('recipex');
 
+  // getters
+  Base? get getBase => base;
+
+  // setters
+  set setBase(Base base) => this.base = base;
   set setHomePageIndex(int index) {
     homePageIndex = index;
     notifyListeners();
   }
-
   set setInput(String input) {
     this.input = input;
     notifyListeners();

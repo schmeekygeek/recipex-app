@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/providers/theme_model.dart';
+import 'pages/home.dart';
+import 'providers/storage_provider.dart';
+import 'providers/theme_model.dart';
 
 import './providers/meal_list_provider.dart';
-import 'pages/home.dart';
-import 'pages/intro_page.dart';
 
 void main() async {
 
@@ -17,6 +17,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => MealListProvider()),
         ChangeNotifierProvider(create: (_) => ThemeModel()),
+        ChangeNotifierProvider(create: (_) => StorageProvider()),
       ],
       child: const MyApp(),
     ),
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       title: "RecipEx App",
       theme: context.watch<ThemeModel>().isDark ? ThemeModel.buildDarkTheme() : ThemeModel.buildLightTheme(),
       debugShowCheckedModeBanner: false,
-      home: const IntroPage(),
+      home: const Home(),
     );
   }
 }
