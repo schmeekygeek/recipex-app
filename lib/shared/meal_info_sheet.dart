@@ -25,7 +25,7 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
 
   @override
   void initState() {
-    context.read<StorageProvider>().setLastMeal(widget.meal);
+    context.read<StorageProvider>().setLastMealId(widget.meal.idMeal!);
     super.initState();
   }
     

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/shared/dashboard_widgets/recipe_otd.dart';
 
-import '../classes/meals.dart';
 import '../providers/storage_provider.dart';
-import '../shared/dashboard_widgets/category_blocks.dart';
-import '../shared/meal_info_sheet.dart';
-import '../service/greeting_service.dart';
-import '../service/ingredient_service.dart';
 import '../shared/dashboard_widgets/continue_box.dart';
+import '../shared/dashboard_widgets/category_blocks.dart';
+import '../service/greeting_service.dart';
 import '../shared/dashboard_widgets/liked_box.dart';
 import '../shared/dashboard_widgets/search_box.dart';
 
@@ -22,59 +19,46 @@ class Dashboard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       child: ListView(
         children: [
-          const Align(
-              alignment: Alignment.topLeft,
-              child: Icon(FontAwesomeIcons.barsStaggered)),
           const SizedBox(
             height: 20,
           ),
           Text(
             "${getGreeting()},",
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-              fontSize: 43,
-              fontWeight: FontWeight.bold,
-              fontFamily: "Sacramento",
+              fontSize: 28,
+              color: Colors.grey,
+              fontWeight: FontWeight.w100,
+              fontFamily: "LobsterTwo",
             ),
           ),
           Text(
             "John",
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  letterSpacing: 1,
-                  fontSize: 40,
-                  fontFamily: "ClashGrotesk",
-                ),
+              letterSpacing: 1,
+              fontSize: 40,
+              fontFamily: "Staatliches",
+            ),
           ),
           const SizedBox(
             height: 20,
           ),
           Text(
-            "BROWSE CATEGORIES:",
+            "BROWSE CATEGORIES",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 18,
-                  fontFamily: "ClashGrotesk",
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: 3,
-                ),
+              fontSize: 18,
+              fontFamily: "ClashGrotesk",
+              fontWeight: FontWeight.w400,
+              letterSpacing: 2,
+            ),
           ),
           const SizedBox(
             height: 10,
           ),
           const CategoryBlocks(),
 
-          if(context.watch<StorageProvider>().lastMeal != null) 
-          GestureDetector(
-            onTap: () {
-              Meals lastMeal = context.read<StorageProvider>().lastMeal!;
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => MealInfoSheet(
-                  ingredients: buildIngredients(lastMeal),
-                  meal: lastMeal,
-                ),
-              ));
-            },
-            child: const ContinueBox(),
-          ),
-
+          if(context.watch<StorageProvider>().lastMealId != null)
+          ContinueBox(lastMealId: context.watch<StorageProvider>().lastMealId!),
+          const RecipeOTDBox(),
           GestureDetector(
             onTap: () => controller.animateToPage(
               2,

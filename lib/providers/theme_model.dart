@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 class Dark {
   static const Color base = Color(0xff181d31);
-  static const Color crust = Color(0xff181d31);
+  static const Color crust = Color(0xff11111b);
   static const Color blue = Color(0xff73b8ff);
   static const Color text = Color(0xfff0e9d2);
   static const Color surface0 = Color(0xff11151c);
@@ -40,7 +40,6 @@ class ThemeModel with ChangeNotifier {
       textTheme: const TextTheme(
         bodySmall: TextStyle(
           fontSize: 18,
-          wordSpacing: 1,
           letterSpacing: 1,
           fontFamily: "Satoshi",
           color: Dark.text,
@@ -126,7 +125,6 @@ class ThemeModel with ChangeNotifier {
       textTheme: const TextTheme(
         bodySmall: TextStyle(
           fontSize: 18,
-          wordSpacing: 1,
           letterSpacing: 1,
           fontFamily: "Satoshi",
           color: White.text,

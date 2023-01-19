@@ -29,11 +29,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "RecipEx App",
-      theme: context.watch<ThemeModel>().isDark ? ThemeModel.buildDarkTheme() : ThemeModel.buildLightTheme(),
-      debugShowCheckedModeBanner: false,
-      home: const Home(),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if(!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: MaterialApp(
+        title: "RecipEx App",
+        theme: context.watch<ThemeModel>().isDark ? ThemeModel.buildDarkTheme() : ThemeModel.buildLightTheme(),
+        debugShowCheckedModeBanner: false,
+        home: const Home(),
+      ),
     );
   }
 }

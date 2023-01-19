@@ -95,7 +95,7 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                                 height: 10,
                               ),
                               Text(
-                                "Couldn't fetch results for ${context.read<MealListProvider>().input}\nTry something else?",
+                                "Couldn't fetch results for \"${context.read<MealListProvider>().input}\"\nTry something else?",
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                 .textTheme

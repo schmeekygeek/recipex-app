@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
 
+import '../loading_dialog.dart';
 import '../../classes/base.dart';
 import '../../classes/meal_category.dart';
 import '../../pages/category_sheet.dart';
@@ -36,17 +36,7 @@ class _CategoryBlocksState extends State<CategoryBlocks> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () async {
-                    showDialog(
-                      builder: (context) => Dialog.fullscreen(
-                        backgroundColor: Colors.transparent,
-                        child: LottieBuilder.asset(
-                          "assets/loading1.json",
-                          height: 200,
-                          frameRate: FrameRate.max,
-                        ),
-                      ),
-                      context: context,
-                    );
+                    showLoadingDialog(context);
                     late Base meals;
                     try {
                       meals = await mealService.fetchMealsByCategory(

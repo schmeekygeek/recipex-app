@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
 
+import '../shared/loading_dialog.dart';
 import '../classes/ingredient.dart';
 import '../classes/meals.dart';
 import '../service/ingredient_service.dart';
@@ -79,80 +79,69 @@ class _CategorySheetState extends State<CategorySheet>
           ),
           Text(
             widget.description
-                .replaceAll(
-                  RegExp(r'\[.\]'),
-                  '',
-                )
-                .split('.')[0],
+              .replaceAll(
+                RegExp(r'\[.\]'),
+                '',
+              )
+              .split('.')[0],
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(
             height: 20,
           ),
           for (Meals meal in widget.meals)
-            GestureDetector(
-              onTap: () async {
+          GestureDetector(
+            onTap: () async {
+              showLoadingDialog(context);
+              late final Meals mealData;
+              try {
+                mealData = await mealService.fetchMealById(meal.idMeal!);
+              } on SocketException {
+                Navigator.of(context).pop();
                 showDialog(
-                  builder: (context) => Dialog.fullscreen(
-                    backgroundColor: Colors.transparent,
-                    child: LottieBuilder.asset(
-                      "assets/loading1.json",
-                      height: 200,
-                      frameRate: FrameRate.max,
+                  context: context,
+                  builder: (context) => Dialog(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            FontAwesomeIcons.triangleExclamation,
+                            color: Colors.redAccent,
+                            size: 40,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Center(
+                            child: Text(
+                              "Please check your internet connection and try again",
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  context: context,
                 );
-                late final Meals mealData;
-                try {
-                  mealData = await mealService.fetchMealById(meal.idMeal!);
-                } on SocketException {
-                  Navigator.of(context).pop();
-                  showDialog(
-                    context: context,
-                    builder: (context) => Dialog(
-                      child: Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              FontAwesomeIcons.triangleExclamation,
-                              color: Colors.redAccent,
-                              size: 40,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Center(
-                              child: Text(
-                                "Please check your internet connection and try again",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+              }
+              if (mounted) {
+                List<Ingredient> ingredients = buildIngredients(mealData);
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MealInfoSheet(
+                      ingredients: ingredients,
+                      meal: mealData,
                     ),
-                  );
-                }
-                if (mounted) {
-                  List<Ingredient> ingredients = buildIngredients(mealData);
-                  Navigator.of(context).pop();
-                  print(mealData.strMealThumb);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MealInfoSheet(
-                        ingredients: ingredients,
-                        meal: mealData,
-                      ),
-                    ),
-                  );
-                }
-              },
-              child: MealListTile(meal),
-            ),
+                  ),
+                );
+              }
+            },
+            child: MealListTile(meal),
+          ),
         ],
       ),
     );

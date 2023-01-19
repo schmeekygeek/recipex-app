@@ -26,6 +26,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   flutter_switch: ^0.3.2
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,9 @@ flutter:
     - family: ClashGrotesk
       fonts:
         - asset: fonts/ClashGrotesk-Medium.otf
-    - family: Sacramento
+    - family: LobsterTwo
       fonts:
-        - asset: fonts/Sacramento-Regular.ttf
+        - asset: fonts/LobsterTwo-Regular.ttf
+    - family: Staatliches
+      fonts:
+        - asset: fonts/Staatliches-Regular.ttf

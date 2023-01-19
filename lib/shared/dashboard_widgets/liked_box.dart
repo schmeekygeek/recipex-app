@@ -12,17 +12,14 @@ class LikedBox extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: kElevationToShadow[4],
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(4),
-          topRight: Radius.circular(20),
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(4)
-        ),
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xffffcaca),
-            Color(0xffff8787),
-          ]
-        ),
+            topLeft: Radius.circular(4),
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(4)),
+        gradient: const LinearGradient(colors: [
+          Color(0xffffcaca),
+          Color(0xffff8787),
+        ]),
       ),
       child: Stack(
         children: [
@@ -39,29 +36,40 @@ class LikedBox extends StatelessWidget {
                     Text(
                       "LIKED RECIPES",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: White.text,
-                          fontSize: 24,
-                          fontFamily: "ClashGrotesk",
-                          fontWeight: FontWeight.w400),
+                            color: White.text,
+                            fontSize: 24,
+                            fontFamily: "ClashGrotesk",
+                            fontWeight: FontWeight.w400,
+                          ),
                     ),
                     Text(
                       "View your previously liked recipes",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: White.text, fontSize: 17,),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: White.text,
+                            fontSize: 17,
+                          ),
                     ),
                   ],
                 ),
                 const Align(
                   alignment: Alignment.bottomRight,
                   child: Icon(
-                    FontAwesomeIcons.angleRight,
+                    FontAwesomeIcons.anglesRight,
                     size: 22,
-                    color: Colors.black87,
+                    color: White.text,
                   ),
                 ),
               ],
+            ),
+          ),
+          Positioned(
+            left: 100,
+            child: ClipRect(
+              child: Icon(
+                FontAwesomeIcons.solidHeart,
+                color: Colors.pinkAccent.withOpacity(0.3),
+                size: 200,
+              ),
             ),
           ),
         ],

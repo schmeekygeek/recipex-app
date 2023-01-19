@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:recipex_app/classes/meal_category.dart';
 
 import '../../classes/base.dart';
 import '../../classes/categories_list.dart';
