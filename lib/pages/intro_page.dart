@@ -24,14 +24,6 @@ class _IntroPageState extends State<IntroPage> {
   );
 
   @override
-  void initState() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    super.initState();
-  }
-
-  @override
   void dispose() {
     super.dispose();
   }

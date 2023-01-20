@@ -10,12 +10,12 @@ import './network/meal_service.dart';
 class RandomMealHelper {
 
   static Future<Meals> fetchROTD(BuildContext context) async {
-    String rotdId = context.read<StorageProvider>().getRotd;
+    String? rotdId = context.read<StorageProvider>().getRotd;
     MealServiceImplementation mealService = MealServiceImplementation();
     Meals meal;
 
     // 5285819
-    if(rotdId.substring(5) == DateTime.now().day.toString()) {
+    if(rotdId != null && rotdId.substring(5) == DateTime.now().day.toString()) {
       meal = await mealService.fetchMealById(rotdId.substring(0, 5));
       return meal;
     }

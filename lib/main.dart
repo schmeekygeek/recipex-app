@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'pages/home.dart';
@@ -19,26 +20,43 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ThemeModel()),
         ChangeNotifierProvider(create: (_) => StorageProvider()),
       ],
-      child: const MyApp(),
+      child: const RecipexApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class RecipexApp extends StatefulWidget {
+  const RecipexApp({super.key});
+
+  @override
+  State<RecipexApp> createState() => _RecipexAppState();
+}
+
+class _RecipexAppState extends State<RecipexApp> {
+  @override
+  void initState() {
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+      ],
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-        if(!currentFocus.hasPrimaryFocus) {
+        if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
       },
       child: MaterialApp(
         title: "RecipEx App",
-        theme: context.watch<ThemeModel>().isDark ? ThemeModel.buildDarkTheme() : ThemeModel.buildLightTheme(),
+        theme: context.watch<ThemeModel>().isDark
+            ? ThemeModel.buildDarkTheme()
+            : ThemeModel.buildLightTheme(),
         debugShowCheckedModeBanner: false,
         home: const Home(),
       ),

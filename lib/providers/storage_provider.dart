@@ -6,15 +6,14 @@ class StorageProvider with ChangeNotifier {
   Box box = Hive.box('recipex');
 
   String? lastMealId = Hive.box('recipex').get('lastMealId');
-  String rotd = Hive.box('recipex').get('rotdID') ?? "52858${DateTime.now().day}";
+  String? rotd = Hive.box('recipex').get('rotdID');
 
-  String get getRotd => rotd;
+  String? get getRotd => rotd;
   String? get getLastMealId => lastMealId;
 
   void setRotd(String rotd) {
     this.rotd = rotd;
     box.put('rotdID', rotd);
-    notifyListeners();
   }
 
   void setLastMealId(String id) async {
