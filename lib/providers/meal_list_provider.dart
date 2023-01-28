@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import '../classes/base.dart';
+import '../classes/base/base.dart';
+
 
 class MealListProvider with ChangeNotifier {
 

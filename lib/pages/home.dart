@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/providers/storage_provider.dart';
-import 'package:recipex_app/providers/theme_model.dart';
-import 'package:recipex_app/service/random_meal_helper.dart';
 
+import '../providers/theme_model.dart';
 import '../providers/meal_list_provider.dart';
 import 'liked.dart';
 import 'dashboard.dart';

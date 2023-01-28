@@ -2,7 +2,7 @@
     package="com.example.recipex_app">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="recipex_app"
+        android:label="RecipEx"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

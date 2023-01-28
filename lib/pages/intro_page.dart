@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:flutter/services.dart';
 
 import '../pages/home.dart';
 import '../providers/meal_list_provider.dart';

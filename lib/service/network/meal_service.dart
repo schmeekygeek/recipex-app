@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:recipex_app/classes/dto/request/jwt_request.dart';
 
-import '../../classes/base.dart';
-import '../../classes/categories_list.dart';
-import '../../classes/meals.dart';
+import '../../classes/base/base.dart';
+import '../../classes/categories_list/categories_list.dart';
+import '../../classes/dto/response/jwt_response/jwt_response.dart';
+import '../../classes/dto/response/recipe_list_response/recipe_list_response.dart';
+import '../../classes/meals/meals.dart';
 import 'meal_service_interface.dart';
 
 
@@ -53,6 +56,26 @@ class MealServiceImplementation implements MealServiceInterface {
     final response = await http.get(Uri.parse("$baseUrl/random.php"));
     Base meals = Base.fromJson(jsonDecode(response.body));
     return meals.meals[0];
+  }
+
+  // get all saved recipes for user
+  @override
+  Future<RecipeListResponse> getAllSavedRecipes() {
+    // TODO: implement getAllSavedRecipes
+    throw UnimplementedError();
+  }
+
+  // login user
+  @override
+  Future<JwtResponse> login(JwtRequest jwtRequest) {
+    // TODO: implement login
+    throw UnimplementedError();
+  }
+
+  // sign up user
+  @override
+  void signup(user) {
+    // TODO: implement signup
   }
 
  }

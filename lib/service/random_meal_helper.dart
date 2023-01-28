@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../classes/meals/meals.dart';
 import '../providers/storage_provider.dart';
-import '../classes/meals.dart';
 import './network/meal_service.dart';
 
 class RandomMealHelper {

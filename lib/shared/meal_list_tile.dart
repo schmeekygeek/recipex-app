@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../classes/meals.dart';
+import '../classes/meals/meals.dart';
 import '../service/metadata.dart';
 
 class MealListTile extends StatefulWidget {

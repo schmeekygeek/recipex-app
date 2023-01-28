@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/shared/dashboard_widgets/recipe_otd.dart';
 
+import '../shared/dashboard_widgets/recipe_otd.dart';
 import '../providers/storage_provider.dart';
 import '../shared/dashboard_widgets/continue_box.dart';
 import '../shared/dashboard_widgets/category_blocks.dart';

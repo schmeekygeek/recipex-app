@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../classes/meals/meals.dart';
 import '../shared/loading_dialog.dart';
 import '../classes/ingredient.dart';
-import '../classes/meals.dart';
 import '../service/ingredient_service.dart';
 import '../service/network/meal_service.dart';
 import '../shared/meal_info_sheet.dart';

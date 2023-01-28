@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../classes/meals/meals.dart';
 import '../providers/storage_provider.dart';
 import '../providers/theme_model.dart';
 import '../service/metadata.dart';
 import '../classes/ingredient.dart';
-import '../classes/meals.dart';
 
 class MealInfoSheet extends StatefulWidget {
   final Meals meal;
@@ -192,7 +192,7 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

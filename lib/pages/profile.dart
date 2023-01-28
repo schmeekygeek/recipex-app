@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/providers/theme_model.dart';
+
+import '../providers/theme_model.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

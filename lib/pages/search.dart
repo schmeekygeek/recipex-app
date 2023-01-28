@@ -3,11 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+import '../classes/meals/meals.dart';
 import '../service/ingredient_service.dart';
 import '../shared/meal_info_sheet.dart';
 import '../shared/meal_list_tile.dart';
 import '../shared/search_bar.dart';
-import '../classes/meals.dart';
 import '../service/network/meal_service.dart';
 import '../providers/meal_list_provider.dart';
 
@@ -30,7 +30,11 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
           SliverAppBar.large(
             title: Text(
               "What's cooking?",
-              style: Theme.of(context).appBarTheme.toolbarTextStyle),
+              style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
+                fontFamily: "LobsterTwo",
+                fontWeight: FontWeight.w100
+              ),
+            ),
             centerTitle: true,
           ),
           SliverToBoxAdapter(

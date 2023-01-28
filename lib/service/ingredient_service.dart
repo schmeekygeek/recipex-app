@@ -1,5 +1,5 @@
-import '../classes/meals.dart';
 import '../classes/ingredient.dart';
+import '../classes/meals/meals.dart';
 
 List<Ingredient> buildIngredients(Meals meal) {
   List<Ingredient> ingredients = [];
