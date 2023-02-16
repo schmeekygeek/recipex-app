@@ -18,6 +18,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   PageController pgController = PageController(
     initialPage: 0,
     keepPage: true,
@@ -26,6 +27,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      // TODO implement check connectivity logic
       child: Scaffold(
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(

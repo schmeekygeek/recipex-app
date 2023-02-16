@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:recipex_app/pages/no_internet_page.dart';
 
 import '../../providers/theme_model.dart';
 
@@ -23,11 +24,21 @@ class SearchBox extends StatelessWidget {
           color: Colors.black,
           image: DecorationImage(
             fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.4), BlendMode.dstATop),
             image: const NetworkImage(
               "https://www.themealdb.com/images/media/meals/usywpp1511189717.jpg",
-            )
-          )
+            ),
+            onError: (_, __) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const Scaffold(
+                    body: NoInternetPage(),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -49,10 +60,10 @@ class SearchBox extends StatelessWidget {
                   ),
                   Text(
                     "Have something else in mind? Search for it!",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: Dark.text, fontSize: 18,),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Dark.text,
+                          fontSize: 18,
+                        ),
                   ),
                 ],
               ),

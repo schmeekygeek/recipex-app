@@ -2,7 +2,6 @@ import '../../classes/base/base.dart';
 import '../../classes/categories_list/categories_list.dart';
 import '../../classes/dto/request/jwt_request.dart';
 import '../../classes/dto/response/jwt_response/jwt_response.dart';
-import '../../classes/dto/response/recipe_list_response/recipe_list_response.dart';
 import '../../classes/meals/meals.dart';
 import '../../classes/user/user.dart';
 
@@ -15,5 +14,5 @@ abstract class MealServiceInterface {
   Future<Meals> fetchRandomMeal();
   void signup(User user);
   Future<JwtResponse> login(JwtRequest jwtRequest);
-  Future<RecipeListResponse> getAllSavedRecipes();
+  Future<Base> getAllSavedRecipes();
 }

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:recipex_app/classes/meal_category.dart';
+
+import '../meal_category/meal_category.dart';
 
 part 'categories_list.g.dart';
 

@@ -67,18 +67,49 @@ class ThemeModel with ChangeNotifier {
           fontWeight: FontWeight.w200,
         ),
       ),
-      inputDecorationTheme: const InputDecorationTheme(
+      inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        hoverColor: Colors.transparent,
-        focusedBorder: InputBorder.none,
-        fillColor: Dark.surface0,
-        hintStyle: TextStyle(
-          color: Dark.text,
-          fontFamily: "Satoshi",
-          fontSize: 18,
-          letterSpacing: 1,
-          fontWeight: FontWeight.normal,
+        fillColor: Colors.black45,
+        contentPadding: const EdgeInsets.only(
+          left: 13,
+          right: 7,
         ),
+        hintStyle: TextStyle(
+          fontFamily: "Satoshi",
+          fontSize: 14,
+          letterSpacing: 1.5,
+          color: Dark.text.withOpacity(0.8),
+          fontWeight: FontWeight.w600,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.green,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        errorStyle: const TextStyle(
+          fontSize: 16,
+          letterSpacing: 1,
+          color: Colors.redAccent,
+          fontWeight: FontWeight.w600,
+        ),
+        suffixIconColor: Dark.text,
       ),
       textButtonTheme: const TextButtonThemeData(
         style: ButtonStyle(
@@ -91,15 +122,32 @@ class ThemeModel with ChangeNotifier {
               fontWeight: FontWeight.w200,
             ),
           ),
-          backgroundColor:
-              MaterialStatePropertyAll(Colors.transparent),
+          backgroundColor: MaterialStatePropertyAll(Colors.transparent),
           foregroundColor: MaterialStatePropertyAll(Colors.white),
         ),
       ),
-      bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: Dark.crust,
-        surfaceTintColor: Dark.base
+      filledButtonTheme: FilledButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: const MaterialStatePropertyAll(
+            White.text
+          ),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(3),
+            ),
+          ),
+          textStyle: const MaterialStatePropertyAll(
+            TextStyle(
+              fontSize: 14,
+              fontFamily: "Staatliches",
+              letterSpacing: 1,
+            ),
+          ),
+          backgroundColor: const MaterialStatePropertyAll(White.crust),
+        ),
       ),
+      bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Dark.crust, surfaceTintColor: Dark.base),
     );
   }
 
@@ -152,19 +200,49 @@ class ThemeModel with ChangeNotifier {
           fontWeight: FontWeight.w200,
         ),
       ),
-      inputDecorationTheme: const InputDecorationTheme(
+      inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        hoverColor: Colors.transparent,
-        focusedBorder: InputBorder.none,
-        border: InputBorder.none,
-        fillColor: Dark.surface0,
-        hintStyle: TextStyle(
-          color: Dark.text,
-          fontFamily: "Satoshi",
-          fontSize: 18,
-          letterSpacing: 1,
-          fontWeight: FontWeight.normal,
+        fillColor: Colors.white54,
+        contentPadding: const EdgeInsets.only(
+          left: 13,
+          right: 7,
         ),
+        hintStyle: TextStyle(
+          fontFamily: "Satoshi",
+          fontSize: 14,
+          letterSpacing: 1.5,
+          color: White.text.withOpacity(0.8),
+          fontWeight: FontWeight.w600,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.green,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        errorStyle: const TextStyle(
+          fontSize: 16,
+          letterSpacing: 1,
+          color: Colors.redAccent,
+          fontWeight: FontWeight.w600,
+        ),
+        suffixIconColor: White.text,
       ),
       textButtonTheme: const TextButtonThemeData(
         style: ButtonStyle(
@@ -177,24 +255,40 @@ class ThemeModel with ChangeNotifier {
               fontWeight: FontWeight.w200,
             ),
           ),
-          backgroundColor:
-              MaterialStatePropertyAll(Colors.transparent),
+          backgroundColor: MaterialStatePropertyAll(Colors.transparent),
           foregroundColor: MaterialStatePropertyAll(Colors.white),
         ),
       ),
-      bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: White.crust,
-        surfaceTintColor: White.base
+      filledButtonTheme: FilledButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: const MaterialStatePropertyAll(
+            Dark.text
+          ),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(3),
+            ),
+          ),
+          textStyle: const MaterialStatePropertyAll(
+            TextStyle(
+              fontSize: 14,
+              fontFamily: "Staatliches",
+              letterSpacing: 1,
+            ),
+          ),
+          backgroundColor: const MaterialStatePropertyAll(Dark.crust),
+        ),
       ),
-
+      bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: White.crust, surfaceTintColor: White.base),
     );
   }
-  Box box = Hive.box('recipex');
-  bool isDark = Hive.box('recipex').get('dark') ?? false;
+
+  bool isDark = Hive.box('recipex').get('dark') ?? true;
 
   void toggle() {
     isDark = !isDark;
-    box.put('dark', isDark);
+    Hive.box('recipex').put('dark', isDark);
     notifyListeners();
   }
 }

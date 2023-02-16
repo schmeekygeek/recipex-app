@@ -8,7 +8,7 @@ import '../providers/meal_list_provider.dart';
 class SearchBar extends StatelessWidget {
   const SearchBar({super.key});
 
-  static final fieldTextController = TextEditingController();
+  static final TextEditingController fieldTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

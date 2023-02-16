@@ -10,6 +10,7 @@ import '../shared/meal_list_tile.dart';
 import '../shared/search_bar.dart';
 import '../service/network/meal_service.dart';
 import '../providers/meal_list_provider.dart';
+import 'no_internet_page.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -18,7 +19,7 @@ class Search extends StatefulWidget {
   State<Search> createState() => _SearchState();
 }
 
-class _SearchState extends State<Search> with TickerProviderStateMixin {
+class _SearchState extends State<Search> {
 
   MealServiceImplementation mealService = MealServiceImplementation();
 
@@ -83,7 +84,7 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                           );
                       }
                       else {
-                        if(snapshot.error.runtimeType.toString() == "_CastError") {
+                        if(snapshot.error is TypeError) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -109,30 +110,7 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                             ],
                           );
                         }
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 5,
-                            ),
-                            Icon(
-                              FontAwesomeIcons.xmark,
-                              color: Colors.redAccent.shade100,
-                              size: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "You do not have an internet connection.",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall!
-                              .copyWith(fontSize: 20, letterSpacing: 1,),
-                            ),
-                          ],
-                        );
+                        return const NoInternetPage();
                       }
                     },
                     future: mealService.fetchMealsByKeyword(

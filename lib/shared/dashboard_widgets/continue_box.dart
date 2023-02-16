@@ -130,7 +130,7 @@ class _ContinueBoxState extends State<ContinueBox> {
           );
         }
         else if(snapshot.hasError) {
-          return const Text("You do not have an internet connection");
+          return const SizedBox();
         }
         return const Text("hi");
       },

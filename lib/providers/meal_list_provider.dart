@@ -10,12 +10,16 @@ class MealListProvider with ChangeNotifier {
   int homePageIndex = 0;
   String input = "";
   int currentPageIndex = 0;
+  bool _isPasswordVisible = true;
 
   // continue from last recipe
   Box box = Hive.box('recipex');
 
   // getters
   Base? get getBase => base;
+  bool get getIsPasswordVisible {
+    return _isPasswordVisible;
+  }
 
   // setters
   set setBase(Base base) => this.base = base;
@@ -29,6 +33,10 @@ class MealListProvider with ChangeNotifier {
   }
   set setCurrentPageIndex(int index){
     currentPageIndex = index;
+    notifyListeners();
+  }
+  void togglePasswordVisibility() {
+    _isPasswordVisible = !_isPasswordVisible;
     notifyListeners();
   }
 }

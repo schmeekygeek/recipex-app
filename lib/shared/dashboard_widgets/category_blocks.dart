@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../pages/no_internet_page.dart';
+import '../../classes/base/base.dart';
+import '../../classes/meal_category/meal_category.dart';
 import '../loading_dialog.dart';
-import '../../classes/base.dart';
-import '../../classes/meal_category.dart';
 import '../../pages/category_sheet.dart';
 import '../../service/network/meal_service.dart';
 import '../category_list_tile.dart';
@@ -42,35 +42,11 @@ class _CategoryBlocksState extends State<CategoryBlocks> {
                       meals = await mealService.fetchMealsByCategory(
                           categories[index].strCategory);
                     } on SocketException {
-                      Navigator.of(context).pop();
-                      showDialog(
-                        context: context,
-                        builder: (context) => Dialog(
-                          child: Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  FontAwesomeIcons.triangleExclamation,
-                                  color: Colors.redAccent,
-                                  size: 40,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Center(
-                                  child: Text(
-                                    "Please check your internet connection and try again",
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const NoInternetPage(),
+                        )
                       );
-                      return;
                     }
                     if (!mounted) return;
                     Navigator.of(context).pop();
@@ -118,11 +94,7 @@ class _CategoryBlocksState extends State<CategoryBlocks> {
             ),
           );
         } else {
-          return Icon(
-            FontAwesomeIcons.xmark,
-            color: Colors.redAccent.shade100,
-            size: 30,
-          );
+          return const SizedBox();
         }
       },
     );

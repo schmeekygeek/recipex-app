@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/pages/login_page.dart';
 
 import 'pages/home.dart';
 import 'pages/intro_page.dart';
@@ -66,7 +67,7 @@ class _RecipexAppState extends State<RecipexApp> {
             ? ThemeModel.buildDarkTheme()
             : ThemeModel.buildLightTheme(),
         debugShowCheckedModeBanner: false,
-        home: home,
+        home: const LoginPage(),
       ),
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/pages/login_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../pages/home.dart';
 import '../providers/meal_list_provider.dart';
 import './intro_pages/intro_page1.dart';
 import './intro_pages/intro_page2.dart';
@@ -47,7 +47,7 @@ class _IntroPageState extends State<IntroPage> {
             alignment: Alignment.topRight,
             child: TextButton(
               onPressed: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const Home(),)
+                MaterialPageRoute(builder: (context) => const LoginPage(),)
               ),
               child: Text(
                 "Skip",

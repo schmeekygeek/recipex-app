@@ -8,10 +8,12 @@ class StorageProvider with ChangeNotifier {
   String? lastMealId = Hive.box('recipex').get('lastMealId');
   String? rotd = Hive.box('recipex').get('rotdID');
   bool isFirstTime = Hive.box('recipex').get('isFirstTime') ?? true;
+  String? jwt = Hive.box('recipex').get('jwt');
 
   String? get getRotd => rotd;
   String? get getLastMealId => lastMealId;
   bool get getIsFirstTime => isFirstTime;
+  String? get getJwt => jwt;
 
   void setRotd(String rotd) {
     this.rotd = rotd;

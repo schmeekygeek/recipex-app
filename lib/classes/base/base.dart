@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import './meals.dart';
 
+import '../meals/meals.dart';
 part 'base.g.dart';
 
 @JsonSerializable(
@@ -8,7 +8,7 @@ part 'base.g.dart';
 )
 
 class Base {
-  final List<Meals> meals;
+  late final List<Meals> meals;
 
   Base({
     required this.meals

@@ -119,20 +119,17 @@ class _RecipeOTDBoxState extends State<RecipeOTDBox> {
               ),
               const SizedBox(
                 height: 20,
-              )
+              ),
             ],
           );
         }
-        else if(snapshot.connectionState == ConnectionState.waiting){
+        else if(snapshot.connectionState == ConnectionState.waiting) {
           return const SizedBox(
             height: 180,
             child: Center(child: CircularProgressIndicator()),
           );
         }
-        else if(snapshot.hasError) {
-          return const Text("You do not have an internet connection");
-        }
-        return const Text("hi");
+        return const SizedBox();
       },
       future: RandomMealHelper.fetchROTD(context),
     );
