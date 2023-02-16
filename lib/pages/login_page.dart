@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:lottie/lottie.dart';
-import 'package:recipex_app/pages/home.dart';
 
+import '../shared/loading_dialog.dart';
 import '../shared/password_text_form_field.dart';
 import '../shared/username_login_text_form_field.dart';
 
@@ -11,14 +12,9 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-class _LoginPageState extends State<LoginPage> {
-  late final GlobalKey<FormState> _key;
 
-  @override
-  void initState() {
-    _key = GlobalKey<FormState>();
-    super.initState();
-  }
+class _LoginPageState extends State<LoginPage> {
+  var logger = Logger();
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +25,16 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            LottieBuilder.asset(
-              "assets/girl-cooking.json",
-              frameRate: FrameRate.max,
-              width: 250,
+            Expanded(
+              flex: 2,
+              child: LottieBuilder.asset(
+                "assets/girl-cooking.json",
+                frameRate: FrameRate.max,
+                width: 250,
+              ),
             ),
             const Text(
-              "Let's get you onboard.",
+              "Welcome back!",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30,
@@ -44,10 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             const SizedBox(
-              height: 10,
-            ),
-            const SizedBox(
-              height: 5,
+              height: 15,
             ),
             const Text(
               "Sign in",
@@ -56,33 +52,22 @@ class _LoginPageState extends State<LoginPage> {
                 fontFamily: "Staatliches",
                 fontSize: 20,
                 letterSpacing: 3,
-                color: Colors.blueGrey
+                color: Colors.blueGrey,
               ),
             ),
-            const SizedBox(
-              height: 13,
-            ),
-            const SizedBox(
-              height: 3,
-            ),
-            Form(
-              key: _key,
-              child: Column(
-                children: const [
-                  UsernameTextFormField(),
-                  SizedBox(height: 10),
-                  PasswordTextFormField(),
-                ],
-              ),
-            ),
+            const SizedBox(height: 16),
+            const UsernameTextFormField(),
+            const SizedBox(height: 10),
+            const PasswordTextFormField(),
+            const SizedBox(height: 6),
             GestureDetector(
               onTap: () => ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text("Coming soon!"),
-                  shape: ContinuousRectangleBorder(
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(5),
+                      topRight: Radius.circular(5),
                     ),
                   ),
                 ),
@@ -101,21 +86,15 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 20),
             FilledButton(
-              onPressed: () {
-                if (_key.currentState!.validate()) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (_) => const Home(),
-                    )
-                  );
-                }
+              onPressed: () async {
+                showLoadingDialog(context);
+                await Future.delayed(const Duration(milliseconds: 1000));
+                if (!mounted) return;
+                Navigator.of(context).pop();
               },
               style: const ButtonStyle(
                 fixedSize: MaterialStatePropertyAll(
-                  Size(
-                    1000,
-                    40
-                  ),
+                  Size(1000, 40),
                 ),
               ),
               child: const Text(
@@ -123,45 +102,36 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             const SizedBox(height: 20),
-            GestureDetector(
-              onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Coming soon!"),
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "No account? ",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontSize: 13,
+                      ),
+                ),
+                GestureDetector(
+                  onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Coming soon!"),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "No account? ",
-                        style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(
+                  child: Text(
+                    "Create one!",
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 13,
+                          color: Colors.lightBlue,
                         ),
-                      ),
-                      TextSpan(
-                        text: "Create one!",
-                        style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(
-                          fontSize: 13, color: Colors.lightBlue,
-                        ),
-                      ),
-                    ],
                   ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

@@ -138,7 +138,7 @@ class ThemeModel with ChangeNotifier {
           ),
           textStyle: const MaterialStatePropertyAll(
             TextStyle(
-              fontSize: 14,
+              fontSize: 18,
               fontFamily: "Staatliches",
               letterSpacing: 1,
             ),
@@ -271,7 +271,7 @@ class ThemeModel with ChangeNotifier {
           ),
           textStyle: const MaterialStatePropertyAll(
             TextStyle(
-              fontSize: 14,
+              fontSize: 18,
               fontFamily: "Staatliches",
               letterSpacing: 1,
             ),
@@ -284,7 +284,8 @@ class ThemeModel with ChangeNotifier {
     );
   }
 
-  bool isDark = Hive.box('recipex').get('dark') ?? true;
+  // bool isDark = Hive.box('recipex').get('dark') ?? true;
+  bool isDark = true;
 
   void toggle() {
     isDark = !isDark;

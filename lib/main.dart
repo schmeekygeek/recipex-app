@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/pages/login_page.dart';
 
-import 'pages/home.dart';
-import 'pages/intro_page.dart';
+import 'pages/login_page.dart';
+import 'providers/misc_provider.dart';
 import 'providers/storage_provider.dart';
 import 'providers/theme_model.dart';
 import './providers/meal_list_provider.dart';
@@ -21,6 +20,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => MealListProvider()),
         ChangeNotifierProvider(create: (_) => ThemeModel()),
         ChangeNotifierProvider(create: (_) => StorageProvider()),
+        ChangeNotifierProvider(create: (_) => MiscellaneousProvider()),
       ],
       child: const RecipexApp(),
     ),
@@ -36,14 +36,8 @@ class RecipexApp extends StatefulWidget {
 
 class _RecipexAppState extends State<RecipexApp> {
 
-  Widget home = const Home();
-
   @override
   void initState() {
-    if(context.read<StorageProvider>().isFirstTime){
-      context.read<StorageProvider>().toggleFirstTime();
-      home = const IntroPage();
-    }
     SystemChrome.setPreferredOrientations(
       [
         DeviceOrientation.portraitUp,

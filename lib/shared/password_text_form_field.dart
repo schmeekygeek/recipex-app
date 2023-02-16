@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/meal_list_provider.dart';
+import '../providers/misc_provider.dart';
 import '../util/constants.dart';
 
 class PasswordTextFormField extends StatelessWidget {
@@ -15,6 +16,7 @@ class PasswordTextFormField extends StatelessWidget {
         AutofillHints.password,
       ],
       keyboardType: TextInputType.visiblePassword,
+      onChanged: (value) => context.read<MiscellaneousProvider>().setPassword = value,
       obscureText: context.watch<MealListProvider>().getIsPasswordVisible,
       decoration: InputDecoration(
         suffixIcon: Padding(
