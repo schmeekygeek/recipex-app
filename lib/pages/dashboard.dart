@@ -56,8 +56,8 @@ class Dashboard extends StatelessWidget {
           ),
           const CategoryBlocks(),
 
-          if(context.watch<StorageProvider>().lastMealId != null)
-          ContinueBox(lastMealId: context.watch<StorageProvider>().lastMealId!),
+          if(context.watch<StorageProvider>().getLastMealId != null)
+          ContinueBox(lastMealId: context.watch<StorageProvider>().getLastMealId!),
           const RecipeOTDBox(),
           GestureDetector(
             onTap: () => controller.animateToPage(

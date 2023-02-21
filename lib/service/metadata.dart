@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget metaData(BuildContext context, String attribute, String? detail) {
+
   return RichText(
     textAlign: TextAlign.left,
     text: TextSpan(

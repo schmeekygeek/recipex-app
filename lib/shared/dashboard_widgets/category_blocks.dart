@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:recipex_app/extensions.dart';
 
 import '../../pages/no_internet_page.dart';
 import '../../classes/base/base.dart';
@@ -42,14 +43,10 @@ class _CategoryBlocksState extends State<CategoryBlocks> {
                       meals = await mealService.fetchMealsByCategory(
                           categories[index].strCategory);
                     } on SocketException {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => const NoInternetPage(),
-                        )
-                      );
+                      context.pushReplacement(const NoInternetPage());
                     }
                     if (!mounted) return;
-                    Navigator.of(context).pop();
+                    context.pop();
                     showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,

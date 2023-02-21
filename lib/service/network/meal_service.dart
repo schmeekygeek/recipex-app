@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-import '../jwt_service.dart';
 import '../../classes/dto/request/jwt_request.dart';
 import '../../classes/base/base.dart';
 import '../../classes/categories_list/categories_list.dart';
@@ -22,7 +21,6 @@ class MealServiceImplementation implements MealServiceInterface {
   http.Client client = http.Client();
 
   final Map<String, String> headers = {
-    "Authorization": "Bearer ${getJwt()}",
     "Content-Type": "application/json",
   };
 

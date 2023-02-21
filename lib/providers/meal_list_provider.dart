@@ -1,42 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import '../classes/base/base.dart';
-
-
 class MealListProvider with ChangeNotifier {
 
-  Base? base;
-  int homePageIndex = 0;
-  String input = "";
-  int currentPageIndex = 0;
-  bool _isPasswordVisible = true;
+  int _homePageIndex = 0;
+  String _input = "";
 
   // continue from last recipe
   Box box = Hive.box('recipex');
 
   // getters
-  Base? get getBase => base;
-  bool get getIsPasswordVisible {
-    return _isPasswordVisible;
-  }
+  int get getHomePageIndex => _homePageIndex;
+  String get getInput => _input;
 
   // setters
-  set setBase(Base base) => this.base = base;
   set setHomePageIndex(int index) {
-    homePageIndex = index;
+    _homePageIndex = index;
     notifyListeners();
   }
+
   set setInput(String input) {
-    this.input = input;
+    _input = input;
     notifyListeners();
   }
-  set setCurrentPageIndex(int index){
-    currentPageIndex = index;
-    notifyListeners();
-  }
-  void togglePasswordVisibility() {
-    _isPasswordVisible = !_isPasswordVisible;
-    notifyListeners();
-  }
+
 }

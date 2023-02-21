@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../extensions.dart';
 import '../classes/meals/meals.dart';
 import '../shared/loading_dialog.dart';
 import '../classes/ingredient.dart';
@@ -97,46 +97,16 @@ class _CategorySheetState extends State<CategorySheet>
               try {
                 mealData = await mealService.fetchMealById(meal.idMeal!);
               } on SocketException {
-                Navigator.of(context).pop();
-                showDialog(
-                  context: context,
-                  builder: (context) => Dialog(
-                    child: Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            FontAwesomeIcons.triangleExclamation,
-                            color: Colors.redAccent,
-                            size: 40,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Center(
-                            child: Text(
-                              "Please check your internet connection and try again",
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
+                context.pop();
               }
               if (mounted) {
                 List<Ingredient> ingredients = buildIngredients(mealData);
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MealInfoSheet(
+                context.pop();
+                context.push(
+                  MealInfoSheet(
                       ingredients: ingredients,
                       meal: mealData,
-                    ),
-                  ),
+                    )
                 );
               }
             },

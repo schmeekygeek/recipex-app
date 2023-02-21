@@ -21,7 +21,7 @@ class RandomMealHelper {
     }
     
     meal = await mealService.fetchRandomMeal();
-    context.read<StorageProvider>().setRotd("${meal.idMeal}${DateTime.now().day.toString()}");
+    context.read<StorageProvider>().setRotd = "${meal.idMeal}${DateTime.now().day.toString()}";
     return meal;
   }
 }

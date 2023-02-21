@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:recipex_app/extensions.dart';
 
 import '../../providers/theme_model.dart';
 import '../../service/random_meal_helper.dart';
@@ -28,13 +29,11 @@ class _RecipeOTDBoxState extends State<RecipeOTDBox> {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => MealInfoSheet(
-                        ingredients: buildIngredients(snapshot.data!),
-                        meal: snapshot.data!,
-                      ),
-                    ),
+                  context.push(
+                    MealInfoSheet(
+                      ingredients: buildIngredients(snapshot.data!),
+                      meal: snapshot.data!,
+                    )
                   );
                 },
                 child: Container(

@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
                 tabMargin: const EdgeInsets.all(8),
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 tabBackgroundColor: const Color(0xfff2d388),
-                selectedIndex: context.watch<MealListProvider>().homePageIndex,
+                selectedIndex: context.watch<MealListProvider>().getHomePageIndex,
                 gap: 8,
                 color: Colors.grey,
                 activeColor: White.text,

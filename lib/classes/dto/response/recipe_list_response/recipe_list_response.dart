@@ -14,7 +14,9 @@ class RecipeListResponse {
     required this.savedRecipes,
   });
 
-  factory RecipeListResponse.fromJson(Map<String, dynamic> data) => _$RecipeListResponseFromJson(data);
+  factory RecipeListResponse.fromJson(Map<String, dynamic> data) => 
+    _$RecipeListResponseFromJson(data);
+
   Map<String, dynamic> toJson() => _$RecipeListResponseToJson(this);
 
 }

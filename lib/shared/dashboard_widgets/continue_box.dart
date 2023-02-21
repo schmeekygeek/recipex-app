@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../extensions.dart';
 import '../../providers/theme_model.dart';
 import '../../service/ingredient_service.dart';
 import '../../service/network/meal_service.dart';
 import '../meal_info_sheet.dart';
 
 class ContinueBox extends StatefulWidget {
-
   final String lastMealId;
   const ContinueBox({super.key, required this.lastMealId});
 
@@ -16,24 +16,22 @@ class ContinueBox extends StatefulWidget {
 }
 
 class _ContinueBoxState extends State<ContinueBox> {
-
   MealServiceImplementation mealService = MealServiceImplementation();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      builder:(context, snapshot) {
-        if (snapshot.hasData && snapshot.connectionState == ConnectionState.done){
+      builder: (context, snapshot) {
+        if (snapshot.hasData &&
+            snapshot.connectionState == ConnectionState.done) {
           return Column(
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => MealInfoSheet(
-                        ingredients: buildIngredients(snapshot.data!),
-                        meal: snapshot.data!,
-                      ),
+                  context.push(
+                    MealInfoSheet(
+                      ingredients: buildIngredients(snapshot.data!),
+                      meal: snapshot.data!,
                     ),
                   );
                 },
@@ -44,11 +42,10 @@ class _ContinueBoxState extends State<ContinueBox> {
                     boxShadow: kElevationToShadow[4],
                     color: Colors.black,
                     borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(4),
-                      topRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(4)
-                    ),
+                        topLeft: Radius.circular(4),
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(4)),
                   ),
                   child: Stack(
                     children: [
@@ -83,21 +80,27 @@ class _ContinueBoxState extends State<ContinueBox> {
                           children: [
                             Text(
                               "CONTINUE READING",
-                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: Dark.text.withOpacity(0.6),
-                                letterSpacing: 3,
-                                fontFamily: "ClashGrotesk",
-                                wordSpacing: 1,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color: Dark.text.withOpacity(0.6),
+                                    letterSpacing: 3,
+                                    fontFamily: "ClashGrotesk",
+                                    wordSpacing: 1,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                             Text(
                               snapshot.data?.strMeal ?? "Empty",
-                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: Dark.text,
-                                fontSize: 24,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color: Dark.text,
+                                    fontSize: 24,
+                                  ),
                             ),
                             const Expanded(
                               flex: 2,
@@ -122,14 +125,12 @@ class _ContinueBoxState extends State<ContinueBox> {
               )
             ],
           );
-        }
-        else if(snapshot.connectionState == ConnectionState.waiting){
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const SizedBox(
             height: 180,
             child: Center(child: CircularProgressIndicator()),
           );
-        }
-        else if(snapshot.hasError) {
+        } else if (snapshot.hasError) {
           return const SizedBox();
         }
         return const Text("hi");

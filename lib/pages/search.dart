@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+import '../extensions.dart';
 import '../classes/meals/meals.dart';
 import '../service/ingredient_service.dart';
 import '../shared/meal_info_sheet.dart';
@@ -70,12 +71,10 @@ class _SearchState extends State<Search> {
                               ),
                               for (Meals meal in meals)
                               GestureDetector(
-                                onTap: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => MealInfoSheet(
-                                      ingredients: buildIngredients(meal),
-                                      meal: meal,
-                                    ),
+                                onTap: () => context.push(
+                                  MealInfoSheet(
+                                    ingredients: buildIngredients(meal),
+                                    meal: meal,
                                   ),
                                 ),
                                 child: MealListTile(meal),
@@ -100,7 +99,7 @@ class _SearchState extends State<Search> {
                                 height: 10,
                               ),
                               Text(
-                                "Couldn't fetch results for \"${context.read<MealListProvider>().input}\"\nTry something else?",
+                                "Couldn't fetch results for \"${context.read<MealListProvider>().getInput}\"\nTry something else?",
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                 .textTheme
@@ -114,7 +113,7 @@ class _SearchState extends State<Search> {
                       }
                     },
                     future: mealService.fetchMealsByKeyword(
-                      context.watch<MealListProvider>().input,
+                      context.watch<MealListProvider>().getInput,
                     ),
                   ),
                 ],

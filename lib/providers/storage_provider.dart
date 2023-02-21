@@ -5,23 +5,20 @@ class StorageProvider with ChangeNotifier {
 
   Box box = Hive.box('recipex');
 
-  String? lastMealId = Hive.box('recipex').get('lastMealId');
-  String? rotd = Hive.box('recipex').get('rotdID');
-  bool isFirstTime = Hive.box('recipex').get('isFirstTime') ?? true;
-  String? jwt = Hive.box('recipex').get('jwt');
+  String? _lastMealId = Hive.box('recipex').get('lastMealId');
+  String? _rotd = Hive.box('recipex').get('rotdID');
 
-  String? get getRotd => rotd;
-  String? get getLastMealId => lastMealId;
-  bool get getIsFirstTime => isFirstTime;
-  String? get getJwt => jwt;
+  String? get getRotd => _rotd;
+  String? get getLastMealId => _lastMealId;
 
-  void setRotd(String rotd) {
-    this.rotd = rotd;
+
+  set setRotd(String rotd) {
+    _rotd = rotd;
     box.put('rotdID', rotd);
   }
 
   void setLastMealId(String id) async {
-    lastMealId = id;
+    _lastMealId = id;
     box.put('lastMealId', id);
     await Future.delayed(
       const Duration(milliseconds: 500),
@@ -29,8 +26,4 @@ class StorageProvider with ChangeNotifier {
     );
   }
 
-  void toggleFirstTime() {
-    isFirstTime = !isFirstTime;
-    box.put('isFirstTime', isFirstTime);
-  }
 }

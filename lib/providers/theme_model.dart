@@ -82,7 +82,9 @@ class ThemeModel with ChangeNotifier {
           fontWeight: FontWeight.w600,
         ),
         border: OutlineInputBorder(
-          borderSide: BorderSide.none,
+          borderSide: const BorderSide(
+            color: White.crust,
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedErrorBorder: OutlineInputBorder(
@@ -122,18 +124,20 @@ class ThemeModel with ChangeNotifier {
               fontWeight: FontWeight.w200,
             ),
           ),
-          backgroundColor: MaterialStatePropertyAll(Colors.transparent),
+          backgroundColor: MaterialStatePropertyAll(
+            Colors.transparent,
+          ),
           foregroundColor: MaterialStatePropertyAll(Colors.white),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           foregroundColor: const MaterialStatePropertyAll(
-            White.text
+            White.text,
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(3),
+              borderRadius: BorderRadius.circular(30),
             ),
           ),
           textStyle: const MaterialStatePropertyAll(
@@ -143,11 +147,43 @@ class ThemeModel with ChangeNotifier {
               letterSpacing: 1,
             ),
           ),
-          backgroundColor: const MaterialStatePropertyAll(White.crust),
+          backgroundColor: const MaterialStatePropertyAll(
+            White.crust,
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: const MaterialStatePropertyAll(
+            Dark.text,
+          ),
+          side: const MaterialStatePropertyAll(
+            BorderSide(
+              color: Dark.text,
+            ),
+          ),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          iconSize: const MaterialStatePropertyAll(20),
+          textStyle: const MaterialStatePropertyAll(
+            TextStyle(
+              fontSize: 18,
+              fontFamily: "Staatliches",
+              letterSpacing: 1,
+            ),
+          ),
+          backgroundColor: const MaterialStatePropertyAll(
+            Colors.transparent,
+          ),
         ),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: Dark.crust, surfaceTintColor: Dark.base),
+        backgroundColor: Dark.crust,
+        surfaceTintColor: Dark.base,
+      ),
     );
   }
 
@@ -215,7 +251,9 @@ class ThemeModel with ChangeNotifier {
           fontWeight: FontWeight.w600,
         ),
         border: OutlineInputBorder(
-          borderSide: BorderSide.none,
+          borderSide: const BorderSide(
+            color: White.crust,
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedErrorBorder: OutlineInputBorder(
@@ -255,18 +293,22 @@ class ThemeModel with ChangeNotifier {
               fontWeight: FontWeight.w200,
             ),
           ),
-          backgroundColor: MaterialStatePropertyAll(Colors.transparent),
-          foregroundColor: MaterialStatePropertyAll(Colors.white),
+          backgroundColor: MaterialStatePropertyAll(
+            Colors.transparent,
+          ),
+          foregroundColor: MaterialStatePropertyAll(
+            Colors.white,
+          ),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           foregroundColor: const MaterialStatePropertyAll(
-            Dark.text
+            Dark.text,
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(3),
+              borderRadius: BorderRadius.circular(30),
             ),
           ),
           textStyle: const MaterialStatePropertyAll(
@@ -276,20 +318,52 @@ class ThemeModel with ChangeNotifier {
               letterSpacing: 1,
             ),
           ),
-          backgroundColor: const MaterialStatePropertyAll(Dark.crust),
+          backgroundColor: const MaterialStatePropertyAll(
+            Dark.crust,
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: const MaterialStatePropertyAll(
+            White.text,
+          ),
+          side: const MaterialStatePropertyAll(
+            BorderSide(
+              color: White.text,
+            ),
+          ),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          iconSize: const MaterialStatePropertyAll(20),
+          textStyle: const MaterialStatePropertyAll(
+            TextStyle(
+              fontSize: 18,
+              fontFamily: "Staatliches",
+              letterSpacing: 1,
+            ),
+          ),
+          backgroundColor: const MaterialStatePropertyAll(
+            Colors.transparent,
+          ),
         ),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: White.crust, surfaceTintColor: White.base),
+        backgroundColor: White.crust,
+        surfaceTintColor: White.base,
+      ),
     );
   }
 
-  // bool isDark = Hive.box('recipex').get('dark') ?? true;
-  bool isDark = true;
+  bool _isDark = Hive.box('recipex').get('dark') ?? true;
+  bool get isDark => _isDark;
 
   void toggle() {
-    isDark = !isDark;
-    Hive.box('recipex').put('dark', isDark);
+    _isDark = !_isDark;
+    Hive.box('recipex').put('dark', _isDark);
     notifyListeners();
   }
 }

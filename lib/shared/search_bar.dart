@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/providers/theme_model.dart';
 
+import '../providers/theme_model.dart';
 import '../providers/meal_list_provider.dart';
 
 class SearchBar extends StatelessWidget {

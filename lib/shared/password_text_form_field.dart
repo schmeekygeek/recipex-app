@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/meal_list_provider.dart';
 import '../providers/misc_provider.dart';
 import '../util/constants.dart';
 
@@ -16,18 +15,21 @@ class PasswordTextFormField extends StatelessWidget {
         AutofillHints.password,
       ],
       keyboardType: TextInputType.visiblePassword,
-      onChanged: (value) => context.read<MiscellaneousProvider>().setPassword = value,
-      obscureText: context.watch<MealListProvider>().getIsPasswordVisible,
+      onChanged: (value) {
+        context.read<MiscellaneousProvider>().setPassword = value;
+      },
+      obscureText: context.watch<MiscellaneousProvider>().getIsPasswordVisible,
       decoration: InputDecoration(
         suffixIcon: Padding(
           padding: const EdgeInsets.only(
             right: 15,
           ),
           child: GestureDetector(
-            onTap: () =>
-                context.read<MealListProvider>().togglePasswordVisibility(),
+            onTap: () {
+              context.read<MiscellaneousProvider>().togglePasswordVisibility();
+            },
             child: Icon(
-              !context.watch<MealListProvider>().getIsPasswordVisible
+              !context.watch<MiscellaneousProvider>().getIsPasswordVisible
                   ? FontAwesomeIcons.solidEyeSlash
                   : FontAwesomeIcons.solidEye,
               size: 19,

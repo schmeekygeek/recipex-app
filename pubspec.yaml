@@ -21,12 +21,10 @@ dependencies:
   google_nav_bar: ^5.0.6
   font_awesome_flutter: ^10.3.0
   lottie: ^1.4.2
-  smooth_page_indicator: ^1.0.0+2
   animated_text_kit: ^4.2.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   flutter_switch: ^0.3.2
-  google_fonts: ^3.0.1
   logger: ^1.1.0
 
 dev_dependencies:
@@ -41,7 +39,6 @@ flutter:
 
   assets:
     - assets/
-    - assets/intro/
 
   fonts:
     - family: Lora

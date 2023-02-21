@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:recipex_app/providers/theme_model.dart';
+
+import '../../providers/theme_model.dart';
 
 class LikedBox extends StatelessWidget {
   const LikedBox({super.key});
