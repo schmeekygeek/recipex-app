@@ -92,8 +92,8 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             FilledButton(
-              onPressed: () async {
-                context.push(const Home());
+              onPressed: () {
+                context.pushReplacement(const Home());
               },
               style: ButtonStyle(
                 shape: MaterialStatePropertyAll(

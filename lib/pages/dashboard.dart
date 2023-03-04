@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'liked.dart';
+import 'search.dart';
+import '../providers/misc_provider.dart';
 import '../shared/dashboard_widgets/recipe_otd.dart';
 import '../providers/storage_provider.dart';
 import '../shared/dashboard_widgets/continue_box.dart';
@@ -10,8 +13,7 @@ import '../shared/dashboard_widgets/liked_box.dart';
 import '../shared/dashboard_widgets/search_box.dart';
 
 class Dashboard extends StatelessWidget {
-  final PageController controller;
-  const Dashboard({super.key, required this.controller});
+  const Dashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +27,19 @@ class Dashboard extends StatelessWidget {
           Text(
             "${getGreeting()},",
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-              fontSize: 28,
-              color: Colors.grey,
-              fontWeight: FontWeight.w100,
-              fontFamily: "LobsterTwo",
-            ),
+                  fontSize: 28,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w100,
+                  fontFamily: "LobsterTwo",
+                ),
           ),
           Text(
             "John",
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-              letterSpacing: 1,
-              fontSize: 40,
-              fontFamily: "Staatliches",
-            ),
+                  letterSpacing: 1,
+                  fontSize: 40,
+                  fontFamily: "Staatliches",
+                ),
           ),
           const SizedBox(
             height: 20,
@@ -45,41 +47,31 @@ class Dashboard extends StatelessWidget {
           Text(
             "BROWSE CATEGORIES",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              fontSize: 18,
-              fontFamily: "ClashGrotesk",
-              fontWeight: FontWeight.w400,
-              letterSpacing: 2,
-            ),
+                  fontSize: 18,
+                  fontFamily: "ClashGrotesk",
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 2,
+                ),
           ),
           const SizedBox(
             height: 10,
           ),
           const CategoryBlocks(),
-
-          if(context.watch<StorageProvider>().getLastMealId != null)
-          ContinueBox(lastMealId: context.watch<StorageProvider>().getLastMealId!),
+          if (context.watch<StorageProvider>().getLastMealId != null)
+            ContinueBox(
+                lastMealId: context.watch<StorageProvider>().getLastMealId!),
           const RecipeOTDBox(),
           GestureDetector(
-            onTap: () => controller.animateToPage(
-              2,
-              curve: Curves.fastLinearToSlowEaseIn,
-              duration: const Duration(
-                milliseconds: 200,
-              ),
-            ),
+            onTap: () => context.read<MiscellaneousProvider>().setHomePage =
+                const Liked(),
             child: const LikedBox(),
           ),
           const SizedBox(
             height: 20,
           ),
           GestureDetector(
-            onTap: () => controller.animateToPage(
-              1,
-              curve: Curves.fastLinearToSlowEaseIn,
-              duration: const Duration(
-                milliseconds: 200,
-              ),
-            ),
+            onTap: () => context.read<MiscellaneousProvider>().setHomePage =
+                const Search(),
             child: const SearchBox(),
           ),
         ],
