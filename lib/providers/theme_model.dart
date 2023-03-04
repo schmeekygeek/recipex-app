@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 
 class Dark {
@@ -24,6 +25,7 @@ class ThemeModel with ChangeNotifier {
       useMaterial3: true,
       scaffoldBackgroundColor: Dark.crust,
       appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         color: Dark.base,
         actionsIconTheme: IconThemeData(
           color: Dark.text,
@@ -69,7 +71,7 @@ class ThemeModel with ChangeNotifier {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.black45,
+        fillColor: Dark.base,
         contentPadding: const EdgeInsets.only(
           left: 13,
           right: 7,
@@ -137,7 +139,7 @@ class ThemeModel with ChangeNotifier {
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(5),
             ),
           ),
           textStyle: const MaterialStatePropertyAll(
@@ -164,7 +166,7 @@ class ThemeModel with ChangeNotifier {
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(5),
             ),
           ),
           iconSize: const MaterialStatePropertyAll(20),
@@ -193,6 +195,7 @@ class ThemeModel with ChangeNotifier {
       useMaterial3: true,
       scaffoldBackgroundColor: White.crust,
       appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
         color: White.base,
         actionsIconTheme: IconThemeData(
           color: White.text,
@@ -308,7 +311,7 @@ class ThemeModel with ChangeNotifier {
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(5),
             ),
           ),
           textStyle: const MaterialStatePropertyAll(
@@ -335,7 +338,7 @@ class ThemeModel with ChangeNotifier {
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(5),
             ),
           ),
           iconSize: const MaterialStatePropertyAll(20),

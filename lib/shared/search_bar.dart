@@ -14,7 +14,7 @@ class SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).inputDecorationTheme.fillColor,
+        color: Colors.black87,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -22,7 +22,7 @@ class SearchBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
-            width: 20,
+            width: 10,
           ),
           Expanded(
             flex: 4,
@@ -36,17 +36,21 @@ class SearchBar extends StatelessWidget {
                     color: White.crust,
                   ),
               controller: fieldTextController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 // contentPadding: EdgeInsets.zero,
                 hintText: "Search",
-                hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
+                hintStyle: TextStyle(
+                  color: Dark.text,
+                ),
                 isDense: false,
                 focusedBorder: InputBorder.none,
                 border: InputBorder.none,
+                fillColor: Colors.transparent,
               ),
             ),
           ),
           Expanded(
+            flex: 0,
             child: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: IconButton(
@@ -60,6 +64,7 @@ class SearchBar extends StatelessWidget {
             ),
           ),
           Expanded(
+            flex: 1,
             child: Padding(
               padding: const EdgeInsets.only(right: 10),
               child: IconButton(
