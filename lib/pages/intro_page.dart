@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/extensions.dart';
 
+import '../extensions.dart';
 import 'login_page.dart';
 import '../providers/theme_model.dart';
 
@@ -14,126 +14,154 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: SingleChildScrollView(
-          child: Column(
-            textDirection: TextDirection.ltr,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: OutlinedButton.icon(
-                  label: Text(
-                    context.watch<ThemeModel>().isDark ?
-                    "Light"
-                    : "Dark"
-                  ),
-                  onPressed: () => context.read<ThemeModel>().toggle(),
-                  icon: Icon(context.watch<ThemeModel>().isDark ?
-                    FontAwesomeIcons.lightbulb
-                    : FontAwesomeIcons.solidMoon
+        child: Column(
+          textDirection: TextDirection.ltr,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: OutlinedButton.icon(
+                style: ButtonStyle(
+                  shape: MaterialStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              DefaultTextStyle(
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      fontFamily: "LobsterTwo",
-                      fontSize: 40,
-                    ),
-                child: AnimatedTextKit(
-                  displayFullTextOnTap: true,
-                  pause: const Duration(milliseconds: 1500),
-                  repeatForever: true,
-                  animatedTexts: [
-                    TyperAnimatedText(
-                      "Quick",
-                    ),
-                    TyperAnimatedText(
-                      "Delicious",
-                    ),
-                    TyperAnimatedText(
-                      "Easy",
-                    ),
-                  ],
+                label: Text(
+                  context.watch<ThemeModel>().isDark ? "Light" : "Dark",
+                ),
+                onPressed: () => context.read<ThemeModel>().toggle(),
+                icon: Icon(
+                  context.watch<ThemeModel>().isDark
+                      ? FontAwesomeIcons.lightbulb
+                      : FontAwesomeIcons.solidMoon,
                 ),
               ),
-              Text(
-                "recipes at your fingertips",
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      fontFamily: "LobsterTwo",
-                      fontSize: 40,
-                    ),
+            ),
+            DefaultTextStyle(
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontFamily: "LobsterTwo",
+                    fontSize: 40,
+                  ),
+              child: AnimatedTextKit(
+                displayFullTextOnTap: true,
+                pause: const Duration(milliseconds: 1500),
+                repeatForever: true,
+                animatedTexts: [
+                  TyperAnimatedText(
+                    "Quick",
+                  ),
+                  TyperAnimatedText(
+                    "Delicious",
+                  ),
+                  TyperAnimatedText(
+                    "Easy",
+                  ),
+                ],
               ),
-              const SizedBox(height: 10),
-              Text(
-                "Cooking for your loved ones has never been easier.",
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+            ),
+            Text(
+              "recipes at your fingertips",
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontFamily: "LobsterTwo",
+                    fontSize: 40,
+                  ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Cooking for your loved ones has never been easier.",
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Colors.blueGrey,
                   fontFamily: "Satoshi",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600
-                ),
-              ),
-              Center(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600),
+            ),
+            Expanded(
+              flex: 2,
+              child: Center(
                 child: LottieBuilder.asset(
                   "assets/girl-cooking.json",
-                  width: 250,
+                  width: 500,
+                  height: 500,
                 ),
               ),
-              const SizedBox(
-                height: 20,
+            ),
+            OutlinedButton.icon(
+              label: const Text("Sign in"),
+              icon: const Icon(
+                FontAwesomeIcons.arrowRightToBracket,
               ),
-              OutlinedButton.icon(
-                label: const Text("Sign in"),
-                icon: const Icon(
-                  FontAwesomeIcons.arrowRightToBracket,
-                ),
-                onPressed: () => context.push(const LoginPage()),
-                style: const ButtonStyle(
-                  iconSize: MaterialStatePropertyAll(17),
-                  fixedSize: MaterialStatePropertyAll(
-                    Size(double.maxFinite, 45),
+              onPressed: () => context.push(const LoginPage()),
+              style: ButtonStyle(
+                shape: MaterialStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              FilledButton.icon(
-                label: const Text("Register"),
-                icon: const Icon(
-                  FontAwesomeIcons.userPlus,
-                ),
-                onPressed: () => {},
-                style: const ButtonStyle(
-                  iconSize: MaterialStatePropertyAll(17),
-                  fixedSize: MaterialStatePropertyAll(
-                    Size(double.maxFinite, 45),
-                  ),
+                iconSize: const MaterialStatePropertyAll(17),
+                fixedSize: const MaterialStatePropertyAll(
+                  Size(double.maxFinite, 45),
                 ),
               ),
-              const SizedBox(height: 10),
-              FilledButton.icon(
-                label: const Text("Continue as guest"),
-                icon: const Icon(
-                  FontAwesomeIcons.userSlash,
+            ),
+            const SizedBox(height: 10),
+            FilledButton.icon(
+              label: const Text("Register"),
+              icon: const Icon(
+                FontAwesomeIcons.userPlus,
+              ),
+              onPressed: () => {},
+              style: ButtonStyle(
+                shape: MaterialStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
                 ),
-                onPressed: () => {},
-                style: const ButtonStyle(
-                  foregroundColor: MaterialStatePropertyAll(
-                    White.text,
-                  ),
-                  iconSize: MaterialStatePropertyAll(17),
-                  fixedSize: MaterialStatePropertyAll(
-                    Size(double.maxFinite, 45),
-                  ),
-                  backgroundColor: MaterialStatePropertyAll(Colors.lime),
+                iconSize: const MaterialStatePropertyAll(17),
+                fixedSize: const MaterialStatePropertyAll(
+                  Size(double.maxFinite, 45),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 10),
+            FilledButton.icon(
+              label: const Text("Continue as guest"),
+              icon: const Icon(
+                FontAwesomeIcons.userSlash,
+              ),
+              onPressed: () => {},
+              style: ButtonStyle(
+                foregroundColor: const MaterialStatePropertyAll(
+                  White.text,
+                ),
+                shape: MaterialStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                ),
+                iconSize: const MaterialStatePropertyAll(17),
+                fixedSize: const MaterialStatePropertyAll(
+                  Size(
+                    double.maxFinite,
+                    45,
+                  ),
+                ),
+                backgroundColor: const MaterialStatePropertyAll(
+                  Colors.lime,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

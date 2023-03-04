@@ -18,5 +18,6 @@ class MiscellaneousProvider with ChangeNotifier {
   }
   void togglePasswordVisibility() {
     _isPasswordVisible = !_isPasswordVisible;
+    notifyListeners();
   }
 }
