@@ -31,8 +31,11 @@ class _MealListTileState extends State<MealListTile>
               flex: 2,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  widget.meal.strMealThumb!,
+                child: Hero(
+                  tag: 'meal',
+                  child: Image.network(
+                    widget.meal.strMealThumb!,
+                  ),
                 ),
               ),
             ),

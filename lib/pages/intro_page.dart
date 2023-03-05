@@ -53,7 +53,7 @@ class IntroPage extends StatelessWidget {
               DefaultTextStyle(
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       fontFamily: "LobsterTwo",
-                      fontSize: 40,
+                      fontSize: 45,
                     ),
                 child: AnimatedTextKit(
                   displayFullTextOnTap: true,
@@ -76,7 +76,7 @@ class IntroPage extends StatelessWidget {
                 "recipes at your fingertips",
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       fontFamily: "LobsterTwo",
-                      fontSize: 40,
+                      fontSize: 45,
                     ),
               ),
               const SizedBox(height: 10),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'liked.dart';
@@ -24,11 +25,6 @@ class _HomeState extends State<Home> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -37,19 +33,31 @@ class _HomeState extends State<Home> {
             items: const [
               BottomNavigationBarItem(
                 label: "Home",
-                icon: Icon(Icons.home),
+                icon: Icon(
+                  FontAwesomeIcons.house,
+                  size: 20,
+                ),
               ),
               BottomNavigationBarItem(
                 label: "Search",
-                icon: Icon(Icons.search),
+                icon: Icon(
+                  FontAwesomeIcons.magnifyingGlass,
+                  size: 20,
+                ),
               ),
               BottomNavigationBarItem(
                 label: "Liked",
-                icon: Icon(Icons.favorite),
+                icon: Icon(
+                  FontAwesomeIcons.solidHeart,
+                  size: 20,
+                ),
               ),
               BottomNavigationBarItem(
                 label: "Profile",
-                icon: Icon(Icons.verified_user),
+                icon: Icon(
+                  FontAwesomeIcons.solidUser,
+                  size: 20,
+                ),
               ),
             ],
             onTap: (value) {
