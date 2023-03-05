@@ -203,7 +203,7 @@ class ThemeModel with ChangeNotifier {
       useMaterial3: true,
       scaffoldBackgroundColor: White.crust,
       appBarTheme: const AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         color: White.base,
         actionsIconTheme: IconThemeData(
           color: White.text,

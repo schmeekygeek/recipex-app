@@ -32,32 +32,32 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: context.watch<MiscellaneousProvider>().getHomePageIndex,
-          items: const [
-            BottomNavigationBarItem(
-              label: "Home",
-              icon: Icon(Icons.home),
-            ),
-            BottomNavigationBarItem(
-              label: "Search",
-              icon: Icon(Icons.search),
-            ),
-            BottomNavigationBarItem(
-              label: "Liked",
-              icon: Icon(Icons.favorite),
-            ),
-            BottomNavigationBarItem(
-              label: "Profile",
-              icon: Icon(Icons.verified_user),
-            ),
-          ],
-          onTap: (value) {
-            context.read<MiscellaneousProvider>().setHomePageIndex = value;
-          },
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: context.watch<MiscellaneousProvider>().getHomePageIndex,
+            items: const [
+              BottomNavigationBarItem(
+                label: "Home",
+                icon: Icon(Icons.home),
+              ),
+              BottomNavigationBarItem(
+                label: "Search",
+                icon: Icon(Icons.search),
+              ),
+              BottomNavigationBarItem(
+                label: "Liked",
+                icon: Icon(Icons.favorite),
+              ),
+              BottomNavigationBarItem(
+                label: "Profile",
+                icon: Icon(Icons.verified_user),
+              ),
+            ],
+            onTap: (value) {
+              context.read<MiscellaneousProvider>().setHomePageIndex = value;
+            },
+          ),
+          body: _homeWidgets[context.watch<MiscellaneousProvider>().getHomePageIndex],
         ),
-        body: _homeWidgets[context.watch<MiscellaneousProvider>().getHomePageIndex],
-      ),
     );
   }
 }
