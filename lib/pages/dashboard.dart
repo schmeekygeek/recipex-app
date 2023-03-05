@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'liked.dart';
-import 'search.dart';
 import '../providers/misc_provider.dart';
 import '../shared/dashboard_widgets/recipe_otd.dart';
 import '../providers/storage_provider.dart';
@@ -15,10 +13,14 @@ import '../shared/dashboard_widgets/search_box.dart';
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.only(
+        left: 18,
+        right: 18,
+      ),
       child: ListView(
         children: [
           const SizedBox(
@@ -59,19 +61,20 @@ class Dashboard extends StatelessWidget {
           const CategoryBlocks(),
           if (context.watch<StorageProvider>().getLastMealId != null)
             ContinueBox(
-                lastMealId: context.watch<StorageProvider>().getLastMealId!),
+              lastMealId: context.watch<StorageProvider>().getLastMealId!,
+            ),
           const RecipeOTDBox(),
           GestureDetector(
-            onTap: () => context.read<MiscellaneousProvider>().setHomePage =
-                const Liked(),
+            onTap: () =>
+                context.read<MiscellaneousProvider>().setHomePageIndex = 2,
             child: const LikedBox(),
           ),
           const SizedBox(
             height: 20,
           ),
           GestureDetector(
-            onTap: () => context.read<MiscellaneousProvider>().setHomePage =
-                const Search(),
+            onTap: () =>
+                context.read<MiscellaneousProvider>().setHomePageIndex = 1,
             child: const SearchBox(),
           ),
         ],

@@ -39,6 +39,14 @@ class ThemeModel with ChangeNotifier {
           fontWeight: FontWeight.w100,
         ),
       ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
+        unselectedItemColor: Colors.grey,
+        elevation: 0,
+        enableFeedback: true,
+        backgroundColor: Dark.base,
+        selectedItemColor: White.base,
+      ),
       textTheme: const TextTheme(
         bodySmall: TextStyle(
           fontSize: 18,
@@ -208,6 +216,14 @@ class ThemeModel with ChangeNotifier {
           letterSpacing: 2,
           fontWeight: FontWeight.w100,
         ),
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
+        unselectedItemColor: Dark.base.withOpacity(0.5),
+        elevation: 0,
+        enableFeedback: true,
+        backgroundColor: Dark.text,
+        selectedItemColor: Dark.base,
       ),
       textTheme: const TextTheme(
         bodySmall: TextStyle(

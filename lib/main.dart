@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/pages/dashboard.dart';
 
 import 'pages/intro_page.dart';
 import 'providers/misc_provider.dart';
