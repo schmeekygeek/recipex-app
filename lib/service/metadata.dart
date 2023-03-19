@@ -7,14 +7,14 @@ Widget metaData(BuildContext context, String attribute, String? detail) {
     text: TextSpan(
       children: [
         TextSpan(
-          text: attribute.toUpperCase(),
+          text: attribute,
           style: Theme.of(context)
               .textTheme
               .headlineSmall!
               .copyWith(
                 fontWeight: FontWeight.w300,
                 fontFamily: "ClashGrotesk",
-                fontSize: 18,
+                fontSize: 20,
                 color: const Color(0xfff8b400),
                 // color: const Color(0xff6d9886),
                 letterSpacing: 1

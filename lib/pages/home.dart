@@ -28,44 +28,44 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: context.watch<MiscellaneousProvider>().getHomePageIndex,
-            items: const [
-              BottomNavigationBarItem(
-                label: "Home",
-                icon: Icon(
-                  FontAwesomeIcons.house,
-                  size: 20,
-                ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: context.watch<MiscellaneousProvider>().getHomePageIndex,
+          items: const [
+            BottomNavigationBarItem(
+              label: "Home",
+              icon: Icon(
+                FontAwesomeIcons.house,
+                size: 20,
               ),
-              BottomNavigationBarItem(
-                label: "Search",
-                icon: Icon(
-                  FontAwesomeIcons.magnifyingGlass,
-                  size: 20,
-                ),
+            ),
+            BottomNavigationBarItem(
+              label: "Search",
+              icon: Icon(
+                FontAwesomeIcons.magnifyingGlass,
+                size: 20,
               ),
-              BottomNavigationBarItem(
-                label: "Liked",
-                icon: Icon(
-                  FontAwesomeIcons.solidHeart,
-                  size: 20,
-                ),
+            ),
+            BottomNavigationBarItem(
+              label: "Liked",
+              icon: Icon(
+                FontAwesomeIcons.solidHeart,
+                size: 20,
               ),
-              BottomNavigationBarItem(
-                label: "Profile",
-                icon: Icon(
-                  FontAwesomeIcons.solidUser,
-                  size: 20,
-                ),
+            ),
+            BottomNavigationBarItem(
+              label: "Profile",
+              icon: Icon(
+                FontAwesomeIcons.solidUser,
+                size: 20,
               ),
-            ],
-            onTap: (value) {
-              context.read<MiscellaneousProvider>().setHomePageIndex = value;
-            },
-          ),
-          body: _homeWidgets[context.watch<MiscellaneousProvider>().getHomePageIndex],
+            ),
+          ],
+          onTap: (value) {
+            context.read<MiscellaneousProvider>().setHomePageIndex = value;
+          },
         ),
+        body: _homeWidgets[context.watch<MiscellaneousProvider>().getHomePageIndex],
+      ),
     );
   }
 }

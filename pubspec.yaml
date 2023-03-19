@@ -40,9 +40,9 @@ flutter:
     - assets/
 
   fonts:
-    - family: Lora
+    - family: Stardom
       fonts:
-        - asset: fonts/Lora-VariableFont_wght.ttf
+        - asset: fonts/Stardom-Regular.otf
     - family: Satoshi
       fonts:
         - asset: fonts/Satoshi-Medium.otf

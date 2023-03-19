@@ -60,35 +60,13 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
               centerTitle: false,
               flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.parallax,
-                background: Hero(
-                  tag: 'meal',
-                  transitionOnUserGestures: true,
-                  child: Image.network(
-                    widget.meal.strMealThumb!,
-                    fit: BoxFit.cover,
-                    color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.55),
-                    filterQuality: FilterQuality.high,
-                    colorBlendMode: BlendMode.dstATop,
-                  ),
+                background: Image.network(
+                  widget.meal.strMealThumb!,
+                  fit: BoxFit.cover,
+                  color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.55),
+                  filterQuality: FilterQuality.high,
+                  colorBlendMode: BlendMode.dstATop,
                 ),
-//                background: Container(
-//                  decoration: BoxDecoration(
-//                    color: Theme.of(context).scaffoldBackgroundColor,
-//                    image: DecorationImage(
-//                      fit: BoxFit.cover,
-//                      filterQuality: FilterQuality.high,
-//                      onError: (error, stackTrace) =>
-//                          Image.asset("assets/not_found.png"),
-//                      colorFilter: ColorFilter.mode(
-//                        Colors.white.withOpacity(0.55),
-//                        BlendMode.dstATop,
-//                      ),
-//                      image: NetworkImage(
-//                        widget.meal.strMealThumb!,
-//                      ),
-//                    ),
-//                  ),
-//                ),
               ),
             ),
             SliverToBoxAdapter(

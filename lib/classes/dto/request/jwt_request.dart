@@ -6,6 +6,7 @@ part 'jwt_request.g.dart';
   explicitToJson: true
 )
 class JwtRequest {
+
   final String username;
   final String password;
 

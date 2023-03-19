@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:recipex_app/extensions.dart';
 
+import '../../extensions.dart';
 import '../../pages/no_internet_page.dart';
 import '../../classes/base/base.dart';
 import '../../classes/meal_category/meal_category.dart';

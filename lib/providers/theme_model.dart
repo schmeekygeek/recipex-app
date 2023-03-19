@@ -44,6 +44,8 @@ class ThemeModel with ChangeNotifier {
         unselectedItemColor: Colors.grey,
         elevation: 0,
         enableFeedback: true,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         backgroundColor: Dark.base,
         selectedItemColor: White.base,
       ),
@@ -57,9 +59,9 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Lora",
+          fontFamily: "Stardom",
           letterSpacing: 1,
-          fontWeight: FontWeight.w200,
+          fontWeight: FontWeight.w100,
           color: Dark.text,
         ),
         headlineSmall: TextStyle(
@@ -222,7 +224,9 @@ class ThemeModel with ChangeNotifier {
         unselectedItemColor: Dark.base.withOpacity(0.5),
         elevation: 0,
         enableFeedback: true,
-        backgroundColor: Dark.text,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        backgroundColor: White.base.withOpacity(0.8),
         selectedItemColor: Dark.base,
       ),
       textTheme: const TextTheme(
@@ -235,9 +239,9 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Lora",
+          fontFamily: "Stardom",
           letterSpacing: 1,
-          fontWeight: FontWeight.w200,
+          fontWeight: FontWeight.w100,
           color: White.text,
         ),
         headlineSmall: TextStyle(
