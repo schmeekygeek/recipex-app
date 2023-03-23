@@ -12,6 +12,7 @@ abstract class MealServiceInterface {
   Future<Base> fetchMealsByCategory(String category);
   Future<Meals> fetchMealById(String category);
   Future<Meals> fetchRandomMeal();
+
   void signup(User user);
   Future<JwtResponse> login(JwtRequest jwtRequest);
   Future<Base> getAllSavedRecipes();

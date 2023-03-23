@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/providers/theme_model.dart';
 
 import '../extensions.dart';
 import '../classes/meals/meals.dart';
@@ -35,39 +34,25 @@ class _SearchState extends State<Search> {
             const SizedBox(
               height: 20,
             ),
-            DefaultTextStyle(
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    fontFamily: "LobsterTwo",
-                    fontSize: 45,
-                  ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 8
+              ),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: RichText(
-                  textAlign: TextAlign.left,
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "What's \n",
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                              fontFamily: "Stardom",
-                              fontSize: 45,
-                            ),
-                      ),
-                      TextSpan(
-                        text: "cooking?",
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontFamily: "LobsterTwo",
-                          fontSize: 45,
-                          color: Dark.blue
-                        ),
-                      )
-                    ],
+                child: Text(
+                  "What's\ncooking?",
+                  style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium!
+                  .copyWith(
+                    fontSize: 45
                   ),
                 ),
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             const SearchBar(),
             FutureBuilder(

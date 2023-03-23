@@ -88,8 +88,8 @@ class _DashboardState extends State<Dashboard>
               Text(
                 "BROWSE CATEGORIES",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 18,
-                      fontFamily: "ClashGrotesk",
+                      fontSize: 20,
+                      fontFamily: "Author",
                       fontWeight: FontWeight.w400,
                       letterSpacing: 2,
                     ),

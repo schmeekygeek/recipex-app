@@ -33,10 +33,10 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: Dark.text,
-          fontFamily: "ClashGrotesk",
+          fontFamily: "Author",
           fontSize: 32,
           letterSpacing: 2,
-          fontWeight: FontWeight.w100,
+          fontWeight: FontWeight.w200,
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -59,9 +59,8 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Stardom",
-          letterSpacing: 1,
-          fontWeight: FontWeight.w100,
+          fontFamily: "Melodrama",
+          letterSpacing: 2,
           color: Dark.text,
         ),
         headlineSmall: TextStyle(
@@ -213,10 +212,10 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: White.text,
-          fontFamily: "ClashGrotesk",
+          fontFamily: "Author",
           fontSize: 32,
           letterSpacing: 2,
-          fontWeight: FontWeight.w100,
+          fontWeight: FontWeight.w200,
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -239,9 +238,8 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Stardom",
-          letterSpacing: 1,
-          fontWeight: FontWeight.w100,
+          fontFamily: "Melodrama",
+          letterSpacing: 2,
           color: White.text,
         ),
         headlineSmall: TextStyle(

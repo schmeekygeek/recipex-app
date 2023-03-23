@@ -40,18 +40,18 @@ flutter:
     - assets/
 
   fonts:
-    - family: Stardom
-      fonts:
-        - asset: fonts/Stardom-Regular.otf
     - family: Satoshi
       fonts:
         - asset: fonts/Satoshi-Medium.otf
-    - family: ClashGrotesk
-      fonts:
-        - asset: fonts/ClashGrotesk-Medium.otf
     - family: LobsterTwo
       fonts:
         - asset: fonts/LobsterTwo-Regular.ttf
     - family: Staatliches
       fonts:
         - asset: fonts/Staatliches-Regular.ttf
+    - family: Author
+      fonts:
+        - asset: fonts/Author-Medium.otf
+    - family: Melodrama
+      fonts:
+        - asset: fonts/Melodrama-Semibold.otf

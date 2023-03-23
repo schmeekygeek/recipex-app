@@ -32,9 +32,8 @@ class _ProfileState extends State<Profile> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Dark mode",
-                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       Switch(
                         value: context.watch<ThemeModel>().isDark,

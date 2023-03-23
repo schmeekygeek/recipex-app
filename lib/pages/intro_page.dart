@@ -90,8 +90,7 @@ class _IntroPageState extends State<IntroPage>
                   ),
                 ),
                 DefaultTextStyle(
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontFamily: "LobsterTwo",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 45,
                       ),
                   child: AnimatedTextKit(
@@ -113,8 +112,7 @@ class _IntroPageState extends State<IntroPage>
                 ),
                 Text(
                   "recipes at your fingertips",
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontFamily: "LobsterTwo",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 45,
                       ),
                 ),

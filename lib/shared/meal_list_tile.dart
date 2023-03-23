@@ -13,23 +13,18 @@ class MealListTile extends StatefulWidget {
 
 class _MealListTileState extends State<MealListTile>
     with SingleTickerProviderStateMixin {
-
   late AnimationController _controller;
   late Tween<double> _tween;
 
   @override
   void initState() {
-
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(
         milliseconds: 400,
       ),
     );
-    _tween = Tween(
-      begin: 1,
-      end: 1
-    );
+    _tween = Tween(begin: 1, end: 1);
     _tween.animate(_controller);
     _controller.forward();
 
@@ -41,7 +36,6 @@ class _MealListTileState extends State<MealListTile>
     _controller.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -80,12 +74,9 @@ class _MealListTileState extends State<MealListTile>
                     children: [
                       Text(
                         widget.meal.strMeal ?? "Unknown dish",
-                        style:
-                            Theme.of(context).textTheme.headlineMedium!.copyWith(
-                                  fontSize: 30,
-                                  fontFamily: "ClashGrotesk",
-                                  letterSpacing: 1,
-                                ),
+                        style: Theme.of(context)
+                            .appBarTheme
+                        .toolbarTextStyle
                       ),
                       widget.meal.strArea != null
                           ? Column(
@@ -125,5 +116,4 @@ class _MealListTileState extends State<MealListTile>
       ),
     );
   }
-
 }
