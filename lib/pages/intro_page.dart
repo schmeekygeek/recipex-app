@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+import 'signup_page.dart';
 import '../extensions.dart';
 import 'login_page.dart';
 import '../providers/theme_model.dart';
@@ -28,7 +29,6 @@ class _IntroPageState extends State<IntroPage>
       begin: 0.9,
       end: 1
     );
-
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(
@@ -38,7 +38,6 @@ class _IntroPageState extends State<IntroPage>
 
     _tween.animate(_controller);
     _controller.forward();
-
     super.initState();
   }
 
@@ -129,7 +128,7 @@ class _IntroPageState extends State<IntroPage>
                   flex: 3,
                   child: Center(
                     child: LottieBuilder.asset(
-                      "assets/girl-cooking.json",
+                      "assets/intro-girl-cooking.json",
                       width: 500,
                       height: 500,
                     ),
@@ -159,7 +158,7 @@ class _IntroPageState extends State<IntroPage>
                   icon: const Icon(
                     FontAwesomeIcons.userPlus,
                   ),
-                  onPressed: () => {},
+                  onPressed: () => context.push(const SignUp()),
                   style: ButtonStyle(
                     shape: MaterialStatePropertyAll(
                       RoundedRectangleBorder(

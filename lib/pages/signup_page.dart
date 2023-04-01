@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:recipex_app/pages/signup_page.dart';
+import 'package:recipex_app/extensions.dart';
+import 'package:recipex_app/pages/login_page.dart';
+import 'package:recipex_app/shared/input_fields/name_text_form_field.dart';
 
-import '../extensions.dart';
-import '../pages/home.dart';
 import '../shared/input_fields/password_text_form_field.dart';
 import '../shared/input_fields/username_login_text_form_field.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
 
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const Text(
-                "Glad to have you back!",
+                "Let's get you on board!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40,
@@ -58,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
               ),
               const Text(
-                "Sign in",
+                "Sign up",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: "Staatliches",
@@ -68,29 +62,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 16),
+              const NameTextFormField(),
+              const SizedBox(height: 10),
               const UsernameTextFormField(),
               const SizedBox(height: 10),
               const PasswordTextFormField(),
-              const SizedBox(height: 6),
-              GestureDetector(
-                onTap: () => {},
-                child: const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forgot password?",
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: "Satoshi",
-                      color: Colors.blueGrey,
-                    ),
-                  ),
-                ),
-              ),
               const SizedBox(height: 20),
               FilledButton(
                 onPressed: () {
                   context.pop();
-                  context.pushReplacement(const Home());
                 },
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(
@@ -106,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 child: const Text(
-                  "LOGIN",
+                  "Sign up",
                 ),
               ),
               const SizedBox(height: 20),
@@ -114,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "No account? ",
+                    "Already registered? ",
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 13,
                         ),
@@ -122,10 +102,10 @@ class _LoginPageState extends State<LoginPage> {
                   GestureDetector(
                     onTap: () {
                       context.pop();
-                      context.push(const SignUp());
+                      context.push(const LoginPage());
                     },
                     child: Text(
-                      "Create one!",
+                      "Sign in",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 13,
                             color: Colors.lightBlue,

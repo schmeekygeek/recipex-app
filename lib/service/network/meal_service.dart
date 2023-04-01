@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
@@ -7,9 +6,8 @@ import '../../classes/dto/request/jwt_request.dart';
 import '../../classes/base/base.dart';
 import '../../classes/categories_list/categories_list.dart';
 import '../../classes/dto/response/jwt_response/jwt_response.dart';
-import '../../classes/dto/response/recipe_list_response/recipe_list_response.dart';
-import '../../classes/exceptions/app_exceptions.dart';
 import '../../classes/meals/meals.dart';
+import '../../classes/user/user.dart';
 import 'meal_service_interface.dart';
 
 // fetch meals by keyword
@@ -72,85 +70,30 @@ class MealServiceImplementation implements MealServiceInterface {
   // get all saved recipes for user
   @override
   Future<Base> getAllSavedRecipes() async {
-    late final http.Response response;
-    try {
-      response = await client.get(
-        Uri.parse("$serverBaseUrl/recipes"),
-        headers: headers,
-      );
-    } on SocketException {
-      logger.e("No internet connection");
-    } on HttpException {
-      throw UnknownHostException("Couldn't find server");
-    }
-    RecipeListResponse recipeListResponse = RecipeListResponse.fromJson(
-      jsonDecode(response.body),
-    );
-    Base base = Base(meals: <Meals>[]);
-    Meals meal;
-    for(String savedRecipe in recipeListResponse.savedRecipes) {
-      meal = await fetchMealById(savedRecipe);
-      base.meals.add(meal);
-    }
-    return base;
+    throw UnimplementedError();
   }
 
   // login user
   @override
   Future<JwtResponse> login(JwtRequest jwtRequest) async {
-    late http.Response response;
-    try {
-      response = await client.post(
-        Uri.parse(
-          "$serverBaseUrl/login",
-        ),
-        headers: headers,
-        body: jsonEncode(jwtRequest),
-      );
-    } on SocketException {
-      logger.e("No internet connection");
-    }
-
-
-    switch (response.statusCode) {
-      case 200:
-        logger.i("Successfully logged in!");
-        JwtResponse jwtResponse =
-            JwtResponse.fromJson(jsonDecode(response.body));
-
-        logger.i(jwtResponse.jwt);
-        return jwtResponse;
-      case 403:
-        throw IncorrectPasswordException("The password entered was incorrect");
-      case 400:
-        throw InvalidCredentialsException("Null or Empty credentials");
-      case 404:
-        throw NonExistentUserException(
-            "Unknown user with username ${jwtRequest.username}");
-      default:
-        return Future.error("Something went wrong.");
-    }
+    throw UnimplementedError();
   }
 
   // sign up user
   @override
-  void signup(user) async {
-    late http.Response response;
+  void signup(User user) async {
+
+    late final http.Response response;
+
     try {
       response = await client.post(
-        Uri.parse(
-          "$serverBaseUrl/signup",
-        ),
-        headers: headers,
+      Uri.parse("$serverBaseUrl/login"),
         body: jsonEncode(user),
+        headers: headers,
       );
-    } on SocketException {
-      logger.e("No internet connection");
-    }
-    if (response.statusCode == 201) {
-      logger.i("User successfully logged in");
-    } else if (response.statusCode == 400) {
-      logger.e("Invalid password");
+    } 
+    catch (e) {
+      print(e.runtimeType);
     }
   }
 }

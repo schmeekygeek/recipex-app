@@ -80,7 +80,7 @@ class ThemeModel with ChangeNotifier {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Dark.base,
+        fillColor: Colors.black.withOpacity(0.1),
         contentPadding: const EdgeInsets.only(
           left: 13,
           right: 7,
@@ -259,7 +259,7 @@ class ThemeModel with ChangeNotifier {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.white54,
+        fillColor: Colors.black.withOpacity(0.1),
         contentPadding: const EdgeInsets.only(
           left: 13,
           right: 7,

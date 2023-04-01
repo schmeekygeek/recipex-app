@@ -4,14 +4,22 @@ class IncorrectPasswordException implements Exception {
   IncorrectPasswordException(this.cause);
 }
 
-// credentials weren't valid
-// like email not matching a certain regular expression
-class InvalidCredentialsException implements Exception {
-  String cause;
-  InvalidCredentialsException(this.cause);
+// invalid password (min 8 characters)
+class InvalidPasswordException implements Exception {
+  InvalidPasswordException();
 }
 
-// user with email doesn't exist when logging in
+// invalid email (regex)
+class InvalidEmailException implements Exception {
+  InvalidEmailException();
+}
+
+// (minimum 2 characters and max 20 characters, regex)
+class InvalidUsernameException implements Exception {
+  InvalidUsernameException();
+}
+
+// user with email or username doesn't exist when logging in
 class NonExistentUserException implements Exception {
   String cause;
   NonExistentUserException(this.cause);
@@ -22,4 +30,17 @@ class NonExistentUserException implements Exception {
 class UnknownHostException implements Exception {
   String cause;
   UnknownHostException(this.cause);
+}
+
+// username already taken
+class UsernameTakenException implements Exception {
+  String cause;
+  UsernameTakenException(this.cause);
+  
+}
+
+// email already taken exception
+class EmailTakenException implements Exception {
+  String cause;
+  EmailTakenException(this.cause);
 }
