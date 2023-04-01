@@ -32,15 +32,8 @@ class UnknownHostException implements Exception {
   UnknownHostException(this.cause);
 }
 
-// username already taken
-class UsernameTakenException implements Exception {
+// Credential already taken
+class CredentialTakenException implements Exception {
   String cause;
-  UsernameTakenException(this.cause);
-  
-}
-
-// email already taken exception
-class EmailTakenException implements Exception {
-  String cause;
-  EmailTakenException(this.cause);
+  CredentialTakenException(this.cause);
 }

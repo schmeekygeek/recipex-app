@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
+import 'package:recipex_app/classes/dto/response/basic_response/basic_response.dart';
+import 'package:recipex_app/classes/exceptions/app_exceptions.dart';
 
 import '../../classes/dto/request/jwt_request.dart';
 import '../../classes/base/base.dart';
@@ -83,7 +85,7 @@ class MealServiceImplementation implements MealServiceInterface {
   @override
   void signup(User user) async {
 
-    late final http.Response response;
+    late http.Response response;
 
     try {
       response = await client.post(
@@ -94,6 +96,12 @@ class MealServiceImplementation implements MealServiceInterface {
     } 
     catch (e) {
       print(e.runtimeType);
+    }
+    if(response.statusCode == 400) {
+      BasicResponse basicResponse = BasicResponse.fromJson(
+        jsonDecode(response.body)
+      );
+      throw CredentialTakenException(basicResponse.cause);
     }
   }
 }

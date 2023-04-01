@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
-import 'package:recipex_app/extensions.dart';
-import 'package:recipex_app/pages/login_page.dart';
-import 'package:recipex_app/shared/input_fields/name_text_form_field.dart';
+import 'package:provider/provider.dart';
 
-import '../shared/input_fields/password_text_form_field.dart';
-import '../shared/input_fields/username_login_text_form_field.dart';
+import '../extensions.dart';
+import '../providers/misc_provider.dart';
+import 'login_page.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -62,11 +62,99 @@ class SignUp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              const NameTextFormField(),
+              TextFormField(
+                autofillHints: const [
+                  AutofillHints.name,
+                ],
+                keyboardType: TextInputType.name,
+                onEditingComplete: () => FocusScope.of(context).nextFocus(),
+                onChanged: (value) =>
+                    context.read<MiscellaneousProvider>().setUsername = value,
+                decoration: const InputDecoration(
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.only(
+                      right: 15,
+                    ),
+                    child: Icon(
+                      FontAwesomeIcons.font,
+                      size: 19,
+                    ),
+                  ),
+                  hintText: "Name",
+                ),
+                style: Theme.of(context).textTheme.bodyMedium,
+                obscureText: false,
+                validator: (value) {
+                  return null;
+                },
+              ),
               const SizedBox(height: 10),
-              const UsernameTextFormField(),
+              TextFormField(
+                autofillHints: const [
+                  AutofillHints.username,
+                ],
+                keyboardType: TextInputType.name,
+                onEditingComplete: () => FocusScope.of(context).nextFocus(),
+                onChanged: (value) =>
+                    context.read<MiscellaneousProvider>().setUsername = value,
+                decoration: const InputDecoration(
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.only(
+                      right: 15,
+                    ),
+                    child: Icon(
+                      FontAwesomeIcons.solidUser,
+                      size: 19,
+                    ),
+                  ),
+                  hintText: "Username",
+                ),
+                style: Theme.of(context).textTheme.bodyMedium,
+                obscureText: false,
+                validator: (value) {
+                  return null;
+                },
+              ),
               const SizedBox(height: 10),
-              const PasswordTextFormField(),
+              TextFormField(
+                  autofillHints: const [
+                    AutofillHints.password,
+                  ],
+                  keyboardType: TextInputType.visiblePassword,
+                  onChanged: (value) {
+                    context.read<MiscellaneousProvider>().setPassword = value;
+                  },
+                  obscureText: context
+                      .watch<MiscellaneousProvider>()
+                      .getIsPasswordVisible,
+                  decoration: InputDecoration(
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 15,
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          context
+                              .read<MiscellaneousProvider>()
+                              .togglePasswordVisibility();
+                        },
+                        child: Icon(
+                          !context
+                                  .watch<MiscellaneousProvider>()
+                                  .getIsPasswordVisible
+                              ? FontAwesomeIcons.solidEyeSlash
+                              : FontAwesomeIcons.solidEye,
+                          size: 19,
+                        ),
+                      ),
+                    ),
+                    hintText: "Password",
+                    filled: true,
+                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  validator: (value) {
+                    return null;
+                  }),
               const SizedBox(height: 20),
               FilledButton(
                 onPressed: () {
