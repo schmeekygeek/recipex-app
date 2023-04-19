@@ -8,12 +8,12 @@ part of 'basic_response.dart';
 
 BasicResponse _$BasicResponseFromJson(Map<String, dynamic> json) =>
     BasicResponse(
-      cause: json['cause'] as String,
+      message: json['message'] as String,
       wasSuccessful: json['wasSuccessful'] as bool,
     );
 
 Map<String, dynamic> _$BasicResponseToJson(BasicResponse instance) =>
     <String, dynamic>{
-      'cause': instance.cause,
+      'message': instance.message,
       'wasSuccessful': instance.wasSuccessful,
     };

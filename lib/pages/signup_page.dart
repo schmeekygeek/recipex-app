@@ -3,12 +3,25 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+import '../classes/user/user.dart';
+import '../service/network/meal_service.dart';
+import '../shared/confirm_pass_sheet.dart';
+import '../classes/exceptions/app_exceptions.dart';
+import '../shared/error_dialog.dart';
+import '../util/validator.dart';
 import '../extensions.dart';
 import '../providers/misc_provider.dart';
 import 'login_page.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
+
+  static MealServiceImplementation mealService = MealServiceImplementation();
+
+  static String _name = "";
+  static String _username = "";
+  static String _email = "";
+  static String _password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +44,14 @@ class SignUp extends StatelessWidget {
                   onPressed: () => context.pop(),
                 ),
               ),
-              Expanded(
-                flex: 2,
-                child: LottieBuilder.asset(
-                  "assets/login-girl-cooking.json",
-                  frameRate: FrameRate.max,
-                  width: 380,
-                ),
-              ),
+              // Expanded(
+              //   flex: 2,
+              //   child: LottieBuilder.asset(
+              //     "assets/login-girl-cooking.json",
+              //     frameRate: FrameRate.max,
+              //     width: 380,
+              //   ),
+              // ),
               const Text(
                 "Let's get you on board!",
                 textAlign: TextAlign.center,
@@ -68,8 +81,7 @@ class SignUp extends StatelessWidget {
                 ],
                 keyboardType: TextInputType.name,
                 onEditingComplete: () => FocusScope.of(context).nextFocus(),
-                onChanged: (value) =>
-                    context.read<MiscellaneousProvider>().setUsername = value,
+                onChanged: (value) => _name = value,
                 decoration: const InputDecoration(
                   suffixIcon: Padding(
                     padding: EdgeInsets.only(
@@ -91,12 +103,37 @@ class SignUp extends StatelessWidget {
               const SizedBox(height: 10),
               TextFormField(
                 autofillHints: const [
+                  AutofillHints.email,
+                ],
+                keyboardType: TextInputType.emailAddress,
+                onEditingComplete: () => FocusScope.of(context).nextFocus(),
+                onChanged: (value) => _email = value,
+                decoration: const InputDecoration(
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.only(
+                      right: 15,
+                    ),
+                    child: Icon(
+                      FontAwesomeIcons.solidEnvelope,
+                      size: 19,
+                    ),
+                  ),
+                  hintText: "Email",
+                ),
+                style: Theme.of(context).textTheme.bodyMedium,
+                obscureText: false,
+                validator: (value) {
+                  return null;
+                },
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                autofillHints: const [
                   AutofillHints.username,
                 ],
                 keyboardType: TextInputType.name,
                 onEditingComplete: () => FocusScope.of(context).nextFocus(),
-                onChanged: (value) =>
-                    context.read<MiscellaneousProvider>().setUsername = value,
+                onChanged: (value) => _username = value,
                 decoration: const InputDecoration(
                   suffixIcon: Padding(
                     padding: EdgeInsets.only(
@@ -117,48 +154,75 @@ class SignUp extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               TextFormField(
-                  autofillHints: const [
-                    AutofillHints.password,
-                  ],
-                  keyboardType: TextInputType.visiblePassword,
-                  onChanged: (value) {
-                    context.read<MiscellaneousProvider>().setPassword = value;
-                  },
-                  obscureText: context
-                      .watch<MiscellaneousProvider>()
-                      .getIsPasswordVisible,
-                  decoration: InputDecoration(
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(
-                        right: 15,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          context
-                              .read<MiscellaneousProvider>()
-                              .togglePasswordVisibility();
-                        },
-                        child: Icon(
-                          !context
-                                  .watch<MiscellaneousProvider>()
-                                  .getIsPasswordVisible
-                              ? FontAwesomeIcons.solidEyeSlash
-                              : FontAwesomeIcons.solidEye,
-                          size: 19,
-                        ),
+                autofillHints: const [
+                  AutofillHints.password,
+                ],
+                keyboardType: TextInputType.visiblePassword,
+                onChanged: (value) => _password = value,
+                obscureText:
+                    context.watch<MiscellaneousProvider>().getIsPasswordVisible,
+                decoration: InputDecoration(
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.only(
+                      right: 15,
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        context
+                            .read<MiscellaneousProvider>()
+                            .togglePasswordVisibility();
+                      },
+                      child: Icon(
+                        !context
+                                .watch<MiscellaneousProvider>()
+                                .getIsPasswordVisible
+                            ? FontAwesomeIcons.solidEyeSlash
+                            : FontAwesomeIcons.solidEye,
+                        size: 19,
                       ),
                     ),
-                    hintText: "Password",
-                    filled: true,
                   ),
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  validator: (value) {
-                    return null;
-                  }),
+                  hintText: "Password",
+                  filled: true,
+                ),
+                style: Theme.of(context).textTheme.bodyMedium,
+                validator: (value) {
+                  return null;
+                },
+              ),
               const SizedBox(height: 20),
               FilledButton(
                 onPressed: () {
-                  context.pop();
+                  try {
+                    Validator.validateName(_name);
+                    Validator.validateEmail(_email);
+                    Validator.validateUsername(_username);
+                    Validator.validatePassword(_password);
+                  } on InvalidEmailException {
+                    showErrorDialog(context, "Invalid Email");
+                    return;
+                  } on InvalidPasswordException {
+                    showErrorDialog(context, "Need 8 characters for password");
+                    return;
+                  } on InvalidUsernameException {
+                    showErrorDialog(context, "Invalid Username");
+                    return;
+                  } on InvalidNameException {
+                    showErrorDialog(context, "Need 2 characters for name");
+                    return;
+                  }
+                  showConfirmPassSheet(
+                    context,
+                    User(
+                      username: _username,
+                      email: _email,
+                      password: _password,
+                      name: _name,
+                      savedRecipes: [],
+                    ),
+                  );
+                  print("Helo");
+
                 },
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(

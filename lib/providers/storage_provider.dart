@@ -7,10 +7,11 @@ class StorageProvider with ChangeNotifier {
 
   String? _lastMealId = Hive.box('recipex').get('lastMealId');
   String? _rotd = Hive.box('recipex').get('rotdID');
+  late String? _jwt = Hive.box('recipex').get('jwt');
 
   String? get getRotd => _rotd;
   String? get getLastMealId => _lastMealId;
-
+  String? get getJwt => _jwt;
 
   set setRotd(String rotd) {
     _rotd = rotd;
@@ -26,4 +27,8 @@ class StorageProvider with ChangeNotifier {
     );
   }
 
+  void setJwt(String jwt) async {
+    _jwt = jwt;
+    box.put('jwt', _jwt);
+  }
 }

@@ -52,7 +52,7 @@ class CategoryListTile extends StatelessWidget {
                   strCategory.toUpperCase(),
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.w800,
                     color: White.text,
                     letterSpacing: 2

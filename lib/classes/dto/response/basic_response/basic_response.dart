@@ -6,11 +6,11 @@ part 'basic_response.g.dart';
   explicitToJson: true,
 )
 class BasicResponse {
-  final String cause;
+  final String message;
   final bool wasSuccessful;
 
   const BasicResponse({
-    required this.cause,
+    required this.message,
     required this.wasSuccessful
   });
 

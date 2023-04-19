@@ -10,12 +10,17 @@ import '../providers/misc_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+  static late String password;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  late String _username;
+  late String _password;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,14 +42,14 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () => context.pop(),
                 ),
               ),
-              Expanded(
-                flex: 2,
-                child: LottieBuilder.asset(
-                  "assets/login-girl-cooking.json",
-                  frameRate: FrameRate.max,
-                  width: 380,
-                ),
-              ),
+              // Expanded(
+              //   flex: 2,
+              //   child: LottieBuilder.asset(
+              //     "assets/login-girl-cooking.json",
+              //     frameRate: FrameRate.max,
+              //     width: 380,
+              //   ),
+              // ),
               const Text(
                 "Glad to have you back!",
                 textAlign: TextAlign.center,
@@ -74,8 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
                 keyboardType: TextInputType.name,
                 onEditingComplete: () => FocusScope.of(context).nextFocus(),
-                onChanged: (value) =>
-                    context.read<MiscellaneousProvider>().setUsername = value,
+                onChanged: (value) => _username = value,
                 decoration: const InputDecoration(
                   suffixIcon: Padding(
                     padding: EdgeInsets.only(
@@ -100,9 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     AutofillHints.password,
                   ],
                   keyboardType: TextInputType.visiblePassword,
-                  onChanged: (value) {
-                    context.read<MiscellaneousProvider>().setPassword = value;
-                  },
+                  onChanged: (value) => _password = value,
                   obscureText: context
                       .watch<MiscellaneousProvider>()
                       .getIsPasswordVisible,

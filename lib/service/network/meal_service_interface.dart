@@ -13,7 +13,7 @@ abstract class MealServiceInterface {
   Future<Meals> fetchMealById(String category);
   Future<Meals> fetchRandomMeal();
 
-  void signup(User user);
+  Future<JwtResponse> signup(User user);
   Future<JwtResponse> login(JwtRequest jwtRequest);
   Future<Base> getAllSavedRecipes();
 }

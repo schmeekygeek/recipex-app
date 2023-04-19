@@ -49,9 +49,12 @@ flutter:
     - family: Staatliches
       fonts:
         - asset: fonts/Staatliches-Regular.ttf
-    - family: Author
+    - family: Supreme
       fonts:
-        - asset: fonts/Author-Medium.otf
+        - asset: fonts/Supreme-Light.otf
+    - family: SpaceGrotesk
+      fonts:
+        - asset: fonts/SpaceGrotesk-Light.otf
     - family: Melodrama
       fonts:
         - asset: fonts/Melodrama-Semibold.otf

@@ -29,7 +29,7 @@ class _CategoryBlocksState extends State<CategoryBlocks> {
         if (snapshot.hasData) {
           List<MealCategory> categories = snapshot.data!.categories;
           return SizedBox(
-            height: 150,
+            height: 155,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: categories.length,

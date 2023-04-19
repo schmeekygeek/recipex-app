@@ -89,7 +89,7 @@ class _DashboardState extends State<Dashboard>
                 "BROWSE CATEGORIES",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 20,
-                      fontFamily: "Author",
+                      fontFamily: "Supreme",
                       fontWeight: FontWeight.w400,
                       letterSpacing: 2,
                     ),
@@ -116,6 +116,9 @@ class _DashboardState extends State<Dashboard>
                     context.read<MiscellaneousProvider>().setHomePageIndex = 1,
                 child: const SearchBox(),
               ),
+              const SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),

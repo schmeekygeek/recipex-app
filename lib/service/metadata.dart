@@ -6,14 +6,10 @@ Widget metaData(BuildContext context, String attribute, String? detail) {
     text: TextSpan(
       children: [
         TextSpan(
-          text: attribute.toUpperCase(),
+          text: attribute,
           style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
-                fontWeight: FontWeight.w200,
-                fontFamily: "Author",
                 fontSize: 18,
                 color: Colors.lime,
-                letterSpacing: 2,
-
               ),
         ),
         TextSpan(

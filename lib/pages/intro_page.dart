@@ -124,16 +124,16 @@ class _IntroPageState extends State<IntroPage>
                       fontSize: 15,
                       fontWeight: FontWeight.w600),
                 ),
-                Expanded(
-                  flex: 3,
-                  child: Center(
-                    child: LottieBuilder.asset(
-                      "assets/intro-girl-cooking.json",
-                      width: 500,
-                      height: 500,
-                    ),
-                  ),
-                ),
+                // Expanded(
+                //   flex: 3,
+                //   child: Center(
+                //     child: LottieBuilder.asset(
+                //       "assets/intro-girl-cooking.json",
+                //       width: 500,
+                //       height: 500,
+                //     ),
+                //   ),
+                // ),
                 OutlinedButton.icon(
                   label: const Text("Sign in"),
                   icon: const Icon(

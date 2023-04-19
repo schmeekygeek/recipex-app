@@ -14,7 +14,6 @@ import 'meal_service_interface.dart';
 
 // fetch meals by keyword
 class MealServiceImplementation implements MealServiceInterface {
-
   final String baseUrl = "https://www.themealdb.com/api/json/v1/1";
   final String serverBaseUrl = "http://localhost:8080/api/v1";
   var logger = Logger();
@@ -27,7 +26,8 @@ class MealServiceImplementation implements MealServiceInterface {
   @override
   Future<Base> fetchMealsByKeyword(String keyword) async {
     keyword = keyword.trim().replaceAll(RegExp(r' '), '%20').toLowerCase();
-    final response = await client.get(Uri.parse("$baseUrl/search.php?s=$keyword"));
+    final response =
+        await client.get(Uri.parse("$baseUrl/search.php?s=$keyword"));
     Base meals = Base.fromJson(jsonDecode(response.body));
     return meals;
   }
@@ -78,30 +78,41 @@ class MealServiceImplementation implements MealServiceInterface {
   // login user
   @override
   Future<JwtResponse> login(JwtRequest jwtRequest) async {
+    http.Response response;
     throw UnimplementedError();
   }
 
   // sign up user
+  // TODO handle event of server being offline
   @override
-  void signup(User user) async {
-
-    late http.Response response;
-
+  Future<JwtResponse> signup(User user) async {
+    http.Response response;
     try {
       response = await client.post(
-      Uri.parse("$serverBaseUrl/login"),
+        Uri.parse("$serverBaseUrl/signup"),
         body: jsonEncode(user),
         headers: headers,
       );
-    } 
-    catch (e) {
-      print(e.runtimeType);
+      print(response.body);
+      print(response.statusCode);
+    } catch (e) {
+      print(e.toString());
+      print(e.runtimeType.toString());
+      throw Exception();
     }
-    if(response.statusCode == 400) {
-      BasicResponse basicResponse = BasicResponse.fromJson(
-        jsonDecode(response.body)
-      );
-      throw CredentialTakenException(basicResponse.cause);
+    switch (response.statusCode) {
+      case 400:
+        BasicResponse basicResponse =
+            BasicResponse.fromJson(jsonDecode(response.body));
+        if (basicResponse.message.contains("username")) {
+          throw UsernameTakenException();
+        } else if (basicResponse.message.contains("email")) {
+          throw EmailTakenException();
+        }
+        break;
     }
+      JwtResponse jwtResponse = JwtResponse.fromJson(jsonDecode(response.body));
+      print(jwtResponse.jwt);
+      return jwtResponse;
   }
 }

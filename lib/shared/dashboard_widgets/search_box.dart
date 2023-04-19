@@ -48,11 +48,11 @@ class SearchBox extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "SEARCH",
+                    "Search",
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Dark.text,
                         fontSize: 24,
-                        fontFamily: "ClashGrotesk",
+                        fontFamily: "SpaceGrotesk",
                         fontWeight: FontWeight.w400),
                   ),
                   Text(
