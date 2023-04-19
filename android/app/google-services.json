@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "8943568402",
+    "project_id": "recipex-cd861",
+    "storage_bucket": "recipex-cd861.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8943568402:android:65f972bc4bde346e2dbacb",
+        "android_client_info": {
+          "package_name": "com.example.recipex_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8943568402-p5niqnu569umndn18pda206hrgpn9l1f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoUZXUEHERpP4c4PQ6b80S3g7WQLd0zFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8943568402-p5niqnu569umndn18pda206hrgpn9l1f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "8943568402-mvd1t5cdhf6neeelcnid3a2lk8om7coe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.recipexApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
