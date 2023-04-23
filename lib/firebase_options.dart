@@ -38,10 +38,7 @@ class DefaultFirebaseOptions {
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return linux;
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -51,7 +48,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBoUZXUEHERpP4c4PQ6b80S3g7WQLd0zFs',
-    appId: '1:8943568402:android:65f972bc4bde346e2dbacb',
+    appId: '1:8943568402:android:673e7d56895a5a292dbacb',
     messagingSenderId: '8943568402',
     projectId: 'recipex-cd861',
     storageBucket: 'recipex-cd861.appspot.com',
@@ -59,11 +56,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDQOZx5VxEpkRp8aapZdPzt9LRezqqcqo0',
-    appId: '1:8943568402:ios:e9b0be331e4e166a2dbacb',
+    appId: '1:8943568402:ios:66f43716c4301dd12dbacb',
     messagingSenderId: '8943568402',
     projectId: 'recipex-cd861',
     storageBucket: 'recipex-cd861.appspot.com',
     iosClientId: '8943568402-mvd1t5cdhf6neeelcnid3a2lk8om7coe.apps.googleusercontent.com',
     iosBundleId: 'com.example.recipexApp',
+  );
+
+  static const FirebaseOptions linux = FirebaseOptions(
+    apiKey: 'AIzaSyCXh4gL8-r4BiT1b77BVVnN1wDESUODkFA',
+    appId: '1:8943568402:web:26d2350c64ee59042dbacb',
+    messagingSenderId: '8943568402',
+    projectId: 'recipex-cd861',
+    authDomain: 'recipex-cd861.firebaseapp.com',
+    storageBucket: 'recipex-cd861.appspot.com',
+    measurementId: 'G-KM9PKVJ308',
   );
 }

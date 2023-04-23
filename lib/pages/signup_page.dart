@@ -3,12 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-import '../classes/user/user.dart';
 import '../service/network/meal_service.dart';
 import '../shared/confirm_pass_sheet.dart';
-import '../classes/exceptions/app_exceptions.dart';
-import '../shared/error_dialog.dart';
-import '../util/validator.dart';
 import '../extensions.dart';
 import '../providers/misc_provider.dart';
 import 'login_page.dart';
@@ -18,10 +14,10 @@ class SignUp extends StatelessWidget {
 
   static MealServiceImplementation mealService = MealServiceImplementation();
 
-  static String _name = "";
-  static String _username = "";
-  static String _email = "";
-  static String _password = "";
+  static String _name = '';
+  static String _username = '';
+  static String _email = '';
+  static String _password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -58,17 +54,17 @@ class SignUp extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w100,
-                  fontFamily: "LobsterTwo",
+                  fontFamily: 'LobsterTwo',
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
               const Text(
-                "Sign up",
+                'Sign up',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: "Staatliches",
+                  fontFamily: 'Staatliches',
                   fontSize: 20,
                   letterSpacing: 3,
                   color: Colors.blueGrey,
@@ -92,7 +88,7 @@ class SignUp extends StatelessWidget {
                       size: 19,
                     ),
                   ),
-                  hintText: "Name",
+                  hintText: 'Name',
                 ),
                 style: Theme.of(context).textTheme.bodyMedium,
                 obscureText: false,
@@ -118,7 +114,7 @@ class SignUp extends StatelessWidget {
                       size: 19,
                     ),
                   ),
-                  hintText: "Email",
+                  hintText: 'Email',
                 ),
                 style: Theme.of(context).textTheme.bodyMedium,
                 obscureText: false,
@@ -144,7 +140,7 @@ class SignUp extends StatelessWidget {
                       size: 19,
                     ),
                   ),
-                  hintText: "Username",
+                  hintText: 'Username',
                 ),
                 style: Theme.of(context).textTheme.bodyMedium,
                 obscureText: false,
@@ -182,7 +178,7 @@ class SignUp extends StatelessWidget {
                       ),
                     ),
                   ),
-                  hintText: "Password",
+                  hintText: 'Password',
                   filled: true,
                 ),
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -192,37 +188,8 @@ class SignUp extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               FilledButton(
-                onPressed: () {
-                  try {
-                    Validator.validateName(_name);
-                    Validator.validateEmail(_email);
-                    Validator.validateUsername(_username);
-                    Validator.validatePassword(_password);
-                  } on InvalidEmailException {
-                    showErrorDialog(context, "Invalid Email");
-                    return;
-                  } on InvalidPasswordException {
-                    showErrorDialog(context, "Need 8 characters for password");
-                    return;
-                  } on InvalidUsernameException {
-                    showErrorDialog(context, "Invalid Username");
-                    return;
-                  } on InvalidNameException {
-                    showErrorDialog(context, "Need 2 characters for name");
-                    return;
-                  }
-                  showConfirmPassSheet(
-                    context,
-                    User(
-                      username: _username,
-                      email: _email,
-                      password: _password,
-                      name: _name,
-                      savedRecipes: [],
-                    ),
-                  );
-                  print("Helo");
-
+                onPressed: () async {
+                  bool confirmed = await confirmPassword(context, _password);
                 },
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(
@@ -238,7 +205,7 @@ class SignUp extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  "Sign up",
+                  'Sign up',
                 ),
               ),
               const SizedBox(height: 20),
@@ -246,18 +213,17 @@ class SignUp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Already registered? ",
+                    'Already registered? ',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 13,
                         ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.pop();
-                      context.push(const LoginPage());
+                      context.pushReplacement(const LoginPage());
                     },
                     child: Text(
-                      "Sign in",
+                      'Sign in',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 13,
                             color: Colors.lightBlue,

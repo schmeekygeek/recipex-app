@@ -1,15 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
-import 'package:recipex_app/classes/dto/response/basic_response/basic_response.dart';
-import 'package:recipex_app/classes/exceptions/app_exceptions.dart';
 
-import '../../classes/dto/request/jwt_request.dart';
 import '../../classes/base/base.dart';
 import '../../classes/categories_list/categories_list.dart';
 import '../../classes/dto/response/jwt_response/jwt_response.dart';
 import '../../classes/meals/meals.dart';
-import '../../classes/user/user.dart';
 import 'meal_service_interface.dart';
 
 // fetch meals by keyword
@@ -69,50 +65,15 @@ class MealServiceImplementation implements MealServiceInterface {
     return meals.meals[0];
   }
 
-  // get all saved recipes for user
-  @override
-  Future<Base> getAllSavedRecipes() async {
-    throw UnimplementedError();
-  }
-
   // login user
   @override
-  Future<JwtResponse> login(JwtRequest jwtRequest) async {
-    http.Response response;
+  Future<JwtResponse> login() async {
     throw UnimplementedError();
   }
 
   // sign up user
-  // TODO handle event of server being offline
   @override
-  Future<JwtResponse> signup(User user) async {
-    http.Response response;
-    try {
-      response = await client.post(
-        Uri.parse("$serverBaseUrl/signup"),
-        body: jsonEncode(user),
-        headers: headers,
-      );
-      print(response.body);
-      print(response.statusCode);
-    } catch (e) {
-      print(e.toString());
-      print(e.runtimeType.toString());
-      throw Exception();
-    }
-    switch (response.statusCode) {
-      case 400:
-        BasicResponse basicResponse =
-            BasicResponse.fromJson(jsonDecode(response.body));
-        if (basicResponse.message.contains("username")) {
-          throw UsernameTakenException();
-        } else if (basicResponse.message.contains("email")) {
-          throw EmailTakenException();
-        }
-        break;
-    }
-      JwtResponse jwtResponse = JwtResponse.fromJson(jsonDecode(response.body));
-      print(jwtResponse.jwt);
-      return jwtResponse;
+  Future<JwtResponse> signup() async {
+    throw UnimplementedError();
   }
 }

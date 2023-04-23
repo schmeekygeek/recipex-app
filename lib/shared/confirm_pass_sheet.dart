@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'package:recipex_app/controller/page_controller.dart' show LogicController;
-import '../classes/user/user.dart';
+import '../extensions.dart';
 import '../providers/misc_provider.dart';
 import '../service/network/meal_service.dart';
-import 'error_dialog.dart';
 
 String _confirmPass = "";
+late bool confirmed;
 MealServiceImplementation mealService = MealServiceImplementation();
-LogicController logicController = LogicController();
 
-showConfirmPassSheet(BuildContext context, User user) {
-  showModalBottomSheet(
+Future<bool> confirmPassword(BuildContext context, String password) async {
+  await showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     isDismissible: true,
@@ -87,11 +85,11 @@ showConfirmPassSheet(BuildContext context, User user) {
               height: 20,
             ),
             FilledButton(
-              onPressed: () async {
-                if (user.password != _confirmPass) {
-                  showErrorDialog(context, "Passwords do not match");
+              onPressed: () {
+                if (password != _confirmPass) {
+                  confirmed = false;
                 } else {
-                  logicController.signup(context, user);
+                  confirmed = true;
                 }
               },
               style: ButtonStyle(
@@ -116,4 +114,5 @@ showConfirmPassSheet(BuildContext context, User user) {
       );
     },
   );
+  return confirmed;
 }

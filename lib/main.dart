@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
+import 'firebase_options.dart';
+import 'pages/home.dart';
 import 'pages/intro_page.dart';
 import 'providers/misc_provider.dart';
 import 'providers/storage_provider.dart';
@@ -13,6 +17,9 @@ void main() async {
 
   await Hive.initFlutter();
   await Hive.openBox('recipex');
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     MultiProvider(
@@ -61,7 +68,17 @@ class _RecipexAppState extends State<RecipexApp> {
             ? ThemeModel.buildDarkTheme()
             : ThemeModel.buildLightTheme(),
         debugShowCheckedModeBanner: false,
-        home: const IntroPage(),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return const Home();
+            }
+            else {
+              return const IntroPage();
+            }
+          },
+        ),
       ),
     );
   }

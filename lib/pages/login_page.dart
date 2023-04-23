@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/shared/error_dialog.dart';
+import 'package:recipex_app/shared/loading_dialog.dart';
 
 import 'signup_page.dart';
 import '../extensions.dart';
@@ -17,8 +22,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-  late String _username;
+  late String _email;
   late String _password;
 
   @override
@@ -50,6 +54,14 @@ class _LoginPageState extends State<LoginPage> {
               //     width: 380,
               //   ),
               // ),
+              Expanded(
+                flex: 2,
+                child: Image.asset(
+                  "assets/munchies.png",
+                  height: 250,
+                  width: 250,
+                ),
+              ),
               const Text(
                 "Glad to have you back!",
                 textAlign: TextAlign.center,
@@ -77,20 +89,20 @@ class _LoginPageState extends State<LoginPage> {
                 autofillHints: const [
                   AutofillHints.username,
                 ],
-                keyboardType: TextInputType.name,
+                keyboardType: TextInputType.emailAddress,
                 onEditingComplete: () => FocusScope.of(context).nextFocus(),
-                onChanged: (value) => _username = value,
+                onChanged: (value) => _email = value,
                 decoration: const InputDecoration(
                   suffixIcon: Padding(
                     padding: EdgeInsets.only(
                       right: 15,
                     ),
                     child: Icon(
-                      FontAwesomeIcons.solidUser,
+                      FontAwesomeIcons.at,
                       size: 19,
                     ),
                   ),
-                  hintText: "Username",
+                  hintText: "Email",
                 ),
                 style: Theme.of(context).textTheme.bodyMedium,
                 obscureText: false,
@@ -153,9 +165,39 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               FilledButton(
-                onPressed: () {
-                  context.pop();
-                  context.pushReplacement(const Home());
+                onPressed: () async {
+                    showLoadingDialog(context);
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: _email,
+                      password: _password,
+                    ).whenComplete(() {
+                      context.pop();
+                    }).then((value) {
+                      context.pop();
+                    });
+                  } on FirebaseAuthException catch (e) {
+                    print(e.code);
+                    if(e.code == "invalid-email") {
+                      showErrorDialog(context, "Not a valid email address");
+                    }
+                    else if(e.code == "user-not-found") {
+                      showErrorDialog(context, "That email doesn't exist");
+                    }
+                    else if(e.code == "wrong-password") {
+                      showErrorDialog(context, "The password is incorrect");
+                    }
+                    else if(e.code == "too-many-attempts-try-later") {
+                      showErrorDialog(context, "Too many attempts, try later");
+                    }
+                    else {
+                      print(e);
+                      showErrorDialog(context, "Something went wrong");
+                    }
+                  }
+                  on SocketException {
+                    showErrorDialog(context, "No internet connection");
+                  }
                 },
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(
@@ -186,8 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.pop();
-                      context.push(const SignUp());
+                      context.pushReplacement(const SignUp());
                     },
                     child: Text(
                       "Create one!",

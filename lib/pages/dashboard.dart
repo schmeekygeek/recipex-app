@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -66,7 +67,7 @@ class _DashboardState extends State<Dashboard>
                 height: 20,
               ),
               Text(
-                "${getGreeting()},",
+                getGreeting(),
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 28,
                       color: Colors.grey,
@@ -75,7 +76,7 @@ class _DashboardState extends State<Dashboard>
                     ),
               ),
               Text(
-                "John",
+                "${FirebaseAuth.instance.currentUser?.displayName ?? "guest"},",
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       letterSpacing: 1,
                       fontSize: 40,
