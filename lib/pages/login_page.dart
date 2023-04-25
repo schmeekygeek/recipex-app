@@ -3,14 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:recipex_app/shared/error_dialog.dart';
 import 'package:recipex_app/shared/loading_dialog.dart';
 
 import 'signup_page.dart';
 import '../extensions.dart';
-import '../pages/home.dart';
 import '../providers/misc_provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -57,28 +55,28 @@ class _LoginPageState extends State<LoginPage> {
               Expanded(
                 flex: 2,
                 child: Image.asset(
-                  "assets/munchies.png",
+                  'assets/munchies.png',
                   height: 250,
                   width: 250,
                 ),
               ),
               const Text(
-                "Glad to have you back!",
+                'Glad to have you back!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w100,
-                  fontFamily: "LobsterTwo",
+                  fontFamily: 'LobsterTwo',
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
               const Text(
-                "Sign in",
+                'Sign in',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: "Staatliches",
+                  fontFamily: 'Staatliches',
                   fontSize: 20,
                   letterSpacing: 3,
                   color: Colors.blueGrey,
@@ -102,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                       size: 19,
                     ),
                   ),
-                  hintText: "Email",
+                  hintText: 'Email',
                 ),
                 style: Theme.of(context).textTheme.bodyMedium,
                 obscureText: false,
@@ -141,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    hintText: "Password",
+                    hintText: 'Password',
                     filled: true,
                   ),
                   style: Theme.of(context).textTheme.bodyMedium,
@@ -150,14 +148,20 @@ class _LoginPageState extends State<LoginPage> {
                   }),
               const SizedBox(height: 6),
               GestureDetector(
-                onTap: () => {},
+                onTap: () => {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Coming soon'),
+                    ),
+                  )
+                },
                 child: const Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    "Forgot password?",
+                    'Forgot password?',
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: "Satoshi",
+                      fontFamily: 'Satoshi',
                       color: Colors.blueGrey,
                     ),
                   ),
@@ -166,37 +170,33 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               FilledButton(
                 onPressed: () async {
-                    showLoadingDialog(context);
+                  showLoadingDialog(context);
                   try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    await FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
                       email: _email,
                       password: _password,
-                    ).whenComplete(() {
+                    )
+                        .whenComplete(() {
                       context.pop();
                     }).then((value) {
                       context.pop();
                     });
                   } on FirebaseAuthException catch (e) {
-                    print(e.code);
-                    if(e.code == "invalid-email") {
-                      showErrorDialog(context, "Not a valid email address");
-                    }
-                    else if(e.code == "user-not-found") {
+                    if (e.code == 'invalid-email') {
+                      showErrorDialog(context, 'Not a valid email address');
+                    } else if (e.code == 'user-not-found') {
                       showErrorDialog(context, "That email doesn't exist");
-                    }
-                    else if(e.code == "wrong-password") {
-                      showErrorDialog(context, "The password is incorrect");
-                    }
-                    else if(e.code == "too-many-attempts-try-later") {
-                      showErrorDialog(context, "Too many attempts, try later");
-                    }
-                    else {
+                    } else if (e.code == 'wrong-password') {
+                      showErrorDialog(context, 'The password is incorrect');
+                    } else if (e.code == 'too-many-attempts-try-later') {
+                      showErrorDialog(context, 'Too many attempts');
+                    } else {
                       print(e);
-                      showErrorDialog(context, "Something went wrong");
+                      showErrorDialog(context, 'Something went wrong');
                     }
-                  }
-                  on SocketException {
-                    showErrorDialog(context, "No internet connection");
+                  } on SocketException {
+                    showErrorDialog(context, 'No internet connection');
                   }
                 },
                 style: ButtonStyle(
@@ -213,7 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 child: const Text(
-                  "LOGIN",
+                  'LOGIN',
                 ),
               ),
               const SizedBox(height: 20),
@@ -221,7 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "No account? ",
+                    'No account? ',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 13,
                         ),
@@ -231,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                       context.pushReplacement(const SignUp());
                     },
                     child: Text(
-                      "Create one!",
+                      'Create one!',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 13,
                             color: Colors.lightBlue,

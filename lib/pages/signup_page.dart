@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../shared/loading_dialog.dart';
 import '../classes/exceptions/app_exceptions.dart';
 import '../shared/error_dialog.dart';
 import '../util/validator.dart';
@@ -13,7 +13,6 @@ import '../extensions.dart';
 import '../providers/misc_provider.dart';
 import 'login_page.dart';
 
-String _name = '';
 String _username = '';
 String _email = '';
 String _password = '';
@@ -87,32 +86,6 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               const SizedBox(height: 16),
-              TextFormField(
-                autofillHints: const [
-                  AutofillHints.name,
-                ],
-                keyboardType: TextInputType.name,
-                onEditingComplete: () => FocusScope.of(context).nextFocus(),
-                onChanged: (value) => _name = value,
-                decoration: const InputDecoration(
-                  suffixIcon: Padding(
-                    padding: EdgeInsets.only(
-                      right: 15,
-                    ),
-                    child: Icon(
-                      FontAwesomeIcons.font,
-                      size: 19,
-                    ),
-                  ),
-                  hintText: 'Name',
-                ),
-                style: Theme.of(context).textTheme.bodyMedium,
-                obscureText: false,
-                validator: (value) {
-                  return null;
-                },
-              ),
-              const SizedBox(height: 10),
               TextFormField(
                 autofillHints: const [
                   AutofillHints.email,
@@ -207,10 +180,7 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () async {
                   context.read<MiscellaneousProvider>().setPassword('');
                   try {
-                    Validator.validateName(_name);
-                    Validator.validateEmail(_email);
                     Validator.validateUsername(_username);
-                    Validator.validatePassword(_password);
                     await confirmPassword(
                       context,
                       _password,
@@ -227,26 +197,33 @@ class _SignUpState extends State<SignUp> {
                       return;
                     }
                     print('The password is correctly entered');
-                  } on InvalidNameException {
-                    showErrorDialog(
-                      context,
-                      'Invalid name',
-                    );
-                  } on InvalidPasswordException {
-                    showErrorDialog(
-                      context,
-                      '8 characters for password',
-                    );
-                  } on InvalidEmailException {
-                    showErrorDialog(
-                      context,
-                      'Invalid email',
-                    );
+                    showLoadingDialog(context);
+                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                      email: _email,
+                      password: _password,
+                    ).then((value) async {
+                      await value.user?.updateDisplayName(_username);
+                      if(!mounted) return;
+                      context.pop();
+                      context.pop();
+                    });
                   } on InvalidUsernameException {
                     showErrorDialog(
                       context,
                       'Invalid username',
                     );
+                  } on FirebaseAuthException catch(e) {
+                    context.pop();
+                    print(e.code);
+                    if(e.code == 'email-already-in-use') {
+                      showErrorDialog(context, 'The email is taken');
+                    }
+                    else if(e.code == 'invalid-email') {
+                      showErrorDialog(context, 'The email is not valid');
+                    }
+                    else if(e.code == 'weak-password') {
+                      showErrorDialog(context, 'Your password is weak');
+                    }
                   }
                 },
                 style: ButtonStyle(
