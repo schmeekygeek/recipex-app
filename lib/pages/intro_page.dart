@@ -78,7 +78,7 @@ class _IntroPageState extends State<IntroPage>
                       ),
                     ),
                     label: Text(
-                      context.watch<ThemeModel>().isDark ? "Light" : "Dark",
+                      context.watch<ThemeModel>().isDark ? 'Light' : 'Dark',
                     ),
                     onPressed: () => context.read<ThemeModel>().toggle(),
                     icon: Icon(
@@ -98,29 +98,29 @@ class _IntroPageState extends State<IntroPage>
                     repeatForever: true,
                     animatedTexts: [
                       TyperAnimatedText(
-                        "Quick",
+                        'Quick',
                       ),
                       TyperAnimatedText(
-                        "Delicious",
+                        'Delicious',
                       ),
                       TyperAnimatedText(
-                        "Easy",
+                        'Easy',
                       ),
                     ],
                   ),
                 ),
                 Text(
-                  "recipes at your fingertips",
+                  'recipes at your fingertips',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 45,
                       ),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "Cooking for your loved ones has never been easier.",
+                  'Cooking for your loved ones has never been easier.',
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Colors.blueGrey,
-                      fontFamily: "Satoshi",
+                      fontFamily: 'Satoshi',
                       fontSize: 15,
                       fontWeight: FontWeight.w600),
                 ),
@@ -128,14 +128,14 @@ class _IntroPageState extends State<IntroPage>
                   flex: 3,
                   child: Center(
                     child: LottieBuilder.asset(
-                      "assets/intro-girl-cooking.json",
+                      'assets/intro-girl-cooking.json',
                       width: 500,
                       height: 500,
                     ),
                   ),
                 ),
                 OutlinedButton.icon(
-                  label: const Text("Sign in"),
+                  label: const Text('Sign in'),
                   icon: const Icon(
                     FontAwesomeIcons.arrowRightToBracket,
                   ),
@@ -154,7 +154,7 @@ class _IntroPageState extends State<IntroPage>
                 ),
                 const SizedBox(height: 10),
                 FilledButton.icon(
-                  label: const Text("Register"),
+                  label: const Text('Register'),
                   icon: const Icon(
                     FontAwesomeIcons.userPlus,
                   ),
@@ -173,11 +173,17 @@ class _IntroPageState extends State<IntroPage>
                 ),
                 const SizedBox(height: 10),
                 FilledButton.icon(
-                  label: const Text("Continue as guest"),
+                  label: const Text('Continue as guest'),
                   icon: const Icon(
                     FontAwesomeIcons.userSlash,
                   ),
-                  onPressed: () => {},
+                  onPressed: () => {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Coming soon'),
+                      ),
+                    )
+                  },
                   style: ButtonStyle(
                     foregroundColor: const MaterialStatePropertyAll(
                       White.text,

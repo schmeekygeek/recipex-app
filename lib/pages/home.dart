@@ -30,34 +30,38 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () => FirebaseAuth.instance.signOut(),
+          onPressed: () async {
+            await FirebaseAuth.instance.signOut();
+            if(!mounted) return;
+            context.read<MiscellaneousProvider>().setHomePageIndex = 0;
+          },
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: context.watch<MiscellaneousProvider>().getHomePageIndex,
           items: const [
             BottomNavigationBarItem(
-              label: "Home",
+              label: 'Home',
               icon: Icon(
                 FontAwesomeIcons.house,
                 size: 20,
               ),
             ),
             BottomNavigationBarItem(
-              label: "Search",
+              label: 'Search',
               icon: Icon(
                 FontAwesomeIcons.magnifyingGlass,
                 size: 20,
               ),
             ),
             BottomNavigationBarItem(
-              label: "Liked",
+              label: 'Liked',
               icon: Icon(
                 FontAwesomeIcons.solidHeart,
                 size: 20,
               ),
             ),
             BottomNavigationBarItem(
-              label: "Profile",
+              label: 'Profile',
               icon: Icon(
                 FontAwesomeIcons.solidUser,
                 size: 20,
