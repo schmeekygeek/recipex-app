@@ -63,7 +63,7 @@ class _RecipexAppState extends State<RecipexApp> {
         }
       },
       child: MaterialApp(
-        title: "RecipEx App",
+        title: 'RecipEx App',
         theme: context.watch<ThemeModel>().isDark
             ? ThemeModel.buildDarkTheme()
             : ThemeModel.buildLightTheme(),

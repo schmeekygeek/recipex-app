@@ -1,24 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+import '../classes/exceptions/app_exceptions.dart';
+import '../shared/error_dialog.dart';
+import '../util/validator.dart';
 import '../service/network/meal_service.dart';
 import '../shared/confirm_pass_sheet.dart';
 import '../extensions.dart';
 import '../providers/misc_provider.dart';
 import 'login_page.dart';
 
-class SignUp extends StatelessWidget {
+String _name = '';
+String _username = '';
+String _email = '';
+String _password = '';
+
+class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
   static MealServiceImplementation mealService = MealServiceImplementation();
 
-  static String _name = '';
-  static String _username = '';
-  static String _email = '';
-  static String _password = '';
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
 
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,6 +57,13 @@ class SignUp extends StatelessWidget {
               //     width: 380,
               //   ),
               // ),
+              Expanded(
+                child: Image.asset(
+                  'assets/munchies.png',
+                  height: 200,
+                  width: 200,
+                ),
+              ),
               const Text(
                 "Let's get you on board!",
                 textAlign: TextAlign.center,
@@ -189,7 +205,49 @@ class SignUp extends StatelessWidget {
               const SizedBox(height: 20),
               FilledButton(
                 onPressed: () async {
-                  bool confirmed = await confirmPassword(context, _password);
+                  context.read<MiscellaneousProvider>().setPassword('');
+                  try {
+                    Validator.validateName(_name);
+                    Validator.validateEmail(_email);
+                    Validator.validateUsername(_username);
+                    Validator.validatePassword(_password);
+                    await confirmPassword(
+                      context,
+                      _password,
+                    );
+                    if(!mounted) return;
+                    String confirmedPass = context.read<MiscellaneousProvider>().getPassword;
+                    if(confirmedPass.isEmpty) {
+                      showErrorDialog(context, 'A password is needed');
+                      return;
+                    }
+                    else if(confirmedPass != _password) {
+                      showErrorDialog(context, 'The passwords do not match');
+                      context.read<MiscellaneousProvider>().setPassword('');
+                      return;
+                    }
+                    print('The password is correctly entered');
+                  } on InvalidNameException {
+                    showErrorDialog(
+                      context,
+                      'Invalid name',
+                    );
+                  } on InvalidPasswordException {
+                    showErrorDialog(
+                      context,
+                      '8 characters for password',
+                    );
+                  } on InvalidEmailException {
+                    showErrorDialog(
+                      context,
+                      'Invalid email',
+                    );
+                  } on InvalidUsernameException {
+                    showErrorDialog(
+                      context,
+                      'Invalid username',
+                    );
+                  }
                 },
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(

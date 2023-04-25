@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/extensions.dart';
 
-import '../extensions.dart';
 import '../providers/misc_provider.dart';
 import '../service/network/meal_service.dart';
 
-String _confirmPass = "";
-late bool confirmed;
 MealServiceImplementation mealService = MealServiceImplementation();
 
-Future<bool> confirmPassword(BuildContext context, String password) async {
+confirmPassword(
+  BuildContext context,
+  String password
+) async {
   await showModalBottomSheet(
     context: context,
-    isScrollControlled: true,
-    isDismissible: true,
-    enableDrag: true,
+    isScrollControlled: false,
+    isDismissible: false,
+    enableDrag: false,
     constraints: BoxConstraints.tight(
       const Size(
         double.infinity,
-        260,
+        280,
       ),
     ),
     builder: (context) {
@@ -27,15 +28,31 @@ Future<bool> confirmPassword(BuildContext context, String password) async {
         padding: const EdgeInsets.all(12),
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 7),
+              child: GestureDetector(
+                onTap: () {
+                  context.read<MiscellaneousProvider>().setPassword('');
+                  context.pop();
+                },
+                child: const Align(
+                  alignment: Alignment.topRight,
+                  child: Icon(
+                    FontAwesomeIcons.xmark,
+                    size: 18,
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Confirm\npassword",
+                'Confirm\npassword',
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      fontFamily: "Supreme",
+                      fontFamily: 'Supreme',
                       letterSpacing: 0,
                       fontSize: 30,
                     ),
@@ -49,7 +66,7 @@ Future<bool> confirmPassword(BuildContext context, String password) async {
                 AutofillHints.password,
               ],
               keyboardType: TextInputType.visiblePassword,
-              onChanged: (value) => _confirmPass = value,
+              onChanged: (value) => context.read<MiscellaneousProvider>().setPassword(value),
               obscureText:
                   context.watch<MiscellaneousProvider>().getIsPasswordVisible,
               decoration: InputDecoration(
@@ -73,7 +90,7 @@ Future<bool> confirmPassword(BuildContext context, String password) async {
                     ),
                   ),
                 ),
-                hintText: "Password",
+                hintText: 'Password',
                 filled: true,
               ),
               style: Theme.of(context).textTheme.bodyMedium,
@@ -85,13 +102,7 @@ Future<bool> confirmPassword(BuildContext context, String password) async {
               height: 20,
             ),
             FilledButton(
-              onPressed: () {
-                if (password != _confirmPass) {
-                  confirmed = false;
-                } else {
-                  confirmed = true;
-                }
-              },
+              onPressed: () => context.pop(),
               style: ButtonStyle(
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
@@ -106,7 +117,7 @@ Future<bool> confirmPassword(BuildContext context, String password) async {
                 ),
               ),
               child: const Text(
-                "Done",
+                'Done',
               ),
             ),
           ],
@@ -114,5 +125,4 @@ Future<bool> confirmPassword(BuildContext context, String password) async {
       );
     },
   );
-  return confirmed;
 }
