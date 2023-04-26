@@ -191,12 +191,15 @@ class _LoginPageState extends State<LoginPage> {
                       showErrorDialog(context, 'The password is incorrect');
                     } else if (e.code == 'too-many-attempts-try-later') {
                       showErrorDialog(context, 'Too many attempts');
-                    } else {
-                      print(e);
+                    } else if (e.code == 'internal-error'){
                       showErrorDialog(context, 'Something went wrong');
                     }
                   } on SocketException {
                     showErrorDialog(context, 'No internet connection');
+                  }
+                  catch(e) {
+                    context.pop();
+                    showErrorDialog(context, 'Something went wrong');
                   }
                 },
                 style: ButtonStyle(
