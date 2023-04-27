@@ -54,12 +54,11 @@ flutter:
     - family: Staatliches
       fonts:
         - asset: fonts/Staatliches-Regular.ttf
-    - family: Supreme
+    - family: Cabinet
       fonts:
-        - asset: fonts/Supreme-Light.otf
-    - family: SpaceGrotesk
-      fonts:
-        - asset: fonts/SpaceGrotesk-Light.otf
+        - asset: fonts/CabinetGrotesk-Regular.otf
+        - asset: fonts/CabinetGrotesk-Medium.otf
+        - asset: fonts/CabinetGrotesk-Bold.otf
     - family: Melodrama
       fonts:
         - asset: fonts/Melodrama-Semibold.otf

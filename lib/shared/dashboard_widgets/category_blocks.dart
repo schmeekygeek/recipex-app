@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../extensions.dart';
 import '../../pages/no_internet_page.dart';
@@ -18,7 +19,6 @@ class CategoryBlocks extends StatefulWidget {
 }
 
 class _CategoryBlocksState extends State<CategoryBlocks> {
-
   MealServiceImplementation mealService = MealServiceImplementation();
 
   @override
@@ -39,8 +39,8 @@ class _CategoryBlocksState extends State<CategoryBlocks> {
                     showLoadingDialog(context);
                     late Base meals;
                     try {
-                      meals = await mealService.fetchMealsByCategory(
-                          categories[index].strCategory);
+                      meals = await mealService
+                          .fetchMealsByCategory(categories[index].strCategory);
                     } on SocketException {
                       context.pushReplacement(const NoInternetPage());
                     }
@@ -90,7 +90,31 @@ class _CategoryBlocksState extends State<CategoryBlocks> {
             ),
           );
         } else {
-          return const SizedBox();
+          return Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SizedBox(
+              width: 300,
+              height: 90,
+              child: Column(
+                children: const [
+                  Expanded(
+                    flex: 2,
+                    child: Icon(
+                      FontAwesomeIcons.triangleExclamation,
+                      color: Colors.red,
+                      size: 35,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'No internet connection',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+          );
         }
       },
     );

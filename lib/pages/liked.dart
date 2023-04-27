@@ -21,7 +21,7 @@ class _LikedState extends State<Liked> {
         slivers: [
           SliverAppBar.large(
             title: Text(
-              "Liked recipes",
+              'Liked recipes',
               style: Theme.of(context).appBarTheme.toolbarTextStyle,
             ),
           ),
@@ -35,8 +35,8 @@ class _LikedState extends State<Liked> {
                   ),
                   Image.asset(
                     context.watch<ThemeModel>().isDark
-                        ? "assets/girl-cycle-dark.png"
-                        : "assets/girl-cycle-light.png",
+                        ? 'assets/girl-cycle-dark.png'
+                        : 'assets/girl-cycle-light.png',
                     height: 150,
                   ),
                   const SizedBox(

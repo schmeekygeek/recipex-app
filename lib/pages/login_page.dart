@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/pages/image_slider.dart';
-import 'package:recipex_app/shared/error_dialog.dart';
-import 'package:recipex_app/shared/loading_dialog.dart';
 
+import '../shared/image_slider.dart';
+import '../shared/error_dialog.dart';
+import '../shared/loading_dialog.dart';
 import 'signup_page.dart';
 import '../extensions.dart';
 import '../providers/misc_provider.dart';
@@ -45,14 +45,6 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () => context.pop(),
                 ),
               ),
-              // Expanded(
-              //   flex: 2,
-              //   child: LottieBuilder.asset(
-              //     "assets/login-girl-cooking.json",
-              //     frameRate: FrameRate.max,
-              //     width: 380,
-              //   ),
-              // ),
               const Expanded(
                 flex: 2,
                 child: ImageSlider(),

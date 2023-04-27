@@ -53,7 +53,7 @@ confirmPassword(
               child: Text(
                 'Confirm\npassword',
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      fontFamily: 'Supreme',
+                      fontFamily: 'Cabinet',
                       letterSpacing: 0,
                       fontSize: 30,
                     ),

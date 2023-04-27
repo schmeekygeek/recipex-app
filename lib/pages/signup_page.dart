@@ -13,7 +13,7 @@ import '../service/network/meal_service.dart';
 import '../shared/confirm_pass_sheet.dart';
 import '../extensions.dart';
 import '../providers/misc_provider.dart';
-import 'image_slider.dart';
+import '../shared/image_slider.dart';
 import 'login_page.dart';
 
 String _username = '';
@@ -51,14 +51,6 @@ class _SignUpState extends State<SignUp> {
                   onPressed: () => context.pop(),
                 ),
               ),
-              // Expanded(
-              //   flex: 2,
-              //   child: LottieBuilder.asset(
-              //     "assets/login-girl-cooking.json",
-              //     frameRate: FrameRate.max,
-              //     width: 380,
-              //   ),
-              // ),
               const Expanded(
                 flex: 2,
                 child: ImageSlider(),

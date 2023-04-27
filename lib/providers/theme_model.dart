@@ -33,7 +33,7 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: Dark.text,
-          fontFamily: "Supreme",
+          fontFamily: 'Cabinet',
           fontSize: 32,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
@@ -53,26 +53,26 @@ class ThemeModel with ChangeNotifier {
         bodySmall: TextStyle(
           fontSize: 18,
           letterSpacing: 1,
-          fontFamily: "Satoshi",
+          fontFamily: 'Satoshi',
           color: Dark.text,
           fontWeight: FontWeight.w100,
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Melodrama",
+          fontFamily: 'Melodrama',
           letterSpacing: 2,
           color: Dark.text,
         ),
         headlineSmall: TextStyle(
           color: Dark.text,
-          fontFamily: "Satoshi",
+          fontFamily: 'Satoshi',
           fontSize: 17,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
         ),
         bodyMedium: TextStyle(
           color: Dark.text,
-          fontFamily: "Satoshi",
+          fontFamily: 'Satoshi',
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
@@ -86,7 +86,7 @@ class ThemeModel with ChangeNotifier {
           right: 7,
         ),
         hintStyle: TextStyle(
-          fontFamily: "Satoshi",
+          fontFamily: 'Satoshi',
           fontSize: 14,
           letterSpacing: 1.5,
           color: Dark.text.withOpacity(0.8),
@@ -129,7 +129,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: MaterialStatePropertyAll<TextStyle>(
             TextStyle(
               color: Dark.text,
-              fontFamily: "Satoshi",
+              fontFamily: 'Satoshi',
               fontSize: 18,
               letterSpacing: 1,
               fontWeight: FontWeight.w200,
@@ -154,7 +154,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: const MaterialStatePropertyAll(
             TextStyle(
               fontSize: 18,
-              fontFamily: "Staatliches",
+              fontFamily: 'Staatliches',
               letterSpacing: 1,
             ),
           ),
@@ -182,7 +182,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: const MaterialStatePropertyAll(
             TextStyle(
               fontSize: 18,
-              fontFamily: "Staatliches",
+              fontFamily: 'Staatliches',
               letterSpacing: 1,
             ),
           ),
@@ -212,7 +212,7 @@ class ThemeModel with ChangeNotifier {
         ),
         toolbarTextStyle: TextStyle(
           color: White.text,
-          fontFamily: "Supreme",
+          fontFamily: 'Cabinet',
           fontSize: 28,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
@@ -232,26 +232,26 @@ class ThemeModel with ChangeNotifier {
         bodySmall: TextStyle(
           fontSize: 18,
           letterSpacing: 1,
-          fontFamily: "Satoshi",
+          fontFamily: 'Satoshi',
           color: White.text,
           fontWeight: FontWeight.w100,
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: "Melodrama",
+          fontFamily: 'Melodrama',
           letterSpacing: 2,
           color: White.text,
         ),
         headlineSmall: TextStyle(
           color: White.text,
-          fontFamily: "Satoshi",
+          fontFamily: 'Satoshi',
           fontSize: 17,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
         ),
         bodyMedium: TextStyle(
           color: White.text,
-          fontFamily: "Satoshi",
+          fontFamily: 'Satoshi',
           fontSize: 18,
           letterSpacing: 1,
           fontWeight: FontWeight.w200,
@@ -265,7 +265,7 @@ class ThemeModel with ChangeNotifier {
           right: 7,
         ),
         hintStyle: TextStyle(
-          fontFamily: "Satoshi",
+          fontFamily: 'Satoshi',
           fontSize: 14,
           letterSpacing: 1.5,
           color: White.text.withOpacity(0.8),
@@ -308,7 +308,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: MaterialStatePropertyAll<TextStyle>(
             TextStyle(
               color: White.text,
-              fontFamily: "Satoshi",
+              fontFamily: 'Satoshi',
               fontSize: 18,
               letterSpacing: 1,
               fontWeight: FontWeight.w200,
@@ -335,7 +335,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: const MaterialStatePropertyAll(
             TextStyle(
               fontSize: 18,
-              fontFamily: "Staatliches",
+              fontFamily: 'Staatliches',
               letterSpacing: 1,
             ),
           ),
@@ -363,7 +363,7 @@ class ThemeModel with ChangeNotifier {
           textStyle: const MaterialStatePropertyAll(
             TextStyle(
               fontSize: 18,
-              fontFamily: "Staatliches",
+              fontFamily: 'Staatliches',
               letterSpacing: 1,
             ),
           ),

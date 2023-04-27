@@ -18,18 +18,14 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> 
-  with SingleTickerProviderStateMixin {
-
+class _DashboardState extends State<Dashboard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Tween _tween;
 
   @override
   void initState() {
-    _tween = Tween<double>(
-      begin: 0.9,
-      end: 1
-    );
+    _tween = Tween<double>(begin: 0.9, end: 1);
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(
@@ -38,7 +34,6 @@ class _DashboardState extends State<Dashboard>
     );
     _tween.animate(_controller);
     _controller.forward();
-
     super.initState();
   }
 
@@ -67,31 +62,31 @@ class _DashboardState extends State<Dashboard>
                 height: 20,
               ),
               Text(
-                getGreeting(),
+                '${getGreeting()},',
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 28,
                       color: Colors.grey,
                       fontWeight: FontWeight.w100,
-                      fontFamily: "LobsterTwo",
+                      fontFamily: 'LobsterTwo',
                     ),
               ),
               Text(
-                "${FirebaseAuth.instance.currentUser?.displayName ?? "guest"},",
+                FirebaseAuth.instance.currentUser?.displayName ?? 'guest',
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       letterSpacing: 1,
                       fontSize: 40,
-                      fontFamily: "Staatliches",
+                      fontFamily: 'Staatliches',
                     ),
               ),
               const SizedBox(
                 height: 20,
               ),
               Text(
-                "BROWSE CATEGORIES",
+                'BROWSE CATEGORIES',
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 20,
-                      fontFamily: "Supreme",
-                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Cabinet',
+                      fontWeight: FontWeight.w500,
                       letterSpacing: 2,
                     ),
               ),

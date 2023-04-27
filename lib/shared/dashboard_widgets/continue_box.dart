@@ -45,7 +45,7 @@ class _ContinueBoxState extends State<ContinueBox> {
                         topLeft: Radius.circular(4),
                         topRight: Radius.circular(20),
                         bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(4)),
+                        bottomRight: Radius.circular(4),),
                   ),
                   child: Stack(
                     children: [
@@ -61,7 +61,7 @@ class _ContinueBoxState extends State<ContinueBox> {
                             color: Colors.black,
                             image: DecorationImage(
                               image: NetworkImage(
-                                snapshot.data?.strMealThumb ?? "none",
+                                snapshot.data?.strMealThumb ?? 'none',
                               ),
                               fit: BoxFit.contain,
                               colorFilter: ColorFilter.mode(
@@ -79,21 +79,21 @@ class _ContinueBoxState extends State<ContinueBox> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "CONTINUE READING",
+                              'CONTINUE READING',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
                                   .copyWith(
                                     color: Dark.text.withOpacity(0.6),
-                                    fontFamily: "Supreme",
+                                    fontFamily: 'Cabinet',
                                     letterSpacing: 3,
                                     wordSpacing: 1,
-                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
+                                    fontSize: 18,
                                   ),
                             ),
                             Text(
-                              snapshot.data?.strMeal ?? "Empty",
+                              snapshot.data?.strMeal ?? 'Empty',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -133,7 +133,7 @@ class _ContinueBoxState extends State<ContinueBox> {
         } else if (snapshot.hasError) {
           return const SizedBox();
         }
-        return const Text("hi");
+        return const Text('hi');
       },
       future: mealService.fetchMealById(widget.lastMealId),
     );

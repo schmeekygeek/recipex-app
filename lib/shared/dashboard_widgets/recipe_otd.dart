@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:recipex_app/extensions.dart';
 
+import '../../extensions.dart';
 import '../../providers/theme_model.dart';
 import '../../service/random_meal_helper.dart';
 import '../../service/ingredient_service.dart';
@@ -46,7 +46,7 @@ class _RecipeOTDBoxState extends State<RecipeOTDBox> {
                       topLeft: Radius.circular(4),
                       topRight: Radius.circular(20),
                       bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(4)
+                      bottomRight: Radius.circular(4),
                     ),
                   ),
                   child: Stack(
@@ -63,7 +63,7 @@ class _RecipeOTDBoxState extends State<RecipeOTDBox> {
                             color: Colors.black,
                             image: DecorationImage(
                               image: NetworkImage(
-                                snapshot.data?.strMealThumb ?? "none",
+                                snapshot.data?.strMealThumb ?? 'none',
                               ),
                               fit: BoxFit.contain,
                               colorFilter: ColorFilter.mode(
@@ -81,18 +81,18 @@ class _RecipeOTDBoxState extends State<RecipeOTDBox> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "YOUR RECIPE OF THE DAY",
+                              'YOUR RECIPE OF THE DAY',
                               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                 color: Dark.text.withOpacity(0.6),
                                 letterSpacing: 3,
-                                fontFamily: "Supreme",
+                                fontFamily: 'Cabinet',
                                 wordSpacing: 1,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              snapshot.data?.strMeal ?? "Empty",
+                              snapshot.data?.strMeal ?? 'Empty',
                               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                 color: Dark.text,
                                 fontSize: 24,

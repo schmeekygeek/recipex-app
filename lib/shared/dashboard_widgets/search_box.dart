@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:recipex_app/extensions.dart';
 
-import '../../pages/no_internet_page.dart';
 import '../../providers/theme_model.dart';
 
 class SearchBox extends StatelessWidget {
@@ -26,15 +24,10 @@ class SearchBox extends StatelessWidget {
           image: DecorationImage(
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                Colors.black.withOpacity(0.4), BlendMode.dstATop,),
             image: const NetworkImage(
-              "https://www.themealdb.com/images/media/meals/usywpp1511189717.jpg",
+              'https://www.themealdb.com/images/media/meals/usywpp1511189717.jpg',
             ),
-            onError: (_, __) {
-              context.pushReplacement(
-                const NoInternetPage()
-              );
-            },
           ),
         ),
         child: Padding(
@@ -48,15 +41,16 @@ class SearchBox extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Search",
+                    'Search',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Dark.text,
                         fontSize: 24,
-                        fontFamily: "SpaceGrotesk",
-                        fontWeight: FontWeight.w400),
+                        fontFamily: 'Cabinet',
+                        fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
-                    "Have something else in mind? Search for it!",
+                    'Have something else in mind? Search for it!',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Dark.text,
                           fontSize: 18,

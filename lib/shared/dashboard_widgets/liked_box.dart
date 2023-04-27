@@ -13,14 +13,17 @@ class LikedBox extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: kElevationToShadow[4],
         borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(4),
-            topRight: Radius.circular(20),
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(4)),
-        gradient: const LinearGradient(colors: [
-          Color(0xffffcaca),
-          Color(0xffff8787),
-        ]),
+          topLeft: Radius.circular(4),
+          topRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(4),
+        ),
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xffffcaca),
+            Color(0xffff8787),
+          ],
+        ),
       ),
       child: Stack(
         children: [
@@ -35,16 +38,17 @@ class LikedBox extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Liked recipes",
-                      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            color: White.text,
-                            fontSize: 24,
-                            fontFamily: "SpaceGrotesk",
-                            fontWeight: FontWeight.w400,
-                          ),
+                      'Liked recipes',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                color: White.text,
+                                fontSize: 24,
+                                fontFamily: 'Cabinet',
+                                fontWeight: FontWeight.bold,
+                              ),
                     ),
                     Text(
-                      "View your previously liked recipes",
+                      'View your previously liked recipes',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: White.text,
                             fontSize: 17,

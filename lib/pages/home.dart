@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/extensions.dart';
+import 'package:recipex_app/shared/error_dialog.dart';
+import 'package:recipex_app/shared/loading_dialog.dart';
 
 import 'liked.dart';
 import 'profile.dart';
@@ -31,7 +36,16 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            await FirebaseAuth.instance.signOut();
+            showLoadingDialog(context);
+            try {
+              await FirebaseAuth.instance.signOut();
+              if(!mounted) return;
+              context.pop();
+            } on FirebaseAuthException catch(e) {
+              print(e.code);
+            } on SocketException {
+              showErrorDialog(context, 'No internet connection');
+            }
             if(!mounted) return;
             context.read<MiscellaneousProvider>().setHomePageIndex = 0;
           },

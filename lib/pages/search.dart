@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -11,7 +13,6 @@ import '../shared/meal_list_tile.dart';
 import '../shared/search_bar.dart';
 import '../service/network/meal_service.dart';
 import '../providers/meal_list_provider.dart';
-import 'no_internet_page.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -35,19 +36,15 @@ class _SearchState extends State<Search> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 8
-              ),
+              padding: const EdgeInsets.only(left: 8),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "What's\ncooking?",
                   style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(
-                    fontSize: 45
-                  ),
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(fontSize: 45),
                 ),
               ),
             ),
@@ -68,7 +65,7 @@ class _SearchState extends State<Search> {
                         width: 100,
                         frameRate: FrameRate.max,
                         repeat: true,
-                        "assets/loading2.json",
+                        'assets/loading2.json',
                       ),
                     ],
                   );
@@ -108,7 +105,7 @@ class _SearchState extends State<Search> {
                           height: 10,
                         ),
                         Text(
-                          "Couldn't fetch results for \"${context.read<MealListProvider>().getInput}\"\nTry something else?",
+                          'Couldn\'t fetch results for "${context.read<MealListProvider>().getInput}"\nTry something else?',
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
@@ -120,8 +117,36 @@ class _SearchState extends State<Search> {
                         ),
                       ],
                     );
+                  } else if (snapshot.error is SocketException) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                        top: 180,
+                      ),
+                      child: SizedBox(
+                        width: 300,
+                        height: 90,
+                        child: Column(
+                          children: const [
+                            Expanded(
+                              flex: 2,
+                              child: Icon(
+                                FontAwesomeIcons.triangleExclamation,
+                                color: Colors.red,
+                                size: 35,
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              'No internet connection',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                   }
-                  return const NoInternetPage();
+                  return const SizedBox();
                 }
               },
               future: mealService.fetchMealsByKeyword(

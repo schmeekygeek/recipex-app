@@ -11,11 +11,9 @@ class NoInternetPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             LottieBuilder.asset(
-              "assets/no-internet.json",
+              'assets/no-internet.json',
               height: 250,
               frameRate: FrameRate.max,
             ),
@@ -23,20 +21,20 @@ class NoInternetPage extends StatelessWidget {
               height: 20,
             ),
             Text(
-              "Ohhh snap...",
+              'Ohhh snap...',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontFamily: "Staatliches",
+                fontFamily: 'Staatliches',
               ),
             ),
             const SizedBox(
               height: 10,
             ),
             Text(
-              "You do not seem to have an internet connection\n please try again later",
+              'You do not seem to have an internet connection\n please try again later',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontFamily: "Staatliches",
+                fontFamily: 'Staatliches',
                 fontWeight: FontWeight.w100,
               ),
             ),
@@ -53,9 +51,9 @@ class NoInternetPage extends StatelessWidget {
                 ),
               ),
               child: const Text(
-                "Got it",
+                'Got it',
                 style: TextStyle(
-                  fontFamily: "ClashGrotesk",
+                  fontFamily: 'ClashGrotesk',
                   letterSpacing: 1
                 ),
               ),
