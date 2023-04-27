@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-import 'signup_page.dart';
 import '../extensions.dart';
 import 'login_page.dart';
 import '../providers/theme_model.dart';
@@ -16,24 +15,16 @@ class IntroPage extends StatefulWidget {
   State<IntroPage> createState() => _IntroPageState();
 }
 
-class _IntroPageState extends State<IntroPage> 
-  with TickerProviderStateMixin {
-
+class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Tween _tween;
 
   @override
   void initState() {
-
-    _tween = Tween<double>(
-      begin: 0.9,
-      end: 1
-    );
+    _tween = Tween<double>(begin: 0.9, end: 1);
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(
-        milliseconds: 600
-      ),
+      duration: const Duration(milliseconds: 600),
     );
 
     _tween.animate(_controller);
@@ -67,27 +58,9 @@ class _IntroPageState extends State<IntroPage>
                 const SizedBox(
                   height: 10,
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: OutlinedButton.icon(
-                    style: ButtonStyle(
-                      shape: MaterialStatePropertyAll(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                      ),
-                    ),
-                    label: Text(
-                      context.watch<ThemeModel>().isDark ? 'Light' : 'Dark',
-                    ),
-                    onPressed: () => context.read<ThemeModel>().toggle(),
-                    icon: Icon(
-                      context.watch<ThemeModel>().isDark
-                          ? FontAwesomeIcons.lightbulb
-                          : FontAwesomeIcons.solidMoon,
-                    ),
-                  ),
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                 DefaultTextStyle(
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 45,
@@ -109,6 +82,29 @@ class _IntroPageState extends State<IntroPage>
                     ],
                   ),
                 ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: OutlinedButton.icon(
+                        style: ButtonStyle(
+                          shape: MaterialStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                          ),
+                        ),
+                        label: Text(
+                          context.watch<ThemeModel>().isDark ? 'Light' : 'Dark',
+                        ),
+                        onPressed: () => context.read<ThemeModel>().toggle(),
+                        icon: Icon(
+                          context.watch<ThemeModel>().isDark
+                              ? FontAwesomeIcons.lightbulb
+                              : FontAwesomeIcons.solidMoon,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Text(
                   'recipes at your fingertips',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
@@ -117,7 +113,7 @@ class _IntroPageState extends State<IntroPage>
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Cooking for your loved ones has never been easier.',
+                  'Cooking for your loved ones has never been this easy.',
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Colors.blueGrey,
                       fontFamily: 'Satoshi',
@@ -154,11 +150,17 @@ class _IntroPageState extends State<IntroPage>
                 ),
                 const SizedBox(height: 10),
                 FilledButton.icon(
-                  label: const Text('Register'),
+                  label: const Text('Google login'),
                   icon: const Icon(
-                    FontAwesomeIcons.userPlus,
+                    FontAwesomeIcons.google,
                   ),
-                  onPressed: () => context.push(const SignUp()),
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Coming soon'),
+                      ),
+                    );
+                  },
                   style: ButtonStyle(
                     shape: MaterialStatePropertyAll(
                       RoundedRectangleBorder(
@@ -177,12 +179,12 @@ class _IntroPageState extends State<IntroPage>
                   icon: const Icon(
                     FontAwesomeIcons.userSlash,
                   ),
-                  onPressed: () => {
+                  onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Coming soon'),
                       ),
-                    )
+                    );
                   },
                   style: ButtonStyle(
                     foregroundColor: const MaterialStatePropertyAll(

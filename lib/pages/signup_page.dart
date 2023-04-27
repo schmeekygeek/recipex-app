@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,6 +13,7 @@ import '../service/network/meal_service.dart';
 import '../shared/confirm_pass_sheet.dart';
 import '../extensions.dart';
 import '../providers/misc_provider.dart';
+import 'image_slider.dart';
 import 'login_page.dart';
 
 String _username = '';
@@ -56,12 +59,9 @@ class _SignUpState extends State<SignUp> {
               //     width: 380,
               //   ),
               // ),
-              Expanded(
-                child: Image.asset(
-                  'assets/munchies.png',
-                  height: 200,
-                  width: 200,
-                ),
+              const Expanded(
+                flex: 2,
+                child: ImageSlider(),
               ),
               const Text(
                 "Let's get you on board!",
@@ -224,6 +224,10 @@ class _SignUpState extends State<SignUp> {
                     else if(e.code == 'weak-password') {
                       showErrorDialog(context, 'Your password is weak');
                     }
+                  }
+                  on SocketException {
+                    context.pop();
+                    showErrorDialog(context, 'No internet connection');
                   }
                 },
                 style: ButtonStyle(

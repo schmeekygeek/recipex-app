@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/pages/image_slider.dart';
 import 'package:recipex_app/shared/error_dialog.dart';
 import 'package:recipex_app/shared/loading_dialog.dart';
 
@@ -52,13 +53,9 @@ class _LoginPageState extends State<LoginPage> {
               //     width: 380,
               //   ),
               // ),
-              Expanded(
+              const Expanded(
                 flex: 2,
-                child: Image.asset(
-                  'assets/plate.png',
-                  height: 250,
-                  width: 250,
-                ),
+                child: ImageSlider(),
               ),
               const Text(
                 'Glad to have you back!',
