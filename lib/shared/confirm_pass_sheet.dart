@@ -14,7 +14,7 @@ confirmPassword(
 ) async {
   await showModalBottomSheet(
     context: context,
-    isScrollControlled: false,
+    isScrollControlled: true,
     isDismissible: false,
     enableDrag: false,
     constraints: BoxConstraints.tight(
@@ -27,6 +27,7 @@ confirmPassword(
       return Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 7),
