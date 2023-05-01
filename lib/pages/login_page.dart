@@ -163,8 +163,8 @@ class _LoginPageState extends State<LoginPage> {
                   try {
                     await FirebaseAuth.instance
                         .signInWithEmailAndPassword(
-                      email: _email,
-                      password: _password,
+                      email: _email.trim(),
+                      password: _password.trim(),
                     )
                         .whenComplete(() {
                       context.pop();

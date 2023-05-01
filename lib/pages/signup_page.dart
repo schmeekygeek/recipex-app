@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ String _username = '';
 String _email = '';
 String _password = '';
 
+DatabaseReference ref = FirebaseDatabase.instance.ref('users');
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -172,10 +174,10 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () async {
                   context.read<MiscellaneousProvider>().setPassword('');
                   try {
-                    Validator.validateUsername(_username);
+                    Validator.validateUsername(_username.trim());
                     await confirmPassword(
                       context,
-                      _password,
+                      _password.trim(),
                     );
                     if(!mounted) return;
                     String confirmedPass = context.read<MiscellaneousProvider>().getPassword;
@@ -183,7 +185,7 @@ class _SignUpState extends State<SignUp> {
                       showErrorDialog(context, 'A password is needed');
                       return;
                     }
-                    else if(confirmedPass != _password) {
+                    else if(confirmedPass != _password.trim()) {
                       showErrorDialog(context, 'The passwords do not match');
                       context.read<MiscellaneousProvider>().setPassword('');
                       return;
@@ -191,10 +193,14 @@ class _SignUpState extends State<SignUp> {
                     print('The password is correctly entered');
                     showLoadingDialog(context);
                     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                      email: _email,
-                      password: _password,
+                      email: _email.trim(),
+                      password: _password.trim(),
                     ).then((value) async {
-                      await value.user?.updateDisplayName(_username);
+                      await value.user?.updateDisplayName(_username.trim());
+                      await ref.set({
+                        'name': '${value.user?.displayName}',
+                        'likedRecipes': []
+                      });
                       if(!mounted) return;
                       context.pop();
                       context.pop();
