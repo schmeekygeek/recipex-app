@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/extensions.dart';
+import 'package:recipex_app/shared/confirm_pass_sheet.dart';
+import 'package:recipex_app/shared/loading_dialog.dart';
 
 import '../classes/meals/meals.dart';
 import '../providers/storage_provider.dart';
@@ -36,6 +39,24 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
           slivers: [
             SliverAppBar(
               actions: [
+                IconButton(
+                  icon: const Icon(
+                    FontAwesomeIcons.solidHeart,
+                  ),
+                  onPressed: () async {
+                    showLoadingDialog(context);
+                    bool didLike = await mealService.likeRecipe(widget.meal.getMealId);
+                    if(!mounted) return;
+                    context.pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          didLike ? 'Successfully liked recipe' : 'Removed from liked recipes'
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 IconButton(
                   icon: Icon(
                     context.watch<ThemeModel>().isDark

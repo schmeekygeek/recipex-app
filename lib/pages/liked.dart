@@ -32,7 +32,6 @@ class _LikedState extends State<Liked> {
     if (recipeIds.isEmpty) return Base(meals: []);
     Base base = Base(meals: []);
     for (String recipeId in recipeIds) {
-      print(recipeId);
       base.meals.add(await mealService.fetchMealById(recipeId));
     }
     return base;

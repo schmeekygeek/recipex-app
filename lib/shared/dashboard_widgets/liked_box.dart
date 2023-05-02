@@ -38,13 +38,13 @@ class LikedBox extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Liked recipes',
+                      'LIKED RECIPES',
                       style:
                           Theme.of(context).textTheme.headlineSmall!.copyWith(
                                 color: White.text,
-                                fontSize: 24,
+                                fontSize: 25,
                                 fontFamily: 'Cabinet',
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                               ),
                     ),
                     Text(

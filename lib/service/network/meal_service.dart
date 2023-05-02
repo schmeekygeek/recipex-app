@@ -75,7 +75,7 @@ class MealServiceImplementation implements MealServiceInterface {
       await value.user?.updateDisplayName(username.trim());
       final db = FirebaseFirestore.instance;
       final docRef = db
-          .collection('users')
+          .collection('/users')
           .doc(FirebaseAuth.instance.currentUser?.displayName);
       my_user.User user = my_user.User(recipes: []);
       docRef.set(user.toFirestore());
@@ -83,9 +83,23 @@ class MealServiceImplementation implements MealServiceInterface {
   }
 
   @override
-  Future likeRecipe(String recipeId) {
-    // TODO: implement likeRecipe
-    throw UnimplementedError();
+  Future<bool> likeRecipe(String recipeId) async {
+    bool wasLiked = false;
+    final db = FirebaseFirestore.instance;
+    String username = FirebaseAuth.instance.currentUser?.displayName ?? '';
+    List<String> recipes = await getLikedRecipes();
+    final docRef = db.collection('/users').doc(username);
+    if (recipes.contains(recipeId)) {
+      recipes.remove(recipeId);
+      wasLiked = false;
+    }
+    else {
+      recipes.insert(0, recipeId);
+      wasLiked = true;
+    }
+    my_user.User user = my_user.User(recipes: recipes);
+    docRef.set(user.toFirestore());
+    return wasLiked;
   }
 
   @override
