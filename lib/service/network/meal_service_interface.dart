@@ -10,6 +10,8 @@ abstract class MealServiceInterface {
   Future<Meals> fetchMealById(String category);
   Future<Meals> fetchRandomMeal();
 
-  Future signup();
-  Future login();
+  Future emailSignUp(String email, String password, String username);
+  Future likeRecipe(String recipeId);
+  Future removeLikedRecipe(String recipeId);
+  Future<List<String>> getLikedRecipes();
 }

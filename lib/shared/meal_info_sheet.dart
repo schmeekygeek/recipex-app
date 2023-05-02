@@ -28,7 +28,6 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
     context.read<StorageProvider>().setLastMealId(widget.meal.idMeal!);
     super.initState();
   }
-    
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -82,13 +81,13 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.meal.strMeal ?? "Unknown",
+                      widget.meal.strMeal ?? 'Unknown',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 10),
                     metaData(
                       context,
-                      "Origin: ",
+                      'Origin: ',
                       widget.meal.strArea,
                     ),
                     const SizedBox(
@@ -96,7 +95,7 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                     ),
                     metaData(
                       context,
-                      "Category: ",
+                      'Category: ',
                       widget.meal.strCategory,
                     ),
                     const SizedBox(
@@ -104,8 +103,8 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                     ),
                     metaData(
                       context,
-                      "Tags: ",
-                      widget.meal.strTags ?? "N/A",
+                      'Tags: ',
+                      widget.meal.strTags ?? 'N/A',
                     ),
                     const SizedBox(
                       height: 10,
@@ -114,7 +113,7 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Ingredients  ",
+                          'Ingredients  ',
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Icon(
@@ -160,7 +159,7 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Instructions  ",
+                          'Instructions  ',
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         const Icon(
@@ -175,7 +174,7 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                     ),
                     Text(
                       widget.meal.strInstructions ??
-                          "No instructions available for this recipe",
+                          'No instructions available for this recipe',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],

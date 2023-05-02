@@ -1,25 +1,25 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-part 'user.g.dart';
-
-@JsonSerializable(
-  explicitToJson: true,
-)
 class User {
-  final String name;
-  final String username;
-  final String email;
-  final String password;
-  final List<String> savedRecipes;
+  final List<String>? recipes;
 
-  const User({
-    required this.username,
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.savedRecipes,
+  User({
+    this.recipes,
   });
 
-  factory User.fromJson(Map<String, dynamic> data) => _$UserFromJson(data);
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  factory User.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+  ) {
+    final data = snapshot.data();
+    return User(
+      recipes:
+          data?['recipes'] is Iterable ? List.from(data?['recipes']) : null,
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (recipes != null) 'recipes': recipes,
+    };
+  }
 }
