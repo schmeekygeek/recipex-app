@@ -55,19 +55,28 @@ class _ImageSliderState extends State<ImageSlider> {
   }
 
   @override
+  void didChangeDependencies() {
+    context.dependOnInheritedWidgetOfExactType();
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(1000),
-      child: PageView.builder(
-        itemBuilder: (context, index) {
-          if(index >= 5) {
-            return listOfImages[_currentPage];
-          }
-          return listOfImages[index];
-        },
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _pageController,
-        allowImplicitScrolling: true,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 3,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(1000),
+        child: PageView.builder(
+          itemBuilder: (context, index) {
+            if(index >= 5) {
+              return listOfImages[_currentPage];
+            }
+            return listOfImages[index];
+          },
+          physics: const NeverScrollableScrollPhysics(),
+          controller: _pageController,
+          allowImplicitScrolling: true,
+        ),
       ),
     );
   }

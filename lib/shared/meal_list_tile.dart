@@ -73,10 +73,13 @@ class _MealListTileState extends State<MealListTile>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.meal.strMeal ?? "Unknown dish",
+                        widget.meal.strMeal ?? 'Unknown dish',
                         style: Theme.of(context)
                             .appBarTheme
-                        .toolbarTextStyle
+                        .toolbarTextStyle!.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 33,
+                        )
                       ),
                       widget.meal.strArea != null
                           ? Column(
@@ -84,7 +87,7 @@ class _MealListTileState extends State<MealListTile>
                               children: [
                                 metaData(
                                   context,
-                                  "Origin: ",
+                                  'Origin: ',
                                   widget.meal.strArea,
                                 ),
                                 const SizedBox(
@@ -92,7 +95,7 @@ class _MealListTileState extends State<MealListTile>
                                 ),
                                 metaData(
                                   context,
-                                  "Category: ",
+                                  'Category: ',
                                   widget.meal.strCategory,
                                 ),
                                 const SizedBox(
@@ -100,7 +103,7 @@ class _MealListTileState extends State<MealListTile>
                                 ),
                                 metaData(
                                   context,
-                                  "Tags: ",
+                                  'Tags: ',
                                   widget.meal.strTags,
                                 ),
                               ],
