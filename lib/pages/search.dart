@@ -59,7 +59,7 @@ class _SearchState extends State<Search> {
                   return Column(
                     children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 3,
+                        height: MediaQuery.of(context).size.height / 4
                       ),
                       LottieBuilder.asset(
                         width: 100,
@@ -94,7 +94,7 @@ class _SearchState extends State<Search> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 5,
+                          height: MediaQuery.of(context).size.height / 4,
                         ),
                         Icon(
                           FontAwesomeIcons.triangleExclamation,
@@ -119,8 +119,8 @@ class _SearchState extends State<Search> {
                     );
                   } else if (snapshot.error is SocketException) {
                     return Padding(
-                      padding: const EdgeInsets.only(
-                        top: 180,
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 4,
                       ),
                       child: SizedBox(
                         width: 300,

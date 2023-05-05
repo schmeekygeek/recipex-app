@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/extensions.dart';
-import 'package:recipex_app/shared/confirm_pass_sheet.dart';
-import 'package:recipex_app/shared/loading_dialog.dart';
 
+import '../extensions.dart';
+import 'confirm_pass_sheet.dart';
+import 'error_dialog.dart';
+import 'loading_dialog.dart';
 import '../classes/meals/meals.dart';
 import '../providers/storage_provider.dart';
 import '../providers/theme_model.dart';
@@ -25,12 +27,12 @@ class MealInfoSheet extends StatefulWidget {
 }
 
 class _MealInfoSheetState extends State<MealInfoSheet> {
-
   @override
   void initState() {
     context.read<StorageProvider>().setLastMealId(widget.meal.idMeal!);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,13 +47,28 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                   ),
                   onPressed: () async {
                     showLoadingDialog(context);
-                    bool didLike = await mealService.likeRecipe(widget.meal.getMealId);
-                    if(!mounted) return;
+                    bool didLike = false;
+                    try {
+                      didLike =
+                          await mealService.likeRecipe(widget.meal.getMealId);
+                    } on FirebaseException catch (e) {
+                      print(e.code);
+                      context.pop();
+                      showErrorDialog(context, 'Something went wrong');
+                      return;
+                    } catch (e) {
+                      context.pop();
+                      showErrorDialog(context, 'Something went wrong');
+                      return;
+                    }
+                    if (!mounted) return;
                     context.pop();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
-                          didLike ? 'Successfully liked recipe' : 'Removed from liked recipes'
+                          didLike
+                              ? 'Successfully liked recipe'
+                              : 'Removed from liked recipes',
                         ),
                       ),
                     );
@@ -83,7 +100,9 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                 background: Image.network(
                   widget.meal.strMealThumb!,
                   fit: BoxFit.cover,
-                  color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.55),
+                  color: Theme.of(context)
+                      .scaffoldBackgroundColor
+                      .withOpacity(0.55),
                   filterQuality: FilterQuality.high,
                   colorBlendMode: BlendMode.dstATop,
                 ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/extensions.dart';
 
+import '../extensions.dart';
 import '../providers/misc_provider.dart';
 import '../service/network/meal_service.dart';
 
@@ -16,21 +16,22 @@ confirmPassword(
     context: context,
     isScrollControlled: true,
     isDismissible: false,
-    enableDrag: false,
-    constraints: BoxConstraints.tight(
-      const Size(
-        double.infinity,
-        280,
-      ),
-    ),
+    enableDrag: true,
     builder: (context) {
       return Padding(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.only(
+          left: 12,
+          right: 12,
+          top: 12,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+        ),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 7),
+              padding: const EdgeInsets.only(
+                right: 7,
+              ),
               child: GestureDetector(
                 onTap: () {
                   context.read<MiscellaneousProvider>().setPassword('');

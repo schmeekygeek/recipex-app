@@ -12,6 +12,5 @@ abstract class MealServiceInterface {
 
   Future emailSignUp(String email, String password, String username);
   Future likeRecipe(String recipeId);
-  Future removeLikedRecipe(String recipeId);
   Future<List<String>> getLikedRecipes();
 }

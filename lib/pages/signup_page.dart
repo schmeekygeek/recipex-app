@@ -56,10 +56,10 @@ class _SignUpState extends State<SignUp> {
                   onPressed: () => context.pop(),
                 ),
               ),
-              const Expanded(
-                flex: 2,
-                child: ImageSlider(),
-              ),
+              // const Expanded(
+              //   flex: 2,
+              //   child: ImageSlider(),
+              // ),
               const Text(
                 "Let's get you on board!",
                 textAlign: TextAlign.center,
@@ -193,17 +193,16 @@ class _SignUpState extends State<SignUp> {
                       context.read<MiscellaneousProvider>().setPassword('');
                       return;
                     }
-                    print('The password is correctly entered');
                     showLoadingDialog(context);
-                    if (!mounted) return;
-                    context.pop();
-                    context.pop();
-                  } on InvalidUsernameException {
                     mealService.emailSignUp(
                       _email,
                       _password,
                       _username
                     );
+                    if (!mounted) return;
+                    context.pop();
+                    context.pop();
+                  } on InvalidUsernameException {
                     showErrorDialog(
                       context,
                       'Invalid username',
@@ -221,6 +220,10 @@ class _SignUpState extends State<SignUp> {
                   } on SocketException {
                     context.pop();
                     showErrorDialog(context, 'No internet connection');
+                  }
+                  catch (e) {
+                    print(e.toString());
+                    print(e.runtimeType);
                   }
                 },
                 style: ButtonStyle(
