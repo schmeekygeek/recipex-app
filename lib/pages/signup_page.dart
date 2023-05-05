@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:recipex_app/shared/image_slider.dart';
 
 import '../shared/loading_dialog.dart';
 import '../classes/exceptions/app_exceptions.dart';
@@ -13,7 +14,6 @@ import '../service/network/meal_service.dart';
 import '../shared/confirm_pass_sheet.dart';
 import '../extensions.dart';
 import '../providers/misc_provider.dart';
-import '../shared/image_slider.dart';
 import 'login_page.dart';
 
 String _username = '';
@@ -37,29 +37,22 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 0,
-          backgroundColor: Colors.transparent,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(12.0),
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(14),
+        child: SingleChildScrollView(
+          reverse: true,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back_rounded),
-                  onPressed: () => context.pop(),
-                ),
+              const SizedBox(
+                height: 50,
               ),
-              // const Expanded(
-              //   flex: 2,
-              //   child: ImageSlider(),
-              // ),
+              const ImageSlider(),
               const Text(
                 "Let's get you on board!",
                 textAlign: TextAlign.center,
