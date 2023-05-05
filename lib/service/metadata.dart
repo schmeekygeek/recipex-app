@@ -9,6 +9,7 @@ Widget metaData(BuildContext context, String attribute, String? detail) {
           text: attribute,
           style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
             color: Colors.blueGrey,
+            fontWeight: FontWeight.w700,
             fontSize: 20,
           ),
         ),
