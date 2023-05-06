@@ -1,6 +1,8 @@
+
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-import '../providers/theme_model.dart';
 
 class CategoryListTile extends StatelessWidget {
   final String idCategory;
@@ -16,56 +18,65 @@ class CategoryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(12),
-          width: 130,
-          decoration: BoxDecoration(
-            color: Colors.amber.shade300,
-            boxShadow: kElevationToShadow[4],
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              tileMode: TileMode.mirror,
-              colors: [
-                Colors.amber.shade300,
-                Colors.greenAccent.shade100
-              ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        height: 100,
+        width: 130,
+        padding: const EdgeInsets.all(12),
+        child: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.white.withOpacity(0.5),
+                    Colors.black.withOpacity(0.5),
+                    Colors.white.withOpacity(0.5),
+                  ]
+                )
+              ),
             ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  strCategoryThumb,
-                  fit: BoxFit.fitWidth,
-                ),
+            BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaY: 40,
+                sigmaX: 40
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  strCategory.toUpperCase(),
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                    color: White.text,
-                    letterSpacing: 2
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      strCategoryThumb,
+                      colorBlendMode: BlendMode.dstATop,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      strCategory.toUpperCase(),
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 2,
+                        fontFamily: 'Cabinet',
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        const SizedBox(
-          height: 10,
-        ),
-      ],
+      ),
     );
   }
 }
