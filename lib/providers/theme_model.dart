@@ -59,7 +59,7 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: 'Melodrama',
+          fontFamily: 'Karma',
           letterSpacing: 2,
           color: Dark.text,
         ),
@@ -238,7 +238,7 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: 'Melodrama',
+          fontFamily: 'Karma',
           letterSpacing: 2,
           color: White.text,
         ),

@@ -51,8 +51,8 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                     try {
                       didLike =
                           await mealService.likeRecipe(widget.meal.getMealId);
-                    } on FirebaseException catch (e) {
-                      print(e.code);
+                    } 
+                    on FirebaseException {
                       context.pop();
                       showErrorDialog(context, 'Something went wrong');
                       return;

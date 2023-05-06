@@ -63,9 +63,10 @@ flutter:
         - asset: fonts/CabinetGrotesk-Regular.otf
         - asset: fonts/CabinetGrotesk-Medium.otf
         - asset: fonts/CabinetGrotesk-Bold.otf
-    - family: Melodrama
+    - family: Karma
       fonts:
-        - asset: fonts/Melodrama-Semibold.otf
+        - asset: fonts/Karma-Medium.otf
+        - asset: fonts/Karma-Regular.otf
 
 flutter_icons:
   image_path: "assets/icon.png"
