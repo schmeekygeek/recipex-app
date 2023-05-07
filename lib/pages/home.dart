@@ -1,13 +1,7 @@
-import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../extensions.dart';
-import '../shared/error_dialog.dart';
-import '../shared/loading_dialog.dart';
 import 'liked.dart';
 import 'profile.dart';
 import 'search.dart';
@@ -34,22 +28,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            showLoadingDialog(context);
-            try {
-              await FirebaseAuth.instance.signOut();
-              if(!mounted) return;
-              context.pop();
-            } on FirebaseAuthException catch(e) {
-              print(e.code);
-            } on SocketException {
-              showErrorDialog(context, 'No internet connection');
-            }
-            if(!mounted) return;
-            context.read<MiscellaneousProvider>().setHomePageIndex = 0;
-          },
-        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: context.watch<MiscellaneousProvider>().getHomePageIndex,
           items: const [
@@ -77,7 +55,7 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
               label: 'Profile',
               icon: Icon(
-                FontAwesomeIcons.solidUser,
+                FontAwesomeIcons.gear,
                 size: 20,
               ),
             ),
