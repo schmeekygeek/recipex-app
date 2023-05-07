@@ -26,17 +26,17 @@ class ThemeModel with ChangeNotifier {
       scaffoldBackgroundColor: Dark.crust,
       appBarTheme: const AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        color: Dark.base,
+        color: Dark.crust,
         actionsIconTheme: IconThemeData(
           color: Dark.text,
           size: 24,
         ),
         toolbarTextStyle: TextStyle(
           color: Dark.text,
-          fontFamily: 'Cabinet',
-          fontSize: 32,
+          fontFamily: 'Satoshi',
+          fontSize: 28,
           letterSpacing: 1,
-          fontWeight: FontWeight.w200,
+          fontWeight: FontWeight.w600,
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -205,17 +205,17 @@ class ThemeModel with ChangeNotifier {
       scaffoldBackgroundColor: White.crust,
       appBarTheme: const AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        color: White.base,
+        color: White.crust,
         actionsIconTheme: IconThemeData(
           color: White.text,
           size: 24,
         ),
         toolbarTextStyle: TextStyle(
           color: White.text,
-          fontFamily: 'Cabinet',
+          fontFamily: 'Satoshi',
           fontSize: 28,
           letterSpacing: 1,
-          fontWeight: FontWeight.w200,
+          fontWeight: FontWeight.w600,
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
