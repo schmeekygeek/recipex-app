@@ -24,7 +24,6 @@ class _ProfileState extends State<Profile> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar.large(
-            titleSpacing: 0,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: false,
               collapseMode: CollapseMode.parallax,

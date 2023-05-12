@@ -43,10 +43,17 @@ class _LikedState extends State<Liked> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar.large(
-            title: Text(
-              'Liked recipes',
-              style: Theme.of(context).appBarTheme.toolbarTextStyle,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: false,
+              collapseMode: CollapseMode.parallax,
+              titlePadding: const EdgeInsetsDirectional.all(12),
+              expandedTitleScale: 1.3,
+              title: Text(
+                'Liked Recipes',
+                style: Theme.of(context).appBarTheme.toolbarTextStyle,
+              ),
             ),
+            toolbarTextStyle: Theme.of(context).appBarTheme.toolbarTextStyle,
           ),
           SliverToBoxAdapter(
             child: FutureBuilder(
