@@ -13,7 +13,7 @@ class SettingsSection extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: context.watch<ThemeModel>().isDark ? Dark.base : White.base,
+        color: context.watch<ThemeModel>().isDark ? Dark.base : Dark.text,
       ),
       child: child,
     );
