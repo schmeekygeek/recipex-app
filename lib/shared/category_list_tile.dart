@@ -18,9 +18,6 @@ class CategoryListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(0),
-      surfaceTintColor: context.watch<ThemeModel>().isDark ? Dark.base : White.surface0,
-      color: context.watch<ThemeModel>().isDark ? Dark.base : Dark.text,
       child: Container(
         padding: const EdgeInsets.all(12),
         width: 130,

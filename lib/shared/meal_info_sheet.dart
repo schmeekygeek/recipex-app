@@ -10,7 +10,7 @@ import 'loading_dialog.dart';
 import '../classes/meals/meals.dart';
 import '../providers/storage_provider.dart';
 import '../providers/theme_model.dart';
-import '../service/metadata.dart';
+import '../service/metadata.dart' as mymeta;
 import '../classes/ingredient.dart';
 
 class MealInfoSheet extends StatefulWidget {
@@ -125,30 +125,12 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 10),
-                    metaData(
-                      context,
-                      'Origin: ',
-                      widget.meal.strArea,
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    metaData(
-                      context,
-                      'Category: ',
-                      widget.meal.strCategory,
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    metaData(
-                      context,
-                      'Tags: ',
-                      widget.meal.strTags ?? 'N/A',
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    widget.meal.strArea != null ? mymeta.MetaData(
+                      origin: widget.meal.strArea!,
+                      category: widget.meal.strCategory ?? 'N/A',
+                      tags: widget.meal.strTags ?? 'N/A',
+                    ) : const SizedBox(),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

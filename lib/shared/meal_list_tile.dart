@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../classes/meals/meals.dart';
-import '../service/metadata.dart';
+import '../service/metadata.dart' as mymeta;
 
 class MealListTile extends StatefulWidget {
   final Meals meal;
@@ -45,7 +45,6 @@ class _MealListTileState extends State<MealListTile>
         padding: const EdgeInsets.only(
           top: 14,
           left: 10,
-          right: 10,
           bottom: 14,
         ),
         child: Container(
@@ -78,37 +77,15 @@ class _MealListTileState extends State<MealListTile>
                             .appBarTheme
                         .toolbarTextStyle!.copyWith(
                           fontWeight: FontWeight.w500,
+                          fontFamily: 'staatliches',
                           fontSize: 33,
                         )
                       ),
-                      widget.meal.strArea != null
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                metaData(
-                                  context,
-                                  'Origin: ',
-                                  widget.meal.strArea,
-                                ),
-                                const SizedBox(
-                                  height: 2,
-                                ),
-                                metaData(
-                                  context,
-                                  'Category: ',
-                                  widget.meal.strCategory,
-                                ),
-                                const SizedBox(
-                                  height: 2,
-                                ),
-                                metaData(
-                                  context,
-                                  'Tags: ',
-                                  widget.meal.strTags,
-                                ),
-                              ],
-                            )
-                          : const SizedBox(),
+                      widget.meal.strArea != null ? mymeta.MetaData(
+                        origin: widget.meal.strArea!,
+                        category: widget.meal.strCategory ?? 'N/A',
+                        tags: widget.meal.strTags ?? 'N/A',
+                      ) : const SizedBox(),
                     ],
                   ),
                 ),
