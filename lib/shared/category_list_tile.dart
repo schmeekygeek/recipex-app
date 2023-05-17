@@ -1,8 +1,7 @@
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/theme_model.dart';
 
 class CategoryListTile extends StatelessWidget {
   final String idCategory;
@@ -18,60 +17,34 @@ class CategoryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
+    return Card(
+      margin: const EdgeInsets.all(0),
+      surfaceTintColor: context.watch<ThemeModel>().isDark ? Dark.base : White.surface0,
+      color: context.watch<ThemeModel>().isDark ? Dark.base : Dark.text,
       child: Container(
-        height: 100,
-        width: 130,
         padding: const EdgeInsets.all(12),
-        child: Stack(
+        width: 130,
+        child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.white.withOpacity(0.5),
-                    Colors.black.withOpacity(0.5),
-                    Colors.white.withOpacity(0.5),
-                  ]
-                )
-              ),
+            Image.network(
+              strCategoryThumb,
+              colorBlendMode: BlendMode.dstATop,
+              fit: BoxFit.fitWidth,
             ),
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaY: 40,
-                sigmaX: 40
-              ),
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      strCategoryThumb,
-                      colorBlendMode: BlendMode.dstATop,
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      strCategory.toUpperCase(),
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 2,
-                        fontFamily: 'Cabinet',
-                      ),
-                    ),
-                  ),
-                ],
+            const SizedBox(
+              height: 7,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                strCategory.toUpperCase(),
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).appBarTheme.toolbarTextStyle!.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 2,
+                  fontFamily: 'Satoshi',
+                ),
               ),
             ),
           ],

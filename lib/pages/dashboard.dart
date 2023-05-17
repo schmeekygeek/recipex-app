@@ -84,14 +84,15 @@ class _DashboardState extends State<Dashboard>
               Text(
                 'BROWSE CATEGORIES',
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 20,
-                      fontFamily: 'Cabinet',
+                      fontSize: 17,
+                      fontFamily: 'Satoshi',
+                      color: Colors.blueGrey,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 2,
                     ),
               ),
               const SizedBox(
-                height: 10,
+                height: 11,
               ),
               const CategoryBlocks(),
               if (context.watch<StorageProvider>().getLastMealId != null)
