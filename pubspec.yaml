@@ -61,15 +61,11 @@ flutter:
     - family: Staatliches
       fonts:
         - asset: fonts/Staatliches-Regular.ttf
-    - family: Cabinet
+    - family: Zodiak
       fonts:
-        - asset: fonts/CabinetGrotesk-Regular.otf
-        - asset: fonts/CabinetGrotesk-Medium.otf
-        - asset: fonts/CabinetGrotesk-Bold.otf
-    - family: Karma
-      fonts:
-        - asset: fonts/Karma-Medium.otf
-        - asset: fonts/Karma-Regular.otf
+        - asset: fonts/Zodiak-Bold.otf
+        - asset: fonts/Zodiak-Regular.otf
+        - asset: fonts/Zodiak-Italic.otf
 
 flutter_icons:
   image_path: "assets/icon.png"
