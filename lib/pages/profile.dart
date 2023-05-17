@@ -49,6 +49,7 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       children: [
                         GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                           onTap: () {
                             // TODO add implement reset password
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -76,8 +77,9 @@ class _ProfileState extends State<Profile> {
                           endIndent: 8,
                         ),
                         GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                           onTap: () {
-                            // TODO add implement reset password
+                            // TODO add implement reset username
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Coming soon'),
@@ -144,6 +146,7 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       children: [
                         GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                           onTap:() async {
                             await launchUrlString(
                               'https://schmeeky.pages.dev',
@@ -153,9 +156,9 @@ class _ProfileState extends State<Profile> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
-                              Text('About RecipEx'),
+                              Text('About Me'),
                               Icon(
-                                FontAwesomeIcons.arrowUpRightFromSquare,
+                                FontAwesomeIcons.userAstronaut,
                                 size: 18,
                               ),
                             ],
@@ -169,18 +172,19 @@ class _ProfileState extends State<Profile> {
                           endIndent: 8,
                         ),
                         GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                           onTap:() async {
                             await launchUrlString(
-                              'https://schmeeky.pages.dev',
+                              'https://schmeeky.pages.dev/posts/recipex',
                               mode: LaunchMode.externalApplication,
                             );
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
-                              Text('Read the blog'),
+                              Text('About RecipEx'),
                               Icon(
-                                FontAwesomeIcons.book,
+                                FontAwesomeIcons.arrowUpRightFromSquare,
                                 size: 18,
                               ),
                             ],
@@ -213,6 +217,37 @@ class _ProfileState extends State<Profile> {
                     ),
                     child: const Text(
                       'Logout',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        FontAwesomeIcons.copyright,
+                        size: 14,
+                        color: Colors.blueGrey,
+                      ),
+                      SizedBox(width: 3,),
+                      Text(
+                        'Copyright Abdul Samad Shaikh.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Text(
+                    'All rights reserved.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.blueGrey,
                     ),
                   ),
                 ],
