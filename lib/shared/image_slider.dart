@@ -63,7 +63,7 @@ class _ImageSliderState extends State<ImageSlider> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 3,
+      height: MediaQuery.of(context).size.height / 4,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(1000),
         child: PageView.builder(

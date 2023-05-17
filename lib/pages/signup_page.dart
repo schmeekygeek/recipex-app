@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:recipex_app/shared/image_slider.dart';
 
+import '../shared/image_slider.dart';
 import '../shared/loading_dialog.dart';
 import '../classes/exceptions/app_exceptions.dart';
 import '../shared/error_dialog.dart';

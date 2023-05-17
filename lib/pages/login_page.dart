@@ -35,8 +35,8 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.all(14.0),
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height,
+          padding: const EdgeInsets.only(
+            top: 50,
           ),
           reverse: true,
           child: Column(

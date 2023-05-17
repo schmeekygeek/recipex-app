@@ -27,7 +27,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(11.0),
       // implement animated list
       child: SingleChildScrollView(
         child: Column(
@@ -44,7 +44,10 @@ class _SearchState extends State<Search> {
                   style: Theme.of(context)
                       .textTheme
                       .headlineMedium!
-                      .copyWith(fontSize: 45),
+                      .copyWith(
+                        fontSize: 45,
+                        fontFamily: 'Zodiak',
+                      ),
                 ),
               ),
             ),

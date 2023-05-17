@@ -117,8 +117,9 @@ class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Colors.blueGrey,
                       fontFamily: 'Satoshi',
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                  ),
                 ),
                 Expanded(
                   flex: 3,
