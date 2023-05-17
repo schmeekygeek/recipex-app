@@ -85,7 +85,6 @@ class _ContinueBoxState extends State<ContinueBox> {
                                   .bodyMedium!
                                   .copyWith(
                                     color: Dark.text.withOpacity(0.6),
-                                    fontFamily: 'Cabinet',
                                     letterSpacing: 3,
                                     wordSpacing: 1,
                                     fontWeight: FontWeight.bold,

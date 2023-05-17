@@ -45,9 +45,8 @@ class SearchBox extends StatelessWidget {
                       style:
                           Theme.of(context).textTheme.headlineSmall!.copyWith(
                                 color: Dark.text,
-                                fontSize: 25,
-                                fontFamily: 'Cabinet',
-                                fontWeight: FontWeight.w500,
+                                fontSize: 23,
+                                fontWeight: FontWeight.w600,
                               ),
                   ),
                   Text(

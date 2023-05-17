@@ -85,7 +85,6 @@ class _RecipeOTDBoxState extends State<RecipeOTDBox> {
                               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                 color: Dark.text.withOpacity(0.6),
                                 letterSpacing: 3,
-                                fontFamily: 'Cabinet',
                                 wordSpacing: 1,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
