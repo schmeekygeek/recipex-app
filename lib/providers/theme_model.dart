@@ -59,7 +59,7 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: 'Karma',
+          fontFamily: 'Staatliches',
           letterSpacing: 2,
           color: Dark.text,
         ),
@@ -195,6 +195,11 @@ class ThemeModel with ChangeNotifier {
         backgroundColor: Dark.crust,
         surfaceTintColor: Dark.base,
       ),
+      cardTheme: const CardTheme(
+        margin: EdgeInsets.all(0),
+        surfaceTintColor: Dark.base,
+        color: Dark.base,
+      ),
     );
   }
 
@@ -238,7 +243,7 @@ class ThemeModel with ChangeNotifier {
         ),
         headlineMedium: TextStyle(
           fontSize: 38,
-          fontFamily: 'Karma',
+          fontFamily: 'Staatliches',
           letterSpacing: 2,
           color: White.text,
         ),
@@ -375,6 +380,11 @@ class ThemeModel with ChangeNotifier {
       bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: White.crust,
         surfaceTintColor: White.base,
+      ),
+      cardTheme: const CardTheme(
+        margin: EdgeInsets.all(0),
+        surfaceTintColor: White.base,
+        color: White.base,
       ),
     );
   }
