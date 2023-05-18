@@ -46,7 +46,7 @@ class _SearchState extends State<Search> {
                       .headlineMedium!
                       .copyWith(
                         fontSize: 45,
-                        fontFamily: 'Zodiak',
+                        fontFamily: 'LobsterTwo',
                       ),
                 ),
               ),

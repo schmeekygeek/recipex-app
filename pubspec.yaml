@@ -61,11 +61,6 @@ flutter:
     - family: Staatliches
       fonts:
         - asset: fonts/Staatliches-Regular.ttf
-    - family: Zodiak
-      fonts:
-        - asset: fonts/Zodiak-Bold.otf
-        - asset: fonts/Zodiak-Regular.otf
-        - asset: fonts/Zodiak-Italic.otf
 
 flutter_icons:
   image_path: "assets/icon.png"
