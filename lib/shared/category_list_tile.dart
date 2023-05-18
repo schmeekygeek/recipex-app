@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../providers/theme_model.dart';
 
 class CategoryListTile extends StatelessWidget {
   final String idCategory;
@@ -23,10 +20,13 @@ class CategoryListTile extends StatelessWidget {
         width: 130,
         child: Column(
           children: [
-            Image.network(
-              strCategoryThumb,
-              colorBlendMode: BlendMode.dstATop,
-              fit: BoxFit.fitWidth,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(13),
+              child: Image.network(
+                strCategoryThumb,
+                colorBlendMode: BlendMode.dstATop,
+                fit: BoxFit.fitWidth,
+              ),
             ),
             const SizedBox(
               height: 7,
