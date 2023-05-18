@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../extensions.dart';
@@ -26,10 +26,20 @@ class MealInfoSheet extends StatefulWidget {
   State<MealInfoSheet> createState() => _MealInfoSheetState();
 }
 
-class _MealInfoSheetState extends State<MealInfoSheet> {
+class _MealInfoSheetState extends State<MealInfoSheet> with SingleTickerProviderStateMixin {
+
+  late final AnimationController _controller;
+
   @override
   void initState() {
     context.read<StorageProvider>().setLastMealId(widget.meal.idMeal!);
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        seconds: 1,
+        milliseconds: 400
+      ),
+    );
     super.initState();
   }
 
@@ -41,23 +51,17 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
           slivers: [
             SliverAppBar(
               actions: [
-                IconButton(
-                  icon: const Icon(
-                    FontAwesomeIcons.solidHeart,
-                  ),
-                  onPressed: () async {
+                GestureDetector(
+                  onTap: () async {
                     showLoadingDialog(context);
                     bool didLike = false;
                     try {
                       didLike =
                           await mealService.likeRecipe(widget.meal.getMealId);
                     } 
-                    on FirebaseException {
+                    catch (e) {
                       context.pop();
-                      showErrorDialog(context, 'Something went wrong');
-                      return;
-                    } catch (e) {
-                      context.pop();
+                      if(!mounted) return;
                       showErrorDialog(context, 'Something went wrong');
                       return;
                     }
@@ -72,7 +76,16 @@ class _MealInfoSheetState extends State<MealInfoSheet> {
                         ),
                       ),
                     );
+                    await _controller.forward();
+                    _controller.reset();
                   },
+                  child: LottieBuilder.asset(
+                    'assets/heart.json',
+                    controller: _controller,
+                    width: 60,
+                    height: 60,
+                    frameRate: FrameRate.max,
+                  ),
                 ),
                 IconButton(
                   icon: Icon(
