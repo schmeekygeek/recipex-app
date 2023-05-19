@@ -187,7 +187,7 @@ class _SignUpState extends State<SignUp> {
                       return;
                     }
                     showLoadingDialog(context);
-                    mealService.emailSignUp(
+                    await mealService.emailSignUp(
                       _email,
                       _password,
                       _username
@@ -196,6 +196,7 @@ class _SignUpState extends State<SignUp> {
                     context.pop();
                     context.pop();
                   } on InvalidUsernameException {
+                    context.pop();
                     showErrorDialog(
                       context,
                       'Invalid username',
