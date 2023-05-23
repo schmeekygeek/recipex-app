@@ -11,7 +11,6 @@ class LikedBox extends StatelessWidget {
     return Container(
       height: 140,
       decoration: BoxDecoration(
-        boxShadow: kElevationToShadow[4],
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(4),
           topRight: Radius.circular(20),

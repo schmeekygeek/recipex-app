@@ -40,7 +40,6 @@ class _RecipeOTDBoxState extends State<RecipeOTDBox> {
                   height: 160,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    boxShadow: kElevationToShadow[4],
                     color: Colors.black,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(4),

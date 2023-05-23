@@ -13,7 +13,6 @@ class SearchBox extends StatelessWidget {
         height: 150,
         width: double.infinity,
         decoration: BoxDecoration(
-          boxShadow: kElevationToShadow[4],
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(4),
             topRight: Radius.circular(20),
