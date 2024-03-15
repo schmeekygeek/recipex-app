@@ -58,9 +58,9 @@ class _ProfileState extends State<Profile> {
                               ),
                             );
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Reset password'),
                               Icon(
                                 FontAwesomeIcons.chevronRight,
@@ -86,9 +86,9 @@ class _ProfileState extends State<Profile> {
                               ),
                             );
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Reset username'),
                               Icon(
                                 FontAwesomeIcons.chevronRight,
@@ -153,9 +153,9 @@ class _ProfileState extends State<Profile> {
                               mode: LaunchMode.externalApplication,
                             );
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('About Me'),
                               Icon(
                                 FontAwesomeIcons.userAstronaut,
@@ -179,9 +179,9 @@ class _ProfileState extends State<Profile> {
                               mode: LaunchMode.externalApplication,
                             );
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('About RecipEx'),
                               Icon(
                                 FontAwesomeIcons.arrowUpRightFromSquare,
@@ -222,10 +222,10 @@ class _ProfileState extends State<Profile> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Row(
+                  const Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(
                         FontAwesomeIcons.copyright,
                         size: 14,
