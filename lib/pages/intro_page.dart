@@ -61,27 +61,27 @@ class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                DefaultTextStyle(
-                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    DefaultTextStyle(
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 45,
                       ),
-                  child: AnimatedTextKit(
-                    displayFullTextOnTap: true,
-                    pause: const Duration(milliseconds: 1500),
-                    repeatForever: true,
-                    animatedTexts: [
-                      TyperAnimatedText(
-                        'Quick',
+                      child: AnimatedTextKit(
+                        displayFullTextOnTap: true,
+                        pause: const Duration(milliseconds: 1500),
+                        repeatForever: true,
+                        animatedTexts: [
+                          TyperAnimatedText(
+                            'Quick',
+                          ),
+                          TyperAnimatedText(
+                            'Delicious',
+                          ),
+                          TyperAnimatedText(
+                            'Easy',
+                          ),
+                        ],
                       ),
-                      TyperAnimatedText(
-                        'Delicious',
-                      ),
-                      TyperAnimatedText(
-                        'Easy',
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
                     Align(
                       alignment: Alignment.centerRight,
                       child: OutlinedButton.icon(
